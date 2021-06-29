@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
@@ -8,7 +8,7 @@ const Quiz = (props) => {
 
   useEffect(() => {}, []);
 
-  return <>메인입니다</>;
+  return <></>;
 };
 
 export default Quiz;
