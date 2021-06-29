@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { Link } from 'react-router-dom';
-
 import { Text, Grid, Button } from "../elements/";
-
-import Quiz from "./Quiz";
 
 const Main = ({history}) => {
   const dispatch = useDispatch();

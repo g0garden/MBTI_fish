@@ -43,6 +43,7 @@ const Btn = styled.button`
     box-shadow: 0 0 2px 2px #ffffff66;
     transition: all 200ms ease-in-out;
   }
+  
 `;
 
 export default Button;
