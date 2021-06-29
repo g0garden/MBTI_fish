@@ -7,45 +7,48 @@ import { Text, Grid, Button } from "../elements/";
 
 import Quiz from "./Quiz";
 
+import history from "../redux/configureStore";
+import { createBrowserHistory } from "history";
+
 const Main = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {}, []);
 
   // number to increment to
-  // duration of count in seconds
-  const number = "5000";
+  const number = "10";
 
-  // number displayed by component
   const [count, setCount] = useState("0");
 
   useEffect(() => {
     let start = 0;
-    // first three numbers from props
+    // 숫자가 크면 뒤에 자리 버리고 앞에 3자리수만 변화하도록
+    // 12345678 이라면 123 부분만 1, 2, 3 ...122, 123
     const end = parseInt(number.substring(0, 3));
     // if zero, return
     if (start === end) return;
 
-    // find duration per increment
-    let totalMilSecDur = parseInt(2);
-    let incrementTime = (totalMilSecDur / end) * 1000;
+    // 숫자 증가 초단위 찾기
+    // 숫자가 작다면 작은 숫자가 2초내로 천천히 오르고
+    // 숫자가 크면 2초내로 빨리 오름
+    let incrementTime = (2 / end) * 1000;
 
     // timer increments start counter
     // then updates count
     // ends if start reaches end
     let timer = setInterval(() => {
       start += 1;
-      setCount(String(start) + number.substring(3));
-      if (start === end) clearInterval(timer);
-    }, incrementTime);
+      setCount(String(start) + number.substring(3)); // 오르는 숫자 + 나머지 자른 숫자
+      if (start === end) clearInterval(timer); // 오르던 숫자가 숫자 맨 앞에 자른 3자리 숫자와 같다면 timer 함수 지우기
+    }, incrementTime); // 증가 초단위마다 체크하는 setInterval
 
-    // dependency array
-  }, [number, 2]);
+    // 숫자가 바뀌면 숫자가 다시 오름
+  }, [number]);
 
   return (
-    <Grid textAlign="center">
+    <>
       <Grid margin="150px auto 30px auto">
-        <Text size="40px" bold lineHeight="120%">
+        <Text size="40px" bold>
           수면 아래
           <br />
           나의 본 모습은?
@@ -53,14 +56,21 @@ const Main = (props) => {
       </Grid>
 
       <Text size="18px">나도 모르는 나의 무의식 테스트</Text>
-      <Button margin="220px auto auto">START</Button>
+      <Button
+        margin="50px"
+        onClick={() => {
+          history.push("/quiz");
+        }}
+      >
+        START
+      </Button>
 
-      <Text size="20px" margin="10px">
+      <Text size="20px">
         지금까지
         <br />
         {count}명이 확인했어요!
       </Text>
-    </Grid>
+    </>
   );
 };
 

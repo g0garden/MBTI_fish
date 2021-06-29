@@ -6,7 +6,7 @@ const Text = (props) => {
 
   const styles = {
     size: size,
-    lineHeight: lineHeight ? lineHeight : false,
+    lineHeight: lineHeight,
     bold: bold ? bold : false,
     margin: margin ? margin : false,
   };
@@ -17,6 +17,7 @@ const Text = (props) => {
 Text.defaultProps = {
   children: null,
   size: "20px",
+  lineHeight: "120%",
 };
 
 const TextBox = styled.div`
