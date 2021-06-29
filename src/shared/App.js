@@ -1,16 +1,17 @@
 import "./App.css";
+import React from "react";
+import styled from "styled-components";
 
 import { ConnectedRouter } from "connected-react-router";
 import { Route, Switch } from "react-router-dom";
 
 import { history } from "../redux/configureStore";
-import React from "react";
 
 import { Main, Quiz, Result } from "../pages";
 
 function App() {
   return (
-    <React.Fragment>
+    <Wrap>
       <ConnectedRouter history={history}>
         <Switch>
           <Route exact path="/" component={Main} />
@@ -18,8 +19,14 @@ function App() {
           <Route exact path="/result" component={Result} />
         </Switch>
       </ConnectedRouter>
-    </React.Fragment>
+    </Wrap>
   );
 }
+
+const Wrap = styled.div`
+  min-width: 300px;
+  max-width: 375px;
+  margin: 20px auto;
+`;
 
 export default App;
