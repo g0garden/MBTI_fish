@@ -37,6 +37,7 @@ export const { setQuestion, setLoading } = quizSlice.actions;
 
 export const api = {
   getQuestionAX,
+  
 };
 
 export default quizSlice.reducer;
