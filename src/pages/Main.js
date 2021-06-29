@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
 
 import { Text, Grid, Button } from "../elements/";
 
 import Quiz from "./Quiz";
 
-const Main = (props) => {
+const Main = ({history}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {}, []);
@@ -18,6 +19,10 @@ const Main = (props) => {
 
   // number displayed by component
   const [count, setCount] = useState("0");
+
+  // const goToPage = (page) => {
+  //   history.push(`/${page}`);
+  // }
 
   useEffect(() => {
     let start = 0;
@@ -53,7 +58,7 @@ const Main = (props) => {
       </Grid>
 
       <Text size="18px">나도 모르는 나의 무의식 테스트</Text>
-      <Button margin="220px auto auto">START</Button>
+      <Button margin="220px auto auto" onClick={() => history.push('/quiz')}>START</Button>
 
       <Text size="20px" margin="10px">
         지금까지
