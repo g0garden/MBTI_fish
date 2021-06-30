@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
-import {firestore} from "./firebase";
+import {firestore} from "../shared/firebase";
 import { Text, Grid, Button } from "../elements/";
 
 const Fish = (props) => {
