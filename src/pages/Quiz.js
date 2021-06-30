@@ -3,27 +3,53 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
+
 import { Text, Grid, Button } from "../elements/";
 
+import {questions, dic, incrementDicElement} from "../data/questions";
+
+import QuizFrame from "../components/QuizFrame";
+
+
 const Quiz = (props) => {
-  const dispatch = useDispatch();
 
-  useEffect(() => {}, []);
+  const data = questions.map((d, idx) => {return {...d, idx: idx}});
 
-  return (
-    <>
-      <Grid margin="150px auto 30px auto">
-        <Text size="40px" bold>
-          수면 아래
-          <br />
-          나의 본 모습은?
-        </Text>
-      </Grid>
+  console.log(data);
 
-      <Text size="18px">나도 모르는 나의 무의식 테스트</Text>
-      <Button margin="50px">START</Button>
-    </>
-  );
+  const [index, incrementIndex] = useState(1);
+ 
+  const goToNextPage = () => {
+    if (index === 12) {
+      window.alert("That's enough!");
+      getType(Object.values(dic));
+      return;
+    }
+    incrementIndex(index + 1);
+  }
+  // const dispatch = useDispatch();
+
+  const getType = (arr) => {
+    const types = ["E", "I", "N", "S", "T", "F", "P", "J"]
+    let answer = [];
+    
+    for (let i = 0; i < arr.length; i+=2) {
+      if (arr[i] > arr[i+1]) {
+        answer.push(types[i]);
+        continue;
+      }
+      answer.push(types[i+1]);
+    }
+    console.log(answer.join(""));
+  }
+
+  console.log(dic);
+
+  return (<>
+  <button onClick={()=> props.history.replace("/")}>Home</button>
+  <QuizFrame data={data[index-1]} next={goToNextPage} index={index} increment={incrementDicElement}/>
+  </>);
+
 };
 
 export default Quiz;
