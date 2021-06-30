@@ -15,10 +15,10 @@ const Quiz = (props) => {
 
   const data = questions.map((d, idx) => {return {...d, idx: idx}});
 
-  console.log(data);
+  //console.log(data);
 
   const [index, incrementIndex] = useState(1);
- 
+
   const goToNextPage = () => {
     if (index === 12) {
       window.alert("That's enough!");
@@ -39,6 +39,7 @@ const Quiz = (props) => {
         continue;
       }
       answer.push(types[i+1]);
+      console.log("답",answer);
     }
     console.log(answer.join(""));
   }
