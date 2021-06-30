@@ -3,9 +3,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
+
+import { Text, Grid, Button } from "../elements/";
+
 import {questions, dic, incrementDicElement} from "../data/questions";
 
 import QuizFrame from "../components/QuizFrame";
+
 
 const Quiz = (props) => {
 
@@ -45,6 +49,7 @@ const Quiz = (props) => {
   <button onClick={()=> props.history.replace("/")}>Home</button>
   <QuizFrame data={data[index-1]} next={goToNextPage} index={index} increment={incrementDicElement}/>
   </>);
+
 };
 
 export default Quiz;
