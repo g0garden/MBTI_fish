@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 import { Text, Grid, Button } from "../elements/";
 
-import {questions, dic, incrementDicElement} from "../data/questions";
+import {shuffled_array as questions, dic, incrementDicElement} from "../data/questions";
 
 import QuizFrame from "../components/QuizFrame";
 
@@ -30,7 +30,7 @@ const Quiz = (props) => {
   // const dispatch = useDispatch();
 
   const getType = (arr) => {
-    const types = ["E", "I", "N", "S", "T", "F", "P", "J"]
+    const types = ["E", "I", "N", "S", "T", "F", "P", "J"];
     let answer = [];
     
     for (let i = 0; i < arr.length; i+=2) {

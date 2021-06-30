@@ -58,7 +58,6 @@ const Main = ({history}) => {
 
       <Button margin="220px auto auto" onClick={() => history.replace('/quiz')}>START</Button>
 
-
       <Text size="20px">
         지금까지
         <br />

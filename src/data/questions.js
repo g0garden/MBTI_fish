@@ -1,4 +1,4 @@
-export let questions = [
+let questions = [
         {
             "question": "누군가 당신을 좋아한다고 말했을 때?",
             "answers": [{"a": "감사합니다.", "type": "E", "index": 0}, {"b": "저리가세요.", "type": "I", "index": 1}]
@@ -63,9 +63,10 @@ function shuffleArray(arr) {
     [arr[currentIndex], arr[randomIndex]] = [
       arr[randomIndex], arr[currentIndex]];
   }
+  return arr;
 }
 
-shuffleArray(questions);
+export const shuffled_array = shuffleArray(questions);
 
 export let dic = {
     0: 0,
