@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { Text, Grid, Button } from "../elements/";
 
-
-const Main = ({history}) => {
+const Main = ({ history }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {}, []);
@@ -56,8 +55,9 @@ const Main = ({history}) => {
 
       <Text size="18px">나도 모르는 나의 무의식 테스트</Text>
 
-      <Button margin="220px auto auto" onClick={() => history.replace('/quiz')}>START</Button>
-
+      <Button margin="220px auto auto" onClick={() => history.replace("/quiz")}>
+        START
+      </Button>
 
       <Text size="20px">
         지금까지
