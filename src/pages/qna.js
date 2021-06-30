@@ -22,15 +22,13 @@ const getQnaAFB = () => {
         qnaList_data = [...qnaList_data, {id: doc.id, ...doc.data()}]
       }
     });
-
-    
-    // console.log("롸",qnaList_data)
-    // return qnaList_data;
+    console.log("롸",qnaList_data)
+    return 
   });
 }
 
-getQnaAFB();
-console.log(qnaList_data);
+const getQnaList = getQnaAFB();
+console.log(getQnaList);
 
 
 function shuffleArray(arr) {
