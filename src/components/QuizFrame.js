@@ -28,8 +28,8 @@ const QuizFrame = (props) => {
     <Text size="30px" bold>{props.data.question}</Text>
   </Grid>
   <QuestionBox>
-    <Button align padding="0 20px" size="24px" onClick={props.next}><CheckOutlined /> {props.data.answers[0].a}</Button>
-    <Button align padding="0 20px" size="24px" onClick={props.next}><CheckOutlined /> {props.data.answers[1].b}</Button>
+    <Button align padding="0 20px" size="24px" onClick={()=> {props.next(); props.increment(props.data.answers[0].type);}}><CheckOutlined /> {props.data.answers[0].a}</Button>
+    <Button align padding="0 20px" size="24px" onClick={()=> {props.next(); props.increment(props.data.answers[1].type);}}><CheckOutlined /> {props.data.answers[1].b}</Button>
   </QuestionBox>
 </Grid>);
 };

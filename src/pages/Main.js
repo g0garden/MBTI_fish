@@ -54,7 +54,7 @@ const Main = ({history}) => {
       </Grid>
 
       <Text size="18px">나도 모르는 나의 무의식 테스트</Text>
-      <Button margin="220px auto auto" onClick={() => history.push('/quiz')}>START</Button>
+      <Button margin="220px auto auto" onClick={() => history.replace('/quiz')}>START</Button>
 
       <Text size="20px" margin="10px">
         지금까지
