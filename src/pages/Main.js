@@ -59,6 +59,7 @@ const Main = ({ history }) => {
         START
       </Button>
 
+
       <Text size="20px">
         지금까지
         <br />

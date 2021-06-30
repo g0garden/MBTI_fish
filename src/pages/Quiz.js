@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 import { Text, Grid, Button } from "../elements/";
 
-import {questions, dic, incrementDicElement} from "../data/questions";
+import {shuffled_array as questions, dic, incrementDicElement} from "../data/questions";
 
 import QuizFrame from "../components/QuizFrame";
 
@@ -15,10 +15,10 @@ const Quiz = (props) => {
 
   const data = questions.map((d, idx) => {return {...d, idx: idx}});
 
-  console.log(data);
+  //console.log(data);
 
   const [index, incrementIndex] = useState(1);
- 
+
   const goToNextPage = () => {
     if (index === 12) {
       window.alert("That's enough!");
@@ -30,7 +30,7 @@ const Quiz = (props) => {
   // const dispatch = useDispatch();
 
   const getType = (arr) => {
-    const types = ["E", "I", "N", "S", "T", "F", "P", "J"]
+    const types = ["E", "I", "N", "S", "T", "F", "P", "J"];
     let answer = [];
     
     for (let i = 0; i < arr.length; i+=2) {
@@ -39,6 +39,7 @@ const Quiz = (props) => {
         continue;
       }
       answer.push(types[i+1]);
+      console.log("답",answer);
     }
     console.log(answer.join(""));
   }

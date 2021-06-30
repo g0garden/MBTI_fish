@@ -5,9 +5,12 @@ import { useDispatch } from "react-redux";
 
 import Fish from "../components/Fish";
 
+import {firestore} from "../shared/firebase";
+import { Text, Grid, Button } from "../elements/";
+
 const Result = (props) => {
   const dispatch = useDispatch();
-
+  //
   useEffect(() => {}, []);
 
   const shareButton = useRef();
@@ -37,6 +40,7 @@ const Result = (props) => {
       <div>페북</div>
       <div ref={shareButton}>공유하기</div>
     </>
+
   );
 };
 

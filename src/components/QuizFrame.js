@@ -19,7 +19,9 @@ const QuizFrame = (props) => {
     questionNum = props.index.toString();
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    
+  }, []);
 
   return (<Grid textAlign="center">
   <Grid margin="150px auto 100px auto">
