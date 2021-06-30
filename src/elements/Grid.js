@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const Grid = (props) => {
-  const { children, padding, is_flex, margin, justify, align, textAlign, zIndex, overflow, column } = props;
+  const { children, width, height, padding, is_flex, margin, justify, align, textAlign, zIndex, overflow, column } = props;
 
   const styles = {
+    width: width,
+    height: height,
     padding: padding,
     is_flex: is_flex,
     margin: margin,
@@ -22,6 +24,8 @@ const Grid = (props) => {
 Grid.defaultProps = {
   isRoot: false,
   children: null,
+  width: false,
+  height: false,
   padding: false,
   is_flex: false,
   margin: false,
@@ -40,6 +44,9 @@ const GridBox = styled.div`
   box-sizing: border-box;
   outline: 0;
   /* white-space: pre-line; */
+
+  width: ${(props) => (props.width ? props.width : "")};
+  height: ${(props) => (props.height ? props.height : "")};
 
   z-index: ${(props) => props.zIndex};
   overflow: ${(props) => props.overflow};

@@ -49,7 +49,7 @@ function App() {
 }
 
 const Wrap = styled.div`
-  min-width: 300px;
+  width: 90vw;
   max-width: 375px;
   margin: 20px auto;
 `;
