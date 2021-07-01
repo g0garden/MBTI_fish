@@ -1,28 +1,33 @@
+//비동기처리 코드 연습..
 import { firestore } from "../shared/firebase";
 
+let qnaList_data = [];
 
-function FB_test() {
-    const qnaList = firestore.collection("qnaList")
+async function FB_test() {
+    const qnaList = firestore.collection("qnaList");
 
-    qnaList.get().then(docs => {
-        let qnaList_data = [];
-
-        docs.forEach((doc) => {
-        if(doc.exists){
-            qnaList_data = [...qnaList_data, {id: doc.id, ...doc.data()}]
-        }
+    await qnaList.get().then((docs) => {
+    docs.forEach((doc) => {
+        if (doc.exists) {
+            qnaList_data = [...qnaList_data, { id: doc.id, ...doc.data() }];
+            }
         });
-        
-        console.log(qnaList_data);
-        return qnaList_data
+        console.log("과연", qnaList_data);
     });
-    
 }
 
-//FB_test();
-const questions = FB_test();
-console.log("제발", questions);
+const questions = FB_test().then(() => {
+    console.log("제발", qnaList_data)
+});
 
+// const questions = FB_test();
+// console.log("제발",questions);//[]
+
+//FB_test();
+// (async () => {
+//     const questions = await FB_test();
+//     console.log(questions);
+// })();
 
 function shuffleArray(arr) {
     let currentIndex = arr.length,  randomIndex;
@@ -36,12 +41,12 @@ function shuffleArray(arr) {
 
     // And swap it with the current element.
     [arr[currentIndex], arr[randomIndex]] = [
-      arr[randomIndex], arr[currentIndex]];
-  }
-  return arr;
+        arr[randomIndex], arr[currentIndex]];
+    }
+    return arr;
 }
-
-export const shuffled_array = shuffleArray(questions);
+let a=[1,2]
+export const shuffled_array = shuffleArray(a);
 
 export let dic = {
     0: 0,
