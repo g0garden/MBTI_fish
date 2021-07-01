@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import { Text, Grid, Button } from "../elements/";
 
-import { shuffled_array as questions, dic, incrementDicElement } from "../data/questions";
+import { shuffled_array as questions, dic, incrementDicElement } from "../data/questionsFB";
 
 import QuizFrame from "../components/QuizFrame";
 

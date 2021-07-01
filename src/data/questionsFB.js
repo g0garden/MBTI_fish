@@ -1,22 +1,28 @@
-let questions = 
+import { firestore } from "../shared/firebase";
 
-useEffect(() => {
-  const qnaList = firestore.collection("qnaList");
 
-  qnaList
-  .get()
-  .then(docs => {
-    let qnaList_data = [];
+function FB_test() {
+    const qnaList = firestore.collection("qnaList")
 
-    docs.forEach((doc) => {
-      if(doc.exists){
-        qnaList_data = [...qnaList_data, 
-          {id: doc.id, ...doc.data()}]
-      }
+    qnaList.get().then(docs => {
+        let qnaList_data = [];
+
+        docs.forEach((doc) => {
+        if(doc.exists){
+            qnaList_data = [...qnaList_data, {id: doc.id, ...doc.data()}]
+        }
+        });
+        
+        console.log(qnaList_data);
+        return qnaList_data
     });
-    console.log(qnaList_data);
-  });
-},[])
+    
+}
+
+//FB_test();
+const questions = FB_test();
+console.log("제발", questions);
+
 
 function shuffleArray(arr) {
     let currentIndex = arr.length,  randomIndex;
