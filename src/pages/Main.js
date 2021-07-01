@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { Text, Grid, Button } from "../elements/";
+import bg from "../data/background.jpg";
 
 const Main = ({ history }) => {
   const dispatch = useDispatch();
@@ -44,14 +45,12 @@ const Main = ({ history }) => {
   }, [number]);
 
   return (
-    <>
-      <Grid margin="150px auto 30px auto">
-        <Text size="40px" bold>
-          수면 아래
-          <br />
-          나의 본 모습은?
-        </Text>
-      </Grid>
+    <Wrap>
+      <Title>
+        수면 아래
+        <br />
+        나의 본 모습은?
+      </Title>
 
       <Text size="18px">나도 모르는 나의 무의식 테스트</Text>
 
@@ -59,14 +58,31 @@ const Main = ({ history }) => {
         START
       </Button>
 
-
       <Text size="20px">
         지금까지
         <br />
         {count}명이 확인했어요!
       </Text>
-    </>
+    </Wrap>
   );
 };
+
+const Wrap = styled.div`
+  width: 100vw;
+  /* height: 100vh; */
+  /* max-width: 375px; */
+  background-image: url(${bg});
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center;
+  margin: 0 auto;
+  box-shadow: 0 0 3px black;
+`;
+
+const Title = styled.div`
+  padding: 20vh 10px 5vh 10px;
+  font-size: 40px;
+  font-weight: 600;
+`;
 
 export default Main;

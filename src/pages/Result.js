@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 
 import Fish from "../components/Fish";
 
-import {firestore} from "../shared/firebase";
+import { firestore } from "../shared/firebase";
 import { Text, Grid, Button } from "../elements/";
+
+import bg from "../data/background.jpg";
 
 const Result = (props) => {
   const dispatch = useDispatch();
@@ -20,28 +22,41 @@ const Result = (props) => {
     shareButton.hidden = true;
   }
 
-  shareButton.addEventListener("click", async () => {
-    try {
-      await navigator.share({
-        title: "수면 아래 내 모습은?",
-        text: "수면 아래 내 모습은 어떤 모습일지 확인해보세요!",
-        url: `https://localhost:3000/`,
-      });
-      console.log("공유 성공");
-    } catch (e) {
-      console.log("공유 실패");
-    }
-  });
+  // shareButton.addEventListener("click", async () => {
+  //   try {
+  //     await navigator.share({
+  //       title: "수면 아래 내 모습은?",
+  //       text: "수면 아래 내 모습은 어떤 모습일지 확인해보세요!",
+  //       url: `https://localhost:3000/`,
+  //     });
+  //     console.log("공유 성공");
+  //   } catch (e) {
+  //     console.log("공유 실패");
+  //   }
+  // });
 
   return (
-    <>
+    <Wrap>
       <br />
       <Fish />
+      <Other></Other>
       <div>페북</div>
-      <div ref={shareButton}>공유하기</div>
-    </>
-
+      <Button ref={shareButton}>공유하기</Button>
+    </Wrap>
   );
 };
+
+const Wrap = styled.div`
+  width: 100vw;
+  /* height: 100vh; */
+  /* max-width: 375px; */
+  background-image: url(${bg});
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center;
+  margin: 0 auto;
+`;
+
+const Other = styled.div``;
 
 export default Result;
