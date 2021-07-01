@@ -24,8 +24,8 @@ const Grid = (props) => {
 Grid.defaultProps = {
   isRoot: false,
   children: null,
-  width: false,
-  height: false,
+  width: null,
+  height: null,
   padding: false,
   is_flex: false,
   margin: false,

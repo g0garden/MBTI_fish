@@ -3,7 +3,11 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
+import { Text, Grid, Button } from "../elements/";
+
 import { Helmet } from "react-helmet";
+
+import gwangeo from "../data/gwangeo.png";
 
 const Fish = (props) => {
   const dispatch = useDispatch();
@@ -17,7 +21,6 @@ const Fish = (props) => {
       desc: "나에겐 아름다운 이상이 있지",
       img: "https://www.ocregister.com/wp-content/uploads/migration/nv5/nv5t87-b88521891z.120150923191922000g6tc6j8f.70.jpg",
       traits: [
-        "다른 사람들과 구분되는 독특한 감수성이 있어요.",
         "다른 사람들과 구분되는 독특한 감수성이 있어요.",
         "맞는 건 맞고 아닌 건 아닌거에요. 하지만 이걸 대놓고 말하고 다니진 않아요.",
         "따뜻한 마음을 가지고 있지만 애정표시를 대놓고 하는 건 참 어려워요.",
@@ -43,8 +46,123 @@ const Fish = (props) => {
         {/* 뒷주소 이름은 뭘로 할지 결정해야함 ex. mbti타입인지, fish타입인지 */}
         <link rel="canonical" href={`http://localhost:3000/result/${fishType.INFP.fish}`} />
       </Helmet>
+      <Text bold size="32px" margin="20px 0 0 0">
+        {fishType.INFP.fish}
+      </Text>
+      <FishImg src={`${gwangeo}`} />
+      <Grid margin="auto 20px">
+        <Text bold size="20px">
+          "{fishType.INFP.desc}"
+        </Text>
+
+        <Text bold size="20px" margin="20px auto">
+          특징
+        </Text>
+        {fishType.INFP.traits.map((t, idx) => {
+          return (
+            <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
+              {t}
+            </Text>
+          );
+        })}
+
+        <Text bold size="20px" margin="20px auto">
+          가능성
+        </Text>
+        {fishType.INFP.potentials.map((p, idx) => {
+          return (
+            <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
+              {p}
+            </Text>
+          );
+        })}
+      </Grid>
     </>
   );
 };
+
+const FishImg = styled.img`
+  width: 80vw;
+  max-width: 400px;
+  margin: 5vh 0;
+
+  @-webkit-keyframes swing {
+    20% {
+      -webkit-transform: rotate3d(0, 0, 1, 15deg);
+    }
+    40% {
+      -webkit-transform: rotate3d(0, 0, 1, -10deg);
+    }
+    60% {
+      -webkit-transform: rotate3d(0, 0, 1, 5deg);
+    }
+    80% {
+      -webkit-transform: rotate3d(0, 0, 1, -5deg);
+    }
+    100% {
+      -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    }
+  }
+  @-moz-keyframes swing {
+    20% {
+      -moz-transform: rotate3d(0, 0, 1, 15deg);
+    }
+    40% {
+      -moz-transform: rotate3d(0, 0, 1, -10deg);
+    }
+    60% {
+      -moz-transform: rotate3d(0, 0, 1, 5deg);
+    }
+    80% {
+      -moz-transform: rotate3d(0, 0, 1, -5deg);
+    }
+    100% {
+      -moz-transform: rotate3d(0, 0, 1, 0deg);
+    }
+  }
+  @-o-keyframes swing {
+    20% {
+      -o-transform: rotate3d(0, 0, 1, 15deg);
+    }
+    40% {
+      -o-transform: rotate3d(0, 0, 1, -10deg);
+    }
+    60% {
+      -o-transform: rotate3d(0, 0, 1, 5deg);
+    }
+    80% {
+      -o-transform: rotate3d(0, 0, 1, -5deg);
+    }
+    100% {
+      -o-transform: rotate3d(0, 0, 1, 0deg);
+    }
+  }
+  @keyframes swing {
+    20% {
+      transform: rotate3d(0, 0, 1, 15deg);
+    }
+    40% {
+      transform: rotate3d(0, 0, 1, -10deg);
+    }
+    60% {
+      transform: rotate3d(0, 0, 1, 5deg);
+    }
+    80% {
+      transform: rotate3d(0, 0, 1, -5deg);
+    }
+    100% {
+      transform: rotate3d(0, 0, 1, 0deg);
+    }
+  }
+
+  -webkit-transform-origin: top center;
+  -moz-transform-origin: top center;
+  -o-transform-origin: top center;
+  transform-origin: top center;
+  -webkit-animation: swing 2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -moz-animation: swing 2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -o-animation: swing 2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  animation: swing 2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+`;
 
 export default Fish;
