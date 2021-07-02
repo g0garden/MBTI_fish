@@ -1,9 +1,9 @@
 //비동기처리 코드 연습..
 import { firestore } from "../shared/firebase";
 
-let qnaList_data = [];
+export let qnaList_data = [];
 
-async function FB_test() {
+export async function FB_test() {
     const qnaList = firestore.collection("qnaList");
 
     await qnaList.get().then((docs) => {
@@ -12,13 +12,15 @@ async function FB_test() {
             qnaList_data = [...qnaList_data, { id: doc.id, ...doc.data() }];
             }
         });
-        console.log("과연", qnaList_data);
     });
+    console.log("과연", qnaList_data);
+    return shuffleArray(qnaList_data);
 }
 
-const questions = FB_test().then(() => {
-    console.log("제발", qnaList_data)
-});
+export const shuffled_array = FB_test();
+// const questions = FB_test().then(() => {
+//     console.log("제발", qnaList_data)
+// });
 
 // const questions = FB_test();
 // console.log("제발",questions);//[]
@@ -30,6 +32,7 @@ const questions = FB_test().then(() => {
 // })();
 
 function shuffleArray(arr) {
+    console.log(arr);
     let currentIndex = arr.length,  randomIndex;
 
     // While there remain elements to shuffle...
@@ -45,8 +48,8 @@ function shuffleArray(arr) {
     }
     return arr;
 }
-let a=[1,2]
-export const shuffled_array = shuffleArray(a);
+// let a=[1,2]
+// export const shuffled_array = shuffleArray(a);
 
 export let dic = {
     0: 0,
