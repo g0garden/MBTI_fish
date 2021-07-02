@@ -5,16 +5,26 @@ import { useDispatch } from "react-redux";
 
 import { Text, Grid, Button } from "../elements/";
 
-import { shuffled_array as questions, dic, incrementDicElement } from "../data/questionsFB";
+import { shuffled_array as questions, qnaList_data, dic, incrementDicElement, FB_test } from "../data/questionsFB";
 
 import QuizFrame from "../components/QuizFrame";
 
 import bg from "../data/background.jpg";
 
 const Quiz = (props) => {
-  const data = questions.map((d, idx) => {
-    return { ...d, idx: idx };
+  let date = null;
+
+  function setDate(arr) {
+    date = arr
+  }
+  questions.then(resolve => {
+    setDate(resolve);
+    console.log(date);
   });
+
+  // const data = date.map((d, idx) => {
+  //   return { ...d, idx: idx };
+  // });
 
   //console.log(data);
 
@@ -50,7 +60,7 @@ const Quiz = (props) => {
   return (
     <Wrap>
       <button onClick={() => props.history.replace("/")}>Home</button>
-      <QuizFrame data={data[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />
+      <QuizFrame data={date[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />
     </Wrap>
   );
 };
