@@ -1,19 +1,18 @@
 import React, { useEffect, useRef } from "react";
-
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-
+import { useDispatch,useSelector } from "react-redux";
 import Fish from "../components/Fish";
-
-import { firestore } from "../shared/firebase";
 import { Text, Grid, Button } from "../elements/";
-
 import bg from "../data/background.jpg";
+import {api as fishActions} from "../redux-toolkit/modules/fishList";
+import { firestore } from "../shared/firebase";
 
 const Result = (props) => {
-  const dispatch = useDispatch();
-  //
-  useEffect(() => {}, []);
+  const fishResult_data = useSelector((state) => state.fishList.fishOneResult)
+
+  useEffect(() => {
+    //console.log("찍히는걸까?", fishResult_data)
+  },[]);
 
   const shareButton = useRef();
 
@@ -38,10 +37,10 @@ const Result = (props) => {
   return (
     <Wrap>
       <br />
-      <Fish />
+      { fishResult_data && <Fish FishOneType={fishResult_data}/>}
       <Other></Other>
       <div>페북</div>
-      <Button ref={shareButton}>공유하기</Button>
+      {/* <Button ref={shareButton}>공유하기</Button> */}
     </Wrap>
   );
 };

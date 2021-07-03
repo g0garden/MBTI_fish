@@ -1,12 +1,9 @@
 import "./App.css";
 import React, { useEffect } from "react";
 import styled from "styled-components";
-
 import { ConnectedRouter } from "connected-react-router";
 import { Route, Switch } from "react-router-dom";
-
-import { history } from "../redux/configureStore";
-
+import { history } from "../redux-toolkit/configureStore";
 import { Main, Quiz, Result } from "../pages";
 import { firestore } from "./firebase";
 
@@ -14,21 +11,21 @@ import { firestore } from "./firebase";
 function App() {
   
   //firebase 연결확인
-  useEffect(() => {
-    const qnaList = firestore.collection("qnaList");
+  // useEffect(() => {
+  //   const qnaList = firestore.collection("qnaList");
 
-    qnaList.get()
-    .then((docs) => {
-      let qnaList_data = [];
+  //   qnaList.get()
+  //   .then((docs) => {
+  //     let qnaList_data = [];
 
-      docs.forEach((doc) => {
-        if (doc.exists) {
-          qnaList_data = [...qnaList_data, { id: doc.id, ...doc.data() }];
-        }
-      });
-      console.log(qnaList_data);
-    });
-  }, []);
+  //     docs.forEach((doc) => {
+  //       if (doc.exists) {
+  //         qnaList_data = [...qnaList_data, { id: doc.id, ...doc.data() }];
+  //       }
+  //     });
+  //     console.log(qnaList_data);
+  //   });
+  // }, []);
 
   return (
     <>

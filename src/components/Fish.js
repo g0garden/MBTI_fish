@@ -1,18 +1,10 @@
 import React, { useEffect } from "react";
-
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-
 import { Text, Grid, Button } from "../elements/";
-
 import { Helmet } from "react-helmet";
-
 import gwangeo from "../data/gwangeo.png";
 
 const Fish = (props) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {}, []);
 
   const fishType = {
     INFP: {
@@ -47,18 +39,18 @@ const Fish = (props) => {
         <link rel="canonical" href={`http://localhost:3000/result/${fishType.INFP.fish}`} />
       </Helmet>
       <Text bold size="32px" margin="20px 0 0 0">
-        {fishType.INFP.fish}
+        {props.FishOneType?.name}
       </Text>
       <FishImg src={`${gwangeo}`} />
       <Grid margin="auto 20px">
         <Text bold size="20px">
-          "{fishType.INFP.desc}"
+          "{props.FishOneType?.sentence}"
         </Text>
 
         <Text bold size="20px" margin="20px auto">
           특징
         </Text>
-        {fishType.INFP.traits.map((t, idx) => {
+        {props.FishOneType?.feature.map((t, idx) => {
           return (
             <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
               {t}
@@ -69,7 +61,7 @@ const Fish = (props) => {
         <Text bold size="20px" margin="20px auto">
           가능성
         </Text>
-        {fishType.INFP.potentials.map((p, idx) => {
+        {props.FishOneType?.potential.map((p, idx) => {
           return (
             <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
               {p}

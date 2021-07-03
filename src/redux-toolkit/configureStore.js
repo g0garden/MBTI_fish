@@ -3,12 +3,14 @@ import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
-import Quiz from "./modules/quiz";
+import Quiz from "./modules/qnaList";
+import Fish from "./modules/fishList";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-  quiz: Quiz,
+  qnaList: Quiz,
+  fishList: Fish,
   router: connectRouter(history),
 });
 
@@ -25,6 +27,7 @@ if (env === "development") {
   middlewares.push(logger);
 }
 
+//리덕스 개발자 도구와 미들웨어를 사용하기 위해 필요한 작업이라고 합니다.
 // const composeEnhancers =
 //   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 //     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
