@@ -1,4 +1,3 @@
-//비동기처리 코드 연습..
 import { firestore } from "../shared/firebase";
 
 export let qnaList_data = [];

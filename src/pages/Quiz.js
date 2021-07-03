@@ -1,32 +1,40 @@
 import React, { useEffect, useState } from "react";
-
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 import { Text, Grid, Button } from "../elements/";
-
-import { shuffled_array as questions, qnaList_data, dic, incrementDicElement, FB_test } from "../data/questionsFB";
-
+import { shuffled_array as questions,dic, incrementDicElement} from "../data/questionsFB";
 import QuizFrame from "../components/QuizFrame";
-
 import bg from "../data/background.jpg";
+import {api as quizActions } from "../redux/modules/quiz";
 
 const Quiz = (props) => {
-  let date = null;
+  const dispatch = useDispatch();
+  const question_data = useSelector((state) => state.quiz.question);
 
-  function setDate(arr) {
-    date = arr
-  }
-  questions.then(resolve => {
-    setDate(resolve);
-    console.log(date);
-  });
+  useEffect(() => {
+    console.log("페이지");
+    dispatch(quizActions.getQuestionAX());
+  },[]);
+
+  // let date = null;
+
+  // function setDate(arr) {
+  //   date = arr
+  // }
+
+  // let _data = questions
+  //   .then(resolve => {
+  //     setDate(resolve)
+  //     console.log(date)
+  //     dispatch(setList(date))
+  //     return date
+  // });
 
   // const data = date.map((d, idx) => {
   //   return { ...d, idx: idx };
   // });
 
-  //console.log(data);
+
 
   const [index, incrementIndex] = useState(1);
 
@@ -38,7 +46,7 @@ const Quiz = (props) => {
     }
     incrementIndex(index + 1);
   };
-  // const dispatch = useDispatch();
+
 
   const getType = (arr) => {
     const types = ["E", "I", "N", "S", "T", "F", "P", "J"];
@@ -60,7 +68,9 @@ const Quiz = (props) => {
   return (
     <Wrap>
       <button onClick={() => props.history.replace("/")}>Home</button>
-      <QuizFrame data={date[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />
+      {question_data && 
+      <QuizFrame data={question_data[index - 1]} 
+      next={goToNextPage} index={index} increment={incrementDicElement} />}
     </Wrap>
   );
 };

@@ -10,7 +10,9 @@ import { history } from "../redux/configureStore";
 import { Main, Quiz, Result } from "../pages";
 import { firestore } from "./firebase";
 
+
 function App() {
+  
   //firebase 연결확인
   useEffect(() => {
     const qnaList = firestore.collection("qnaList");
