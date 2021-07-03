@@ -61,7 +61,7 @@ const Main = ({ history }) => {
       <Text size="20px">
         지금까지
         <br />
-        {count}명이 확인했어요!
+        {count}명이 확인했어요! ...
       </Text>
     </Wrap>
   );
