@@ -66,8 +66,10 @@ function shuffleArray(arr) {
   return arr;
 }
 
+//랜덤으로 정렬된 qna 배열
 export const shuffled_array = shuffleArray(questions);
 
+//
 export let dic = {
     0: 0,
     1: 0,

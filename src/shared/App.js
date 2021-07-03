@@ -15,7 +15,8 @@ function App() {
   useEffect(() => {
     const qnaList = firestore.collection("qnaList");
 
-    qnaList.get().then((docs) => {
+    qnaList.get()
+    .then((docs) => {
       let qnaList_data = [];
 
       docs.forEach((doc) => {
