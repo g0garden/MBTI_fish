@@ -69,14 +69,13 @@ const Main = ({ history }) => {
 
 const Wrap = styled.div`
   width: 100vw;
-  /* height: 100vh; */
+  height: 100vh;
   /* max-width: 375px; */
   background-image: url(${bg});
-  background-repeat: no-repeat, repeat;
+  background-repeat: no-repeat;
   background-size: cover;
+
   background-position: center;
-  margin: 0 auto;
-  box-shadow: 0 0 3px black;
 `;
 
 const Title = styled.div`
