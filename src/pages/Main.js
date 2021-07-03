@@ -74,7 +74,6 @@ const Wrap = styled.div`
   background-image: url(${bg});
   background-repeat: no-repeat;
   background-size: cover;
-
   background-position: center;
 `;
 
