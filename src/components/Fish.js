@@ -50,7 +50,7 @@ const Fish = (props) => {
         <Text bold size="20px" margin="20px auto">
           특징
         </Text>
-        {props.FishOneType?.feature.map((t, idx) => {
+        {props.FishOneType.feature && props.FishOneType.feature.map((t, idx) => {
           return (
             <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
               {t}
@@ -61,7 +61,7 @@ const Fish = (props) => {
         <Text bold size="20px" margin="20px auto">
           가능성
         </Text>
-        {props.FishOneType?.potential.map((p, idx) => {
+        {props.FishOneType.potential && props.FishOneType.potential.map((p, idx) => {
           return (
             <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
               {p}

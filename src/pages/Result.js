@@ -5,13 +5,18 @@ import Fish from "../components/Fish";
 import { Text, Grid, Button } from "../elements/";
 import bg from "../data/background.jpg";
 import {api as fishActions} from "../redux-toolkit/modules/fishList";
+import {api as userActions} from "../redux-toolkit/modules/users";
 import { firestore } from "../shared/firebase";
 
+
 const Result = (props) => {
+  const dispatch = useDispatch();
   const fishResult_data = useSelector((state) => state.fishList.fishOneResult)
+  const TotalUserType_data = useSelector((state) => state.users.TotalUsers)
 
   useEffect(() => {
-    //console.log("찍히는걸까?", fishResult_data)
+    dispatch(userActions.getUserTypeCnt());
+    console.log("뭔데", TotalUserType_data);
   },[]);
 
   const shareButton = useRef();

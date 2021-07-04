@@ -5,12 +5,14 @@ import { connectRouter } from "connected-react-router";
 
 import Quiz from "./modules/qnaList";
 import Fish from "./modules/fishList";
+import User from "./modules/users";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   qnaList: Quiz,
   fishList: Fish,
+  users:User,
   router: connectRouter(history),
 });
 

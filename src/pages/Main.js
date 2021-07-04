@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Text, Grid, Button } from "../elements/";
 import bg from "../data/background.jpg";
 
-const Main = ({ history }) => {
-  const dispatch = useDispatch();
+import {api as userActions} from "../redux-toolkit/modules/users";
 
-  useEffect(() => {}, []);
+const Main = ({ history, props }) => {
+  const dispatch = useDispatch();
+  const userNumbers = useSelector((state) => state.users.TotalUsers)
+
+  useEffect(() => {
+    dispatch(userActions.getUserTypeCnt())
+  }, []);
+  console.log(userNumbers)
 
   // number to increment to
   const number = "10";

@@ -6,6 +6,7 @@ import QuizFrame from "../components/QuizFrame";
 import bg from "../data/background.jpg";
 import {api as quizActions } from "../redux-toolkit/modules/qnaList";
 import {api as fishActions} from "../redux-toolkit/modules/fishList";
+import {api as userActions} from "../redux-toolkit/modules/users";
 
 const Quiz = ({props, history}) => {
 
@@ -15,7 +16,6 @@ const Quiz = ({props, history}) => {
   useEffect(() => {
     //Q&A_List FB에서 불러오기
     dispatch(quizActions.getQuestionAX());
-
   },[]);
 
   const [index, incrementIndex] = useState(1);
@@ -48,6 +48,7 @@ const Quiz = ({props, history}) => {
     let resultType = answer.join("")
     //유저의 타입에 맞는 물고기 유형 FB에서 불러오기
     dispatch(fishActions.getFishAX(resultType))
+    dispatch(userActions.addUserType(resultType))
   };
 
   return (

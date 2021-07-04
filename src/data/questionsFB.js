@@ -12,14 +12,13 @@ export async function FB_test() {
             }
         });
     });
-    console.log("과연", qnaList_data);
     return shuffleArray(qnaList_data);
 }
 
 export const shuffled_array = FB_test();
 
+//qnaList 랜덤배열로
 function shuffleArray(arr) {
-    console.log(arr);
     let currentIndex = arr.length,  randomIndex;
 
     // While there remain elements to shuffle...
