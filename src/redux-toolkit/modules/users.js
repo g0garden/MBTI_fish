@@ -34,7 +34,7 @@ const getUserTypeCnt = () => {
           return acc+cur.count;
         },0);
         console.log("Totaluser",number_test)
-        dispatch(addUserCnt(number_test));
+        // dispatch(addUserCnt(number_test));
       })
     }
   }

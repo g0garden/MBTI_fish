@@ -21,10 +21,10 @@ const Result = (props) => {
 
   const shareButton = useRef();
 
-  if (typeof navigator.share === "undefined") {
-    // 공유하기 버튼을 지원하지 않는 경우에 대한 폴백 처리
-    shareButton.hidden = true;
-  }
+  // if (typeof navigator.share === "undefined") {
+  //   // 공유하기 버튼을 지원하지 않는 경우에 대한 폴백 처리
+  //   shareButton.hidden = true;
+  // }
 
   // shareButton.addEventListener("click", async () => {
   //   try {
@@ -45,7 +45,7 @@ const Result = (props) => {
       { fishResult_data && <Fish FishOneType={fishResult_data}/>}
       <Other></Other>
       <div>페북</div>
-      {/* <Button ref={shareButton}>공유하기</Button> */}
+      <Button ref={shareButton}>공유하기</Button>
     </Wrap>
   );
 };
