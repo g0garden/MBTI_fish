@@ -15,10 +15,22 @@ const Result = (props) => {
   //
   useEffect(() => {}, []);
 
+  const share_url = "https://www.notion.so/g0garden/79c1b0ce40c045aea2dbffb34b7a49ea";
+
+  const copyToClipboard = () => {
+    let t = document.createElement("textarea");
+    t.value = share_url;
+    document.body.appendChild(t);
+    t.select();
+    document.execCommand("copy");
+    document.body.removeChild(t);
+    window.alert("주소가 복사되었습니다!");
+  };
+
   const shareButton = useRef();
 
+  // 공유하기 버튼을 지원하지 않는 경우에 대한 폴백 처리
   if (typeof navigator.share === "undefined") {
-    // 공유하기 버튼을 지원하지 않는 경우에 대한 폴백 처리
     shareButton.hidden = true;
   }
 
@@ -41,7 +53,9 @@ const Result = (props) => {
       <Fish />
       <Other></Other>
       <div>페북</div>
-      <Button ref={shareButton}>공유하기</Button>
+      <Button ref={shareButton} onClick={copyToClipboard}>
+        공유하기
+      </Button>
     </Wrap>
   );
 };
