@@ -29,12 +29,12 @@ const getQuestionAX = () => {
             }
         });
     })
-    console.log("툴킷",qnaList_data);
+    //console.log("quiz툴킷",qnaList_data);
     dispatch(setList(qnaList_data));
   }
 }
 
-export const { setList, setQuestion, setLoading } = quizSlice.actions;
+export const { setList } = quizSlice.actions;
 
 export const api = {
   getQuestionAX,

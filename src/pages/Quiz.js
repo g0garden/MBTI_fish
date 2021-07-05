@@ -1,52 +1,38 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { Text, Grid, Button } from "../elements/";
 import { shuffled_array as questions,dic, incrementDicElement} from "../data/questionsFB";
 import QuizFrame from "../components/QuizFrame";
 import bg from "../data/background.jpg";
-import {api as quizActions } from "../redux/modules/quiz";
+import {api as quizActions } from "../redux-toolkit/modules/qnaList";
+import {api as fishActions} from "../redux-toolkit/modules/fishList";
+import {api as userActions} from "../redux-toolkit/modules/users";
 
-const Quiz = (props) => {
+const Quiz = ({props, history}) => {
+
   const dispatch = useDispatch();
-  const question_data = useSelector((state) => state.quiz.question);
+  const question_data = useSelector((state) => state.qnaList.question);
 
   useEffect(() => {
-    console.log("페이지");
+    //Q&A_List FB에서 불러오기
     dispatch(quizActions.getQuestionAX());
   },[]);
-
-  // let date = null;
-
-  // function setDate(arr) {
-  //   date = arr
-  // }
-
-  // let _data = questions
-  //   .then(resolve => {
-  //     setDate(resolve)
-  //     console.log(date)
-  //     dispatch(setList(date))
-  //     return date
-  // });
-
-  // const data = date.map((d, idx) => {
-  //   return { ...d, idx: idx };
-  // });
-
-
 
   const [index, incrementIndex] = useState(1);
 
   const goToNextPage = () => {
     if (index === 12) {
-      window.alert("That's enough!");
+      window.alert("결과보기")
+      goToResultPage()
       getType(Object.values(dic));
       return;
     }
     incrementIndex(index + 1);
   };
 
+  const goToResultPage = () =>{
+    history.replace('/result')
+  }
 
   const getType = (arr) => {
     const types = ["E", "I", "N", "S", "T", "F", "P", "J"];
@@ -58,19 +44,17 @@ const Quiz = (props) => {
         continue;
       }
       answer.push(types[i + 1]);
-      console.log("답", answer);
     }
-    console.log(answer.join(""));
+    let resultType = answer.join("")
+    //유저의 타입에 맞는 물고기 유형 FB에서 불러오기
+    dispatch(fishActions.getFishAX(resultType))
+    dispatch(userActions.addUserType(resultType))
   };
-
-  console.log(dic);
 
   return (
     <Wrap>
       <button onClick={() => props.history.replace("/")}>Home</button>
-      {question_data && 
-      <QuizFrame data={question_data[index - 1]} 
-      next={goToNextPage} index={index} increment={incrementDicElement} />}
+      {question_data && <QuizFrame data={question_data[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />}
     </Wrap>
   );
 };
