@@ -55,7 +55,9 @@ const Quiz = ({props, history}) => {
 
   return (
     <Wrap>
-      {is_loading ? <><Spin /></> : <><button onClick={() => history.replace("/")}>Home</button>
+      {is_loading ? <><Spin /></> : <>
+      <button onClick={() => history.replace("/")}>Home</button>
+      <ProgressBar><Progressing index={index}/></ProgressBar>
       {question_data && <QuizFrame data={question_data[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />}</>}
     </Wrap>
   );
@@ -73,4 +75,20 @@ const Wrap = styled.div`
   margin: 0 auto;
 `;
 
+const ProgressBar = styled.div`
+width: 80vw;
+height: 20px;
+background: white;
+border-radius: 12px;
+position: relative;
+margin: 0 auto;
+`;
+
+const Progressing = styled.div`
+position: absolute;
+height: 20px;
+width: ${(props) => props.index > 0 ? `${(props.index / 12) * 100}%` : "0%"};
+background: blue;
+border-radius: 12px;
+`;
 export default Quiz;
