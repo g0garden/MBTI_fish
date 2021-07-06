@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Button = (props) => {
   // disabled : 비활성화 모드
+  // attributes
   const { round, onClick, text, children, width, height, margin, size, align, padding, color } = props;
   const styles = { onClick: onClick, text: text, width: width, height: height, margin: margin, size: size, align: align, padding: padding, color: color };
 
