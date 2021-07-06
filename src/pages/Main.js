@@ -8,12 +8,12 @@ import { api as userActions } from "../redux-toolkit/modules/users";
 
 const Main = ({ history, props }) => {
   const dispatch = useDispatch();
-  const userNumbers = useSelector((state) => state.users.TotalUsers);
+  const totaluser_num = useSelector((state) => state.users.total_users);
 
-  console.log("토탈유저",userNumbers);
+  console.log("토탈유저",totaluser_num);
 
   // number to increment to
-  const number = userNumbers.toString();
+  const number = totaluser_num.toString();
 
   const [count, setCount] = useState("0");
   console.log("카운트", count);
@@ -46,14 +46,9 @@ const Main = ({ history, props }) => {
   }
 
   useEffect(() => {
-    dispatch(userActions.getUserTypeCnt());
-    countNumber();
+    dispatch(userActions.getTotalUserCntFB());
+    //countNumber();
   },[]);
-
-  // let countO = 0;
-  // ++countO;
-
-  // console.log(countO);
 
   return (
     <Wrap>
@@ -72,7 +67,7 @@ const Main = ({ history, props }) => {
       <Text size="20px">
         지금까지
         <br />
-        {count}명이 확인했어요! ...
+        {totaluser_num}명이 확인했어요! ...
       </Text>
     </Wrap>
   );

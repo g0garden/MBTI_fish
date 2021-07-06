@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { qnaList_data } from "../../data/questionsFB";
 import { firestore } from "../../shared/firebase";
+
 
 const qnaList_db = firestore.collection("qnaList");
 
@@ -8,44 +8,63 @@ const quizSlice = createSlice({
   name: "quiz",
   initialState: {
     is_loading: true,
-    question: [],
+    qna_list: [],
   },
   reducers: {
     setLoading : (state, action) => {
       state.is_loading = action.payload;
     },
-    setList : (state, action) => {
-      state.question = action.payload;
+    setQnaList : (state, action) => {
+      state.qna_list = action.payload;
       state.is_loading = false;
     },
   },
 });
 
-//FB통신함수
-const getQuestionAX = () => {
-  return function (dispatch) {
+let qnaList_data = [];
 
+//FB통신함수
+const getQnaListFB = () => {
+  return async function (dispatch) {
+    
     dispatch(setLoading(true));
 
-    qnaList_db.get().then((docs) => {
-      let qnaList_data = [];
+    await qnaList_db.get().then((docs) => {
       
       docs.forEach((doc, index) => {
         if (doc.exists) {
             qnaList_data = [...qnaList_data, { index: index, id: doc.id, ...doc.data()}];
-            }
+          }
         });
-    })
-    console.log("quiz툴킷",qnaList_data);
-    dispatch(setList(qnaList_data));
+        return shuffleArray(qnaList_data)
+      });
+      dispatch(setQnaList(qnaList_data))
   }
 }
 
-export const { setList, setLoading } = quizSlice.actions;
+
+//qnaList_data -> 랜덤배열로
+function shuffleArray(arr) {
+    let currentIndex = arr.length,  randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [arr[currentIndex], arr[randomIndex]] = [
+        arr[randomIndex], arr[currentIndex]];
+    }
+    return arr;
+}
+
+export const { setQnaList, setLoading } = quizSlice.actions;
 
 export const api = {
-  getQuestionAX,
-  
+  getQnaListFB,
 };
 
 export default quizSlice.reducer;

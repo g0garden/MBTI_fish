@@ -5,6 +5,8 @@ import { Helmet } from "react-helmet";
 import gwangeo from "../data/gwangeo.png";
 
 const Fish = (props) => {
+  const { OneFishType : {feature, potential, name, sentence} } = props;
+
   const fishType = {
     INFP: {
       mbti: "INFP",
@@ -64,12 +66,12 @@ const Fish = (props) => {
         <meta property="og:title" content={`${fishType.INFP.fish} | 도시어부`} />
         <meta property="og:image" content="" />
         <meta property="og:description" content="수면 아래 내 모습은 어떤 모습일지 확인해보세요!" />
-        <title>{fishType.INFP.fish} | 도시어부</title>
+        <title>{name && name} | 도시어부</title>
         {/* 뒷주소 이름은 뭘로 할지 결정해야함 ex. mbti타입인지, fish타입인지 */}
         <link rel="canonical" href={`http://localhost:3000/result/${fishType.INFP.fish}`} />
       </Helmet>
       <Text bold size="32px" margin="20px 0 0 0">
-        {props.FishOneType?.name}
+        {name && name}
       </Text>
       <FishImg
         src={`${gwangeo}`}
@@ -79,14 +81,14 @@ const Fish = (props) => {
       />
       <Grid margin="auto 20px">
         <Text bold size="20px">
-          "{props.FishOneType?.sentence}"
+          "{sentence && sentence}"
         </Text>
 
         <Text bold size="20px" margin="20px auto">
           특징
         </Text>
-        {props.FishOneType.feature &&
-          props.FishOneType.feature.map((t, idx) => {
+        {feature &&
+          feature.map((t, idx) => {
             return (
               <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
                 {t}
@@ -97,8 +99,8 @@ const Fish = (props) => {
         <Text bold size="20px" margin="20px auto">
           가능성
         </Text>
-        {props.FishOneType.potential &&
-          props.FishOneType.potential.map((p, idx) => {
+        {potential &&
+          potential.map((p, idx) => {
             return (
               <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
                 {p}

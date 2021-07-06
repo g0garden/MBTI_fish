@@ -8,10 +8,10 @@ import { api as userActions } from "../redux-toolkit/modules/users";
 
 const Result = (props) => {
   const dispatch = useDispatch();
-  const fishResult_data = useSelector((state) => state.fishList.fishOneResult);
+  const fish_result = useSelector((state) => state.fishList.onefish_result);
 
   useEffect(() => {
-    dispatch(userActions.getUserTypeCnt());
+    dispatch(userActions.getTotalUserCntFB());
   }, []);
 
   //현재 결과페이지의 URL - 도메인/결과 물고기의 usrParam값
@@ -30,7 +30,7 @@ const Result = (props) => {
   return (
     <Wrap>
       <br />
-      {fishResult_data && <Fish FishOneType={fishResult_data} />}
+      {fish_result && <Fish OneFishType={fish_result} />}
       <Other></Other>
       <div>페북</div>
 

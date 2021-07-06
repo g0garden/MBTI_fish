@@ -12,11 +12,10 @@ import { Spin } from 'antd';
 const Quiz = ({props, history}) => {
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.qnaList.is_loading);
-  const question_data = useSelector((state) => state.qnaList.question);
+  const qna_list = useSelector((state) => state.qnaList.qna_list);
 
   useEffect(() => {
-    //Q&A_List FB에서 불러오기
-    dispatch(quizActions.getQuestionAX());
+    dispatch(quizActions.getQnaListFB());
   },[]);
 
   const [index, incrementIndex] = useState(1);
@@ -48,14 +47,14 @@ const Quiz = ({props, history}) => {
     }
     let resultType = answer.join("")
     //유저의 타입에 맞는 물고기 유형 FB에서 불러오기
-    dispatch(fishActions.getFishAX(resultType))
-    dispatch(userActions.addUserType(resultType)) //FB에 해당타입 카운트+1
+    dispatch(fishActions.getOneFishFB(resultType))
+    dispatch(userActions.addUserTypeFB(resultType)) //FB에 해당타입 카운트+1
   };
 
   return (
     <Wrap>
       {is_loading ? <><Spin /></> : <><button onClick={() => history.replace("/")}>Home</button>
-      {question_data && <QuizFrame data={question_data[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />}</>}
+      {qna_list && <QuizFrame data={qna_list[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />}</>}
     </Wrap>
   );
 };
