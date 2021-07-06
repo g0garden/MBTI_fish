@@ -49,6 +49,11 @@ const Main = ({ history, props }) => {
     // 숫자가 바뀌면 숫자가 다시 오름
   }, [number]);
 
+  let countO = 0;
+  ++countO;
+
+  console.log(countO);
+
   return (
     <Wrap>
       <Title>

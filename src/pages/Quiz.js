@@ -7,10 +7,12 @@ import bg from "../data/background.jpg";
 import {api as quizActions } from "../redux-toolkit/modules/qnaList";
 import {api as fishActions} from "../redux-toolkit/modules/fishList";
 import {api as userActions} from "../redux-toolkit/modules/users";
+import { Spin } from 'antd';
 
 const Quiz = ({props, history}) => {
 
   const dispatch = useDispatch();
+  const is_loading = useSelector((state) => state.qnaList.is_loading);
   const question_data = useSelector((state) => state.qnaList.question);
 
   useEffect(() => {
@@ -53,11 +55,12 @@ const Quiz = ({props, history}) => {
 
   return (
     <Wrap>
-      <button onClick={() => props.history.replace("/")}>Home</button>
-      {question_data && <QuizFrame data={question_data[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />}
+      {is_loading ? <><Spin /></> : <><button onClick={() => history.replace("/")}>Home</button>
+      {question_data && <QuizFrame data={question_data[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />}</>}
     </Wrap>
   );
 };
+
 
 const Wrap = styled.div`
   width: 100vw;
