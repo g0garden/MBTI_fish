@@ -27,15 +27,26 @@ const Result = (props) => {
     window.alert("주소가 복사되었습니다!");
   };
 
+  // [카카오톡 공유하기]
+  // https://developers.kakao.com/docs/latest/ko/getting-started/sdk-js#init
+  // https://developers.kakao.com/docs/latest/ko/message/common
+  // 1. index.html에서 script 불러온다.
+  // 2. 필수코드 Kakao.init(javascript key)
+  // 3. 링크 공유는 문서에서 카카오 메시지로 되어있고,
+  //    많은 템플릿 중 sendScrap의 경우 requestUrl과 링크 보낼 당시 url이 일치해야한다.
   useEffect(() => {
     // SDK 사용법에는 Kakao.init~어쩌구로 되어있으나 window 객체 찾아서 설정을 해야함
     window.Kakao.init("e31c489577057b521747d2d2be3ce3d5");
+    // 카카오 SDK가 초기화되었는지 확인하는 함수 => console.log로 봐서 true면 초기화 잘되었다는 뜻
+    // window.Kakao.isInitialized();
   }, []);
 
+  const grrrDomain = "http://localhost:3000";
+  const _grrrDomain = "https://silver0r.tistory.com/57";
+
   const sendLink = () => {
-    console.log(window.Kakao.isInitialized());
     window.Kakao.Link.sendScrap({
-      requestUrl: "https://developers.kakao.com",
+      requestUrl: `${grrrDomain}/result/`,
     });
   };
 
@@ -45,9 +56,16 @@ const Result = (props) => {
       {fish_result && <Fish OneFishType={fish_result} />}
       <Other></Other>
       <div>페북</div>
+      <a target="blank" id="sns_facebook" href={`http://www.facebook.com/share.php?u=${_grrrDomain}&t=나만의생선을확인해보세요!`} title="페이스북에 이 페이지 공유하기">
+        <Button round color="blue">
+          F
+        </Button>
+      </a>
 
       <Button onClick={copyToClipboard}>공유하기</Button>
-      <Button round onClick={sendLink}></Button>
+      <Button round onClick={sendLink} color="yellow">
+        K
+      </Button>
     </Wrap>
   );
 };
