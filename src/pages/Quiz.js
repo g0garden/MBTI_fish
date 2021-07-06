@@ -3,7 +3,7 @@ import styled from "styled-components";
 import QuizWrap from "../components/QuizWrap";
 import bg from "../data/background.jpg";
 
-const Quiz = ({ history }) => {
+const Quiz = ({history }) => {
 
   return (
     <Wrap>
