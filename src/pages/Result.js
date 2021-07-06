@@ -1,24 +1,21 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Fish from "../components/Fish";
-import { Text, Grid, Button } from "../elements/";
+import { Button } from "../elements/";
 import bg from "../data/background.jpg";
-import { api as fishActions } from "../redux-toolkit/modules/fishList";
 import { api as userActions } from "../redux-toolkit/modules/users";
-import { firestore } from "../shared/firebase";
 
 const Result = (props) => {
   const dispatch = useDispatch();
   const fishResult_data = useSelector((state) => state.fishList.fishOneResult);
-  const TotalUserType_data = useSelector((state) => state.users.TotalUsers);
 
   useEffect(() => {
     dispatch(userActions.getUserTypeCnt());
-    console.log("뭔데", TotalUserType_data);
   }, []);
 
-  const share_url = "https://www.notion.so/g0garden/79c1b0ce40c045aea2dbffb34b7a49ea";
+  //현재 결과페이지의 URL - 도메인/결과 물고기의 usrParam값
+  const share_url="asdf";
 
   const copyToClipboard = () => {
     let t = document.createElement("textarea");
@@ -29,6 +26,7 @@ const Result = (props) => {
     document.body.removeChild(t);
     window.alert("주소가 복사되었습니다!");
   };
+
 
   useEffect(() => {
     // SDK 사용법에는 Kakao.init~어쩌구로 되어있으나 window 객체 찾아서 설정을 해야함
@@ -49,8 +47,14 @@ const Result = (props) => {
       <Other></Other>
       <div>페북</div>
 
+
       <Button onClick={copyToClipboard}>공유하기</Button>
       <Button round onClick={sendLink}></Button>
+
+      <Button onClick={copyToClipboard}>
+        공유하기
+      </Button>
+
     </Wrap>
   );
 };

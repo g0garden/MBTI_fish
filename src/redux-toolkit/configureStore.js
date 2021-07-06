@@ -29,16 +29,6 @@ if (env === "development") {
   middlewares.push(logger);
 }
 
-//리덕스 개발자 도구와 미들웨어를 사용하기 위해 필요한 작업이라고 합니다.
-// const composeEnhancers =
-//   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-//     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-//         // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-//       })
-//     : compose;
-
-//const enhancer = composeEnhancers(applyMiddleware(...middlewares));
-
 let store = configureStore({ 
   reducer: rootReducer, 
   middleware: middlewares,

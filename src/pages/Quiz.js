@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { shuffled_array as questions,dic, incrementDicElement} from "../data/questionsFB";
+import { dic, incrementDicElement} from "../data/questionsFB";
 import QuizFrame from "../components/QuizFrame";
 import bg from "../data/background.jpg";
 import {api as quizActions } from "../redux-toolkit/modules/qnaList";
 import {api as fishActions} from "../redux-toolkit/modules/fishList";
 import {api as userActions} from "../redux-toolkit/modules/users";
+import { Spin } from 'antd';
 
 const Quiz = ({props, history}) => {
-
   const dispatch = useDispatch();
+  const is_loading = useSelector((state) => state.qnaList.is_loading);
   const question_data = useSelector((state) => state.qnaList.question);
 
   useEffect(() => {
@@ -48,16 +49,17 @@ const Quiz = ({props, history}) => {
     let resultType = answer.join("")
     //유저의 타입에 맞는 물고기 유형 FB에서 불러오기
     dispatch(fishActions.getFishAX(resultType))
-    dispatch(userActions.addUserType(resultType))
+    dispatch(userActions.addUserType(resultType)) //FB에 해당타입 카운트+1
   };
 
   return (
     <Wrap>
-      <button onClick={() => props.history.replace("/")}>Home</button>
-      {question_data && <QuizFrame data={question_data[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />}
+      {is_loading ? <><Spin /></> : <><button onClick={() => history.replace("/")}>Home</button>
+      {question_data && <QuizFrame data={question_data[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />}</>}
     </Wrap>
   );
 };
+
 
 const Wrap = styled.div`
   width: 100vw;

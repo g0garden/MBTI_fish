@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Text, Grid, Button } from "../elements/";
+import { Text, Grid } from "../elements/";
 import { Helmet } from "react-helmet";
 import gwangeo from "../data/gwangeo.png";
 

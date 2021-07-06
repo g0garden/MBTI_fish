@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { Text, Grid, Button } from "../elements/";
+import { Text,Button } from "../elements/";
 import bg from "../data/background.jpg";
 
 import { api as userActions } from "../redux-toolkit/modules/users";
@@ -10,21 +10,16 @@ const Main = ({ history, props }) => {
   const dispatch = useDispatch();
   const userNumbers = useSelector((state) => state.users.TotalUsers);
 
-  useEffect(() => {
-    dispatch(userActions.getUserTypeCnt());
-  }, []);
-  console.log(userNumbers);
+  console.log("토탈유저",userNumbers);
 
   // number to increment to
-  const number = "10";
+  const number = userNumbers.toString();
 
   const [count, setCount] = useState("0");
+  console.log("카운트", count);
 
-  // const goToPage = (page) => {
-  //   history.push(`/${page}`);
-  // }
+  const countNumber = () =>{
 
-  useEffect(() => {
     let start = 0;
     // 숫자가 크면 뒤에 자리 버리고 앞에 3자리수만 변화하도록
     // 12345678 이라면 123 부분만 1, 2, 3 ...122, 123
@@ -48,7 +43,17 @@ const Main = ({ history, props }) => {
     }, incrementTime); // 증가 초단위마다 체크하는 setInterval
 
     // 숫자가 바뀌면 숫자가 다시 오름
-  }, [number]);
+  }
+
+  useEffect(() => {
+    dispatch(userActions.getUserTypeCnt());
+    countNumber();
+  },[]);
+
+  // let countO = 0;
+  // ++countO;
+
+  // console.log(countO);
 
   return (
     <Wrap>
