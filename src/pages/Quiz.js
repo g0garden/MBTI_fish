@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { shuffled_array as questions,dic, incrementDicElement} from "../data/questionsFB";
+import { dic, incrementDicElement} from "../data/questionsFB";
 import QuizFrame from "../components/QuizFrame";
 import bg from "../data/background.jpg";
 import {api as quizActions } from "../redux-toolkit/modules/qnaList";
@@ -10,7 +10,6 @@ import {api as userActions} from "../redux-toolkit/modules/users";
 import { Spin } from 'antd';
 
 const Quiz = ({props, history}) => {
-
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.qnaList.is_loading);
   const question_data = useSelector((state) => state.qnaList.question);
@@ -50,7 +49,7 @@ const Quiz = ({props, history}) => {
     let resultType = answer.join("")
     //유저의 타입에 맞는 물고기 유형 FB에서 불러오기
     dispatch(fishActions.getFishAX(resultType))
-    dispatch(userActions.addUserType(resultType))
+    dispatch(userActions.addUserType(resultType)) //FB에 해당타입 카운트+1
   };
 
   return (

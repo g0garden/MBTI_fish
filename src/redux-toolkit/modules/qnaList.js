@@ -36,7 +36,7 @@ const getQuestionAX = () => {
             }
         });
     })
-    //console.log("quiz툴킷",qnaList_data);
+    console.log("quiz툴킷",qnaList_data);
     dispatch(setList(qnaList_data));
   }
 }

@@ -33,8 +33,8 @@ const getUserTypeCnt = () => {
         const number_test = userTypeCnt_data.reduce((acc,cur) => {
           return acc+cur.count;
         },0);
-        console.log("Totaluser",number_test)
-        // dispatch(addUserCnt(number_test));
+        //console.log("Totaluser",number_test)
+        dispatch(addUserCnt(number_test));
       })
     }
   }
