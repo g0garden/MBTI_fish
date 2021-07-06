@@ -10,7 +10,7 @@ const quizSlice = createSlice({
     question: [],
   },
   reducers: {
-    setList : (state, action) => {
+    setList: (state, action) => {
       state.question = action.payload;
     },
   },
@@ -19,26 +19,24 @@ const quizSlice = createSlice({
 //FB통신함수
 const getQuestionAX = () => {
   return function (dispatch) {
-
     qnaList_db.get().then((docs) => {
       let qnaList_data = [];
-      
+
       docs.forEach((doc, index) => {
         if (doc.exists) {
-            qnaList_data = [...qnaList_data, { index: index, id: doc.id, ...doc.data()}];
-            }
-        });
-    })
+          qnaList_data = [...qnaList_data, { index: index, id: doc.id, ...doc.data() }];
+        }
+      });
+    });
     //console.log("quiz툴킷",qnaList_data);
     dispatch(setList(qnaList_data));
-  }
-}
+  };
+};
 
 export const { setList } = quizSlice.actions;
 
 export const api = {
   getQuestionAX,
-  
 };
 
 export default quizSlice.reducer;

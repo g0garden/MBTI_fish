@@ -30,25 +30,17 @@ const Result = (props) => {
     window.alert("주소가 복사되었습니다!");
   };
 
-  const shareButton = useRef();
+  useEffect(() => {
+    // SDK 사용법에는 Kakao.init~어쩌구로 되어있으나 window 객체 찾아서 설정을 해야함
+    // window.Kakao.init("e31c489577057b521747d2d2be3ce3d5");
+    // console.log(window.Kakao.isInitialized());
+  }, []);
 
-  // 공유하기 버튼을 지원하지 않는 경우에 대한 폴백 처리
-  if (typeof navigator.share === "undefined") {
-    shareButton.hidden = true;
+  function sendLink() {
+    // window.Kakao.Link.sendScrap({
+    //   requestUrl: "https://developers.kakao.com",
+    // });
   }
-
-  // shareButton.addEventListener("click", async () => {
-  //   try {
-  //     await navigator.share({
-  //       title: "수면 아래 내 모습은?",
-  //       text: "수면 아래 내 모습은 어떤 모습일지 확인해보세요!",
-  //       url: `https://localhost:3000/`,
-  //     });
-  //     console.log("공유 성공");
-  //   } catch (e) {
-  //     console.log("공유 실패");
-  //   }
-  // });
 
   return (
     <Wrap>
@@ -57,9 +49,8 @@ const Result = (props) => {
       <Other></Other>
       <div>페북</div>
 
-      <Button ref={shareButton} onClick={copyToClipboard}>
-        공유하기
-      </Button>
+      <Button onClick={copyToClipboard}>공유하기</Button>
+      <Button round onClick={sendLink}></Button>
     </Wrap>
   );
 };
