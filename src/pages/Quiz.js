@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
 import QuizWrap from "../components/QuizWrap";
 import bg from "../data/background.jpg";
 
-const Quiz = ({ props, history }) => {
+const Quiz = ({ history }) => {
 
   return (
     <Wrap>
-      <QuizWrap />
+      <QuizWrap history = {history}/>
     </Wrap>
   );
 };
