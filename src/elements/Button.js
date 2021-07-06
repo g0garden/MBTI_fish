@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const Button = (props) => {
   // disabled : 비활성화 모드
-  const { round, onClick, text, children, width, height, margin, size, align, padding } = props;
-  const styles = { onClick: onClick, text: text, width: width, height: height, margin: margin, size: size, align: align, padding: padding };
+  const { round, onClick, text, children, width, height, margin, size, align, padding, color } = props;
+  const styles = { onClick: onClick, text: text, width: width, height: height, margin: margin, size: size, align: align, padding: padding, color: color };
 
   if (round) {
     return (
@@ -35,7 +35,7 @@ const Btn = styled.button`
   border: 1.5px solid #ffffff66;
   border-radius: 50rem;
 
-  background-color: #ffffff44; // 60%
+  background-color: ${(props) => (props.color ? props.color : "#ffffff44")}; // 60%
   color: #ffffff;
   font-size: ${(props) => (props.size ? props.size : "20px")};
   font-weight: 600;
