@@ -27,6 +27,19 @@ const Result = (props) => {
     window.alert("주소가 복사되었습니다!");
   };
 
+
+  useEffect(() => {
+    // SDK 사용법에는 Kakao.init~어쩌구로 되어있으나 window 객체 찾아서 설정을 해야함
+    // window.Kakao.init("e31c489577057b521747d2d2be3ce3d5");
+    // console.log(window.Kakao.isInitialized());
+  }, []);
+
+  function sendLink() {
+    // window.Kakao.Link.sendScrap({
+    //   requestUrl: "https://developers.kakao.com",
+    // });
+  }
+
   return (
     <Wrap>
       <br />
@@ -34,9 +47,14 @@ const Result = (props) => {
       <Other></Other>
       <div>페북</div>
 
+
+      <Button onClick={copyToClipboard}>공유하기</Button>
+      <Button round onClick={sendLink}></Button>
+
       <Button onClick={copyToClipboard}>
         공유하기
       </Button>
+
     </Wrap>
   );
 };
