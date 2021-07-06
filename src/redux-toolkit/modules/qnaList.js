@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { firestore } from "../../shared/firebase";
 
-
 const qnaList_db = firestore.collection("qnaList");
 
 const quizSlice = createSlice({
@@ -41,7 +40,6 @@ const getQnaListFB = () => {
       dispatch(setQnaList(qnaList_data))
   }
 }
-
 
 //qnaList_data -> 랜덤배열로
 function shuffleArray(arr) {
