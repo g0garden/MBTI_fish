@@ -4,16 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Text, Grid, Button } from "../elements/";
 import bg from "../data/background.jpg";
 
-import {api as userActions} from "../redux-toolkit/modules/users";
+import { api as userActions } from "../redux-toolkit/modules/users";
 
 const Main = ({ history, props }) => {
   const dispatch = useDispatch();
-  const userNumbers = useSelector((state) => state.users.TotalUsers)
+  const userNumbers = useSelector((state) => state.users.TotalUsers);
 
   useEffect(() => {
-    dispatch(userActions.getUserTypeCnt())
+    dispatch(userActions.getUserTypeCnt());
   }, []);
-  console.log(userNumbers)
+  console.log(userNumbers);
 
   // number to increment to
   const number = "10";
@@ -28,6 +28,7 @@ const Main = ({ history, props }) => {
     let start = 0;
     // 숫자가 크면 뒤에 자리 버리고 앞에 3자리수만 변화하도록
     // 12345678 이라면 123 부분만 1, 2, 3 ...122, 123
+
     const end = parseInt(number.substring(0, 3));
     // if zero, return
     if (start === end) return;

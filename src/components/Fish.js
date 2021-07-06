@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Text, Grid, Button } from "../elements/";
 import { Helmet } from "react-helmet";
 import gwangeo from "../data/gwangeo.png";
 
 const Fish = (props) => {
-
   const fishType = {
     INFP: {
       mbti: "INFP",
@@ -27,6 +26,37 @@ const Fish = (props) => {
     ENFP: {},
   };
 
+  let playTimes = 0;
+  let [memoPlayTimes, setPlayTimes] = useState(useMemo(() => playTimes, [playTimes]));
+
+  const [_pState, setPState] = useState(false);
+
+  useEffect(() => {}, [memoPlayTimes]);
+
+  const touchFish = () => {
+    if (memoPlayTimes >= 5) {
+      alert("이젠 활어가 아니에요...");
+      return;
+    }
+
+    setPlayTimes((memoPlayTimes += 1));
+    console.log(memoPlayTimes);
+
+    if (memoPlayTimes === 1) {
+      alert("아얏!");
+    } else if (memoPlayTimes === 3) {
+      alert("자꾸 만지면 신선도가 떨어져요 😥");
+    }
+    if (_pState === false) {
+      setPState(true);
+    } else {
+      setPState(false);
+      return setTimeout(() => {
+        setPState(true);
+      }, 100);
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -41,7 +71,12 @@ const Fish = (props) => {
       <Text bold size="32px" margin="20px 0 0 0">
         {props.FishOneType?.name}
       </Text>
-      <FishImg src={`${gwangeo}`} />
+      <FishImg
+        src={`${gwangeo}`}
+        onClick={touchFish}
+        // onAnimationEnd={setPState(false)}
+        playState={_pState}
+      />
       <Grid margin="auto 20px">
         <Text bold size="20px">
           "{props.FishOneType?.sentence}"
@@ -50,24 +85,26 @@ const Fish = (props) => {
         <Text bold size="20px" margin="20px auto">
           특징
         </Text>
-        {props.FishOneType.feature && props.FishOneType.feature.map((t, idx) => {
-          return (
-            <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
-              {t}
-            </Text>
-          );
-        })}
+        {props.FishOneType.feature &&
+          props.FishOneType.feature.map((t, idx) => {
+            return (
+              <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
+                {t}
+              </Text>
+            );
+          })}
 
         <Text bold size="20px" margin="20px auto">
           가능성
         </Text>
-        {props.FishOneType.potential && props.FishOneType.potential.map((p, idx) => {
-          return (
-            <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
-              {p}
-            </Text>
-          );
-        })}
+        {props.FishOneType.potential &&
+          props.FishOneType.potential.map((p, idx) => {
+            return (
+              <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
+                {p}
+              </Text>
+            );
+          })}
       </Grid>
     </>
   );
@@ -147,14 +184,15 @@ const FishImg = styled.img`
     }
   }
 
-  -webkit-transform-origin: top center;
-  -moz-transform-origin: top center;
-  -o-transform-origin: top center;
-  transform-origin: top center;
-  -webkit-animation: swing 2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  -moz-animation: swing 2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  -o-animation: swing 2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  animation: swing 2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -webkit-transform-origin: middle left;
+  -moz-transform-origin: middle left;
+  -o-transform-origin: middle left;
+  transform-origin: middle left;
+
+  ${(props) =>
+    props.playState
+      ? "  -webkit-animation: swing 2s cubic-bezier(0.445, 0.05, 0.55, 0.95);-moz-animation: swing 2s cubic-bezier(0.445, 0.05, 0.55, 0.95);-o-animation: swing 2s cubic-bezier(0.445, 0.05, 0.55, 0.95);animation: swing 2s cubic-bezier(0.445, 0.05, 0.55, 0.95);"
+      : ""}
 `;
 
 export default Fish;
