@@ -56,7 +56,7 @@ const Quiz = ({props, history}) => {
       {is_loading ? <><Spin /></> : <>
       <button onClick={() => history.replace("/")}>Home</button>
       <ProgressBar><Progressing index={index}/></ProgressBar>
-      {question_data && <QuizFrame data={question_data[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />}</>}
+      {qna_list && <QuizFrame data={qna_list[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />}</>}
     </Wrap>
   );
 };
