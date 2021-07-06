@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/storage";
 
 const firebseConfig = {
     apiKey: "AIzaSyDtw-bguzY71ypg6qqozSmZvs-LJG0yuy8",
@@ -15,5 +16,6 @@ firebase.initializeApp(firebseConfig);
 
 //firestore에 있는 인스턴스를 변수 firestore에 넣어놓고 갖다쓰자
 const firestore = firebase.firestore();
+const storage = firebase.storage();
 
-export {firestore};
+export {firestore, storage};
