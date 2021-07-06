@@ -17,7 +17,7 @@ const userSlice = createSlice({
 });
 
 
-//총 타입별 유저를 받아와서 몇 명인지 계산한 값을 가지고 있으면?
+//총 참여자수 
 const getTotalUserCntFB = () => {
   return function (dispatch) {
 
