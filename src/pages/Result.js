@@ -1,25 +1,21 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Fish from "../components/Fish";
-import { Text, Grid, Button } from "../elements/";
+import { Button } from "../elements/";
 import bg from "../data/background.jpg";
-import {api as fishActions} from "../redux-toolkit/modules/fishList";
-import {api as userActions} from "../redux-toolkit/modules/users";
-import { firestore } from "../shared/firebase";
-
+import { api as userActions } from "../redux-toolkit/modules/users";
 
 const Result = (props) => {
   const dispatch = useDispatch();
-  const fishResult_data = useSelector((state) => state.fishList.fishOneResult)
-  const TotalUserType_data = useSelector((state) => state.users.TotalUsers)
+  const fish_result = useSelector((state) => state.fishList.onefish_result);
 
   useEffect(() => {
-    dispatch(userActions.getUserTypeCnt());
-    console.log("뭔데", TotalUserType_data);
-  },[]);
+    dispatch(userActions.getTotalUserCntFB());
+  }, []);
 
-  const share_url = "https://www.notion.so/g0garden/79c1b0ce40c045aea2dbffb34b7a49ea";
+  //현재 결과페이지의 URL - 도메인/결과 물고기의 usrParam값
+  const share_url = "asdf";
 
   const copyToClipboard = () => {
     let t = document.createElement("textarea");
@@ -31,37 +27,45 @@ const Result = (props) => {
     window.alert("주소가 복사되었습니다!");
   };
 
-  const shareButton = useRef();
+  // [카카오톡 공유하기]
+  // https://developers.kakao.com/docs/latest/ko/getting-started/sdk-js#init
+  // https://developers.kakao.com/docs/latest/ko/message/common
+  // 1. index.html에서 script 불러온다.
+  // 2. 필수코드 Kakao.init(javascript key)
+  // 3. 링크 공유는 문서에서 카카오 메시지로 되어있고,
+  //    많은 템플릿 중 sendScrap의 경우 requestUrl과 링크 보낼 당시 url이 일치해야한다.
+  useEffect(() => {
+    // SDK 사용법에는 Kakao.init~어쩌구로 되어있으나 window 객체 찾아서 설정을 해야함
+    window.Kakao.init("e31c489577057b521747d2d2be3ce3d5");
+    // 카카오 SDK가 초기화되었는지 확인하는 함수 => console.log로 봐서 true면 초기화 잘되었다는 뜻
+    // window.Kakao.isInitialized();
+  }, []);
 
-  // if (typeof navigator.share === "undefined") {
-  //   // 공유하기 버튼을 지원하지 않는 경우에 대한 폴백 처리
-  //   shareButton.hidden = true;
-  // }
+  const grrrDomain = "http://localhost:3000";
+  const _grrrDomain = "https://silver0r.tistory.com/57";
 
-  // shareButton.addEventListener("click", async () => {
-  //   try {
-  //     await navigator.share({
-  //       title: "수면 아래 내 모습은?",
-  //       text: "수면 아래 내 모습은 어떤 모습일지 확인해보세요!",
-  //       url: `https://localhost:3000/`,
-  //     });
-  //     console.log("공유 성공");
-  //   } catch (e) {
-  //     console.log("공유 실패");
-  //   }
-  // });
+  const sendLink = () => {
+    window.Kakao.Link.sendScrap({
+      requestUrl: `${grrrDomain}/result/`,
+    });
+  };
 
   return (
     <Wrap>
       <br />
-      { fishResult_data && <Fish FishOneType={fishResult_data}/>}
+      {fish_result && <Fish OneFishType={fish_result} />}
       <Other></Other>
       <div>페북</div>
+      <a target="blank" id="sns_facebook" href={`http://www.facebook.com/share.php?u=${_grrrDomain}&t=나만의생선을확인해보세요!`} title="페이스북에 이 페이지 공유하기">
+        <Button round color="blue">
+          F
+        </Button>
+      </a>
 
-      <Button ref={shareButton} onClick={copyToClipboard}>
-        공유하기
+      <Button onClick={copyToClipboard}>공유하기</Button>
+      <Button round onClick={sendLink} color="yellow">
+        K
       </Button>
-
     </Wrap>
   );
 };

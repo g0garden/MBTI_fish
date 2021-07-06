@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Text, Grid, Button } from "../elements/";
 import {CheckOutlined} from "@ant-design/icons";
@@ -43,4 +43,5 @@ const QuestionBox = styled.div`
     flex-direction: column;
     justify-content: flex-end;
 `;
+
 export default QuizFrame;

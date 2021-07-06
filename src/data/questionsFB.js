@@ -1,39 +1,3 @@
-import { firestore } from "../shared/firebase";
-
-export let qnaList_data = [];
-
-export async function FB_test() {
-    const qnaList = firestore.collection("qnaList");
-
-    await qnaList.get().then((docs) => {
-    docs.forEach((doc) => {
-        if (doc.exists) {
-            qnaList_data = [...qnaList_data, { id: doc.id, ...doc.data() }];
-            }
-        });
-    });
-    return shuffleArray(qnaList_data);
-}
-
-export const shuffled_array = FB_test();
-
-//qnaList 랜덤배열로
-function shuffleArray(arr) {
-    let currentIndex = arr.length,  randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [arr[currentIndex], arr[randomIndex]] = [
-        arr[randomIndex], arr[currentIndex]];
-    }
-    return arr;
-}
 
 export let dic = {
     0: 0,

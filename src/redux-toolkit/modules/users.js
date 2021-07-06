@@ -7,18 +7,18 @@ const countUsers_db = firestore.collection("countUsers_test");
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    TotalUsers:"",
+    total_users:"",
   },
   reducers: {
     addUserCnt : (state, action) => {
-      state.TotalUsers = action.payload;
+      state.total_users = action.payload;
     },
   },
 });
 
 
 //총 타입별 유저를 받아와서 몇 명인지 계산한 값을 가지고 있으면?
-const getUserTypeCnt = () => {
+const getTotalUserCntFB = () => {
   return function (dispatch) {
 
     countUsers_db.get()
@@ -33,15 +33,14 @@ const getUserTypeCnt = () => {
         const number_test = userTypeCnt_data.reduce((acc,cur) => {
           return acc+cur.count;
         },0);
-        console.log("Totaluser",number_test)
-        // dispatch(addUserCnt(number_test));
+        dispatch(addUserCnt(number_test));
       })
     }
   }
 
 //FB통신함수
 //결과로 나온 Type의 카운트를 +1 업데이트 해주는 함수
-const addUserType = (resultType) => {
+const addUserTypeFB = (resultType) => {
   
   return function (dispatch) {
     
@@ -53,8 +52,8 @@ const addUserType = (resultType) => {
 export const { addUserCnt } = userSlice.actions;
 
 export const api = {
-  addUserType,
-  getUserTypeCnt,
+  addUserTypeFB,
+  getTotalUserCntFB,
 };
 
 export default userSlice.reducer;
