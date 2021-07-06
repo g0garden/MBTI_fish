@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { dic, incrementDicElement} from "../data/questionsFB";
@@ -10,16 +10,17 @@ import {api as userActions} from "../redux-toolkit/modules/users";
 import { Spin } from 'antd';
 
 const Quiz = ({props, history}) => {
+  
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.qnaList.is_loading);
   const qna_list = useSelector((state) => state.qnaList.qna_list);
+  const [index, incrementIndex] = useState(1);
 
   useEffect(() => {
     dispatch(quizActions.getQnaListFB());
   },[]);
 
-  const [index, incrementIndex] = useState(1);
-
+  console.log("최초 인덱스", index);
   const goToNextPage = () => {
     if (index === 12) {
       window.alert("결과보기")
@@ -27,8 +28,15 @@ const Quiz = ({props, history}) => {
       getType(Object.values(dic));
       return;
     }
+    console.log("바뀌기 전", index);
     incrementIndex(index + 1);
+
+    console.log("바뀐 후", index);
   };
+
+  // const value = React.useMemo(() => goToNextPage(), [index]);
+  // console.log(value);
+
 
   const goToResultPage = () =>{
     history.replace('/result')
@@ -52,12 +60,12 @@ const Quiz = ({props, history}) => {
   };
 
   return (
-    <Wrap>
-      {is_loading ? <><Spin /></> : <>
+    <>
+      {is_loading ? <SpinFrame><Spin /></SpinFrame> : <Wrap>
       <button onClick={() => history.replace("/")}>Home</button>
       <ProgressBar><Progressing index={index}/></ProgressBar>
-      {qna_list && <QuizFrame data={qna_list[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />}</>}
-    </Wrap>
+      {qna_list && <QuizFrame data={qna_list[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />}</Wrap>}
+    </>
   );
 };
 
@@ -73,6 +81,18 @@ const Wrap = styled.div`
   margin: 0 auto;
 `;
 
+const SpinFrame = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-image: url(${bg});
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const ProgressBar = styled.div`
 width: 80vw;
 height: 20px;
@@ -85,7 +105,7 @@ margin: 0 auto;
 const Progressing = styled.div`
 position: absolute;
 height: 20px;
-width: ${(props) => props.index > 0 ? `${(props.index / 12) * 100}%` : "0%"};
+width: ${(props) => props.index ? `${(props.index / 12) * 100}%` : "0%"};
 background: blue;
 border-radius: 12px;
 `;

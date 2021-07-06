@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Text, Grid, Button } from "../elements/";
 import {CheckOutlined} from "@ant-design/icons";
+import bg from "../data/background.jpg";
 
 const QuizFrame = (props) => {
   let questionNum = "";
@@ -37,6 +38,17 @@ const QuizFrame = (props) => {
   </QuestionBox>
 </Grid>);
 };
+
+const QuizWrap = styled.div`
+  width: 100vw;
+  /* height: 100vh; */
+  /* max-width: 375px; */
+  background-image: url(${bg});
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center;
+  margin: 0 auto;
+`;
 
 const QuestionBox = styled.div`
     display: flex;
