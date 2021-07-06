@@ -33,7 +33,10 @@ const Fish = (props) => {
 
   const [_pState, setPState] = useState(false);
 
-  useEffect(() => {}, [memoPlayTimes]);
+  useEffect(() => {
+    setPState(true);
+    return () => setPState(false);
+  }, [memoPlayTimes]);
 
   const touchFish = () => {
     if (memoPlayTimes >= 5) {
@@ -49,6 +52,7 @@ const Fish = (props) => {
     } else if (memoPlayTimes === 3) {
       alert("자꾸 만지면 신선도가 떨어져요 😥");
     }
+
     if (_pState === false) {
       setPState(true);
     } else {

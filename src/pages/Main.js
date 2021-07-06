@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { Text,Button } from "../elements/";
+import { Text, Button } from "../elements/";
 import bg from "../data/background.jpg";
 
 import { api as userActions } from "../redux-toolkit/modules/users";
@@ -18,8 +18,7 @@ const Main = ({ history, props }) => {
   const [count, setCount] = useState("0");
   console.log("카운트", count);
 
-  const countNumber = () =>{
-
+  const countNumber = () => {
     let start = 0;
     // 숫자가 크면 뒤에 자리 버리고 앞에 3자리수만 변화하도록
     // 12345678 이라면 123 부분만 1, 2, 3 ...122, 123
@@ -43,7 +42,7 @@ const Main = ({ history, props }) => {
     }, incrementTime); // 증가 초단위마다 체크하는 setInterval
 
     // 숫자가 바뀌면 숫자가 다시 오름
-  }
+  };
 
   useEffect(() => {
     dispatch(userActions.getTotalUserCntFB());

@@ -11,7 +11,7 @@ const quizSlice = createSlice({
     qna_list: [],
   },
   reducers: {
-    setLoading : (state, action) => {
+    setLoading: (state, action) => {
       state.is_loading = action.payload;
     },
     setQnaList : (state, action) => {

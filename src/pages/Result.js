@@ -15,7 +15,7 @@ const Result = (props) => {
   }, []);
 
   //현재 결과페이지의 URL - 도메인/결과 물고기의 usrParam값
-  const share_url="asdf";
+  const share_url = "asdf";
 
   const copyToClipboard = () => {
     let t = document.createElement("textarea");
@@ -27,6 +27,18 @@ const Result = (props) => {
     window.alert("주소가 복사되었습니다!");
   };
 
+  useEffect(() => {
+    // SDK 사용법에는 Kakao.init~어쩌구로 되어있으나 window 객체 찾아서 설정을 해야함
+    window.Kakao.init("e31c489577057b521747d2d2be3ce3d5");
+  }, []);
+
+  const sendLink = () => {
+    console.log(window.Kakao.isInitialized());
+    window.Kakao.Link.sendScrap({
+      requestUrl: "https://developers.kakao.com",
+    });
+  };
+
   return (
     <Wrap>
       <br />
@@ -34,9 +46,8 @@ const Result = (props) => {
       <Other></Other>
       <div>페북</div>
 
-      <Button onClick={copyToClipboard}>
-        공유하기
-      </Button>
+      <Button onClick={copyToClipboard}>공유하기</Button>
+      <Button round onClick={sendLink}></Button>
     </Wrap>
   );
 };
