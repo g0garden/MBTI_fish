@@ -5,7 +5,9 @@ import { Helmet } from "react-helmet";
 import gwangeo from "../data/gwangeo.png";
 
 const Fish = (props) => {
-  const { OneFishType : {feature, potential, name, sentence} } = props;
+  const {
+    OneFishType: { feature, potential, name, sentence },
+  } = props;
 
   const fishType = {
     INFP: {
@@ -70,7 +72,7 @@ const Fish = (props) => {
         <meta property="og:title" content={`${fishType.INFP.fish} | 도시어부`} />
         <meta property="og:image" content="" />
         <meta property="og:description" content="수면 아래 내 모습은 어떤 모습일지 확인해보세요!" />
-        <title>{name && name} | 도시어부</title>
+        <title>{`${name && name} | 도시어부`}</title>
         {/* 뒷주소 이름은 뭘로 할지 결정해야함 ex. mbti타입인지, fish타입인지 */}
         <link rel="canonical" href={`http://localhost:3000/result/${fishType.INFP.fish}`} />
       </Helmet>
