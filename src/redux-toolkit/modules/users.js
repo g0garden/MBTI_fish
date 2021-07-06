@@ -16,7 +16,6 @@ const userSlice = createSlice({
   },
 });
 
-
 //총 참여자수 
 const getTotalUserCntFB = () => {
   return function (dispatch) {

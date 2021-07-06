@@ -8,7 +8,7 @@ import { api as fishActions } from "../redux-toolkit/modules/fishList";
 import { api as userActions } from "../redux-toolkit/modules/users";
 import { Spin } from "antd";
 
-const QuizWrap = ({ props, history }) => {
+const QuizWrap = ({ history }) => {
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.qnaList.is_loading);
   const qna_list = useSelector((state) => state.qnaList.qna_list);
@@ -53,9 +53,9 @@ const QuizWrap = ({ props, history }) => {
   return (
     <>
       {is_loading ? (
-        <>
+        <SpinWrap>
           <Spin />
-        </>
+        </SpinWrap>
       ) : (
         <>
           <button onClick={() => history.replace("/")}>Home</button>
@@ -66,10 +66,12 @@ const QuizWrap = ({ props, history }) => {
   );
 };
 
-const QuestionBox = styled.div`
+const SpinWrap = styled.div`
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default QuizWrap;

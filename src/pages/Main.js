@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Text, Button } from "../elements/";
 import bg from "../data/background.jpg";
 
-const Main = ({ history, props }) => {
+const Main = ({ history }) => {
 
   return (
     <Wrap>
