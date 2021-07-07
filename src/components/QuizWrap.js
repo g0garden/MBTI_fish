@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { dic, incrementDicElement } from "../data/questionsFB";
+import { dic, incrementDicElement, resetDic } from "../data/questionsFB";
 import QuizFrame from "../components/QuizFrame";
 import { api as quizActions } from "../redux-toolkit/modules/qnaList";
 import { api as fishActions } from "../redux-toolkit/modules/fishList";
@@ -19,6 +19,12 @@ const QuizWrap = (props) => {
   }, []);
 
   const [index, incrementIndex] = useState(1);
+
+  if (index === 1) {
+    resetDic();
+  }
+
+  console.log(index);
 
   const goToNextPage = () => {
     if (index === 12) {
