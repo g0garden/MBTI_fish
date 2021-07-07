@@ -60,9 +60,10 @@ const QuizWrap = (props) => {
         </SpinWrap>
       ) : (
         <>
-
           <button onClick={() => history.replace("/")}>Home</button>
-          <ProgressBar><Progressing index={index}/></ProgressBar>
+          <ProgressBar>
+            <Progressing index={index} />
+          </ProgressBar>
           {qna_list && <QuizFrame data={qna_list[index - 1]} next={goToNextPage} index={index} increment={incrementDicElement} />}
         </>
       )}
@@ -79,20 +80,20 @@ const SpinWrap = styled.div`
 `;
 
 const ProgressBar = styled.div`
-width: 80vw;
-height: 20px;
-background: white;
-border-radius: 12px;
-position: relative;
-margin: 0 auto;
+  width: 80vw;
+  height: 20px;
+  background: white;
+  border-radius: 12px;
+  position: relative;
+  margin: 0 auto;
 `;
 
 const Progressing = styled.div`
-position: absolute;
-height: 20px;
-width: ${(props) => props.index ? `${(props.index / 12) * 100}%` : "0%"};
-background: blue;
-border-radius: 12px;
+  position: absolute;
+  height: 20px;
+  width: ${(props) => (props.index ? `${(props.index / 12) * 100}%` : "0%")};
+  background: blue;
+  border-radius: 12px;
 `;
 
 export default QuizWrap;
