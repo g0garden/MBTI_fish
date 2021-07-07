@@ -6,7 +6,7 @@ import { Button } from "../elements/";
 import bg from "../data/background.jpg";
 import { api as userActions } from "../redux-toolkit/modules/users";
 
-const Result = (props) => {
+const Result = ({ history }) => {
   const dispatch = useDispatch();
   const fish_result = useSelector((state) => state.fishList.onefish_result);
 
@@ -50,6 +50,17 @@ const Result = (props) => {
     });
   };
 
+  const startCapture = async (displayMediaOptions) => {
+    let captureStream = null;
+
+    try {
+      captureStream = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
+    } catch (err) {
+      console.error("Error: " + err);
+    }
+    return captureStream;
+  };
+
   return (
     <Wrap>
       <br />
@@ -65,6 +76,9 @@ const Result = (props) => {
       <Button onClick={copyToClipboard}>공유하기</Button>
       <Button round onClick={sendLink} color="yellow">
         K
+      </Button>
+      <Button round onClick={startCapture} color="yellow">
+        capture
       </Button>
     </Wrap>
   );

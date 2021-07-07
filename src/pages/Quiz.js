@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import QuizWrap from "../components/QuizWrap";
 import bg from "../data/background.jpg";
 
-const Quiz = ({ props, history }) => {
+const Quiz = (props) => {
   return (
     <Wrap>
-      <QuizWrap />
+      <QuizWrap {...props} />
     </Wrap>
   );
 };
