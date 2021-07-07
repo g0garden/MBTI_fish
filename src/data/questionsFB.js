@@ -10,6 +10,12 @@ export let dic = {
     7: 0
 }
 
+export let result = "";
+
+export const updateResult = (str) => {
+    result = str;
+}
+
 export const incrementDicElement = (type) => {
     if (type === "E") {
         dic[0] += 1;

@@ -47,6 +47,7 @@ const QuizWrap = (props) => {
     }
     let resultType = answer.join("");
     //유저의 타입에 맞는 물고기 유형 FB에서 불러오기
+    sessionStorage.setItem('fish', resultType);
     dispatch(fishActions.getOneFishFB(resultType));
     dispatch(userActions.addUserTypeFB(resultType)); //FB에 해당타입 카운트+1
   };
