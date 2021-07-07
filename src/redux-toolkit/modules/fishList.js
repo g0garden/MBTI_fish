@@ -6,11 +6,16 @@ const fishList_db = firestore.collection("fishList");
 const fishSlice = createSlice({
   name: "fish",
   initialState: {
+    is_loaded : false,
     onefish_result: {},
   },
   reducers: {
+    setLoaded : (state, action) => {
+      state.is_loaded = action.payload;
+    },
     setFishResult : (state, action) => {
       state.onefish_result = action.payload;
+      state.is_loaded = false;
     },
   },
 });
@@ -19,7 +24,7 @@ const fishSlice = createSlice({
 //퀴즈페이지에서 받은 도출한 값(resultType)과 동일한 type의 인덱스 찾아오기
 const getOneFishFB = (resultType) => {
   return function (dispatch) {
-    
+    dispatch(setLoaded(true));
     fishList_db.get().then((docs) => {
 
       docs.forEach((doc, index) => {
@@ -31,7 +36,7 @@ const getOneFishFB = (resultType) => {
   }
 }
 
-export const { setFishResult } = fishSlice.actions;
+export const { setFishResult, setLoaded } = fishSlice.actions;
 
 export const api = {
   getOneFishFB,

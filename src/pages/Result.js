@@ -4,15 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Fish from "../components/Fish";
 import { Button } from "../elements/";
 import bg from "../data/background.jpg";
-import { api as userActions } from "../redux-toolkit/modules/users";
+import { Spin } from "antd";
+import {dic} from "../data/questionsFB"
 
 const Result = (props) => {
-  const dispatch = useDispatch();
   const fish_result = useSelector((state) => state.fishList.onefish_result);
-
-  useEffect(() => {
-    dispatch(userActions.getTotalUserCntFB());
-  }, []);
+  const is_loaded = useSelector((state) => state.fishList.is_loaded);
 
   //현재 결과페이지의 URL - 도메인/결과 물고기의 usrParam값
   const share_url = "asdf";
@@ -53,7 +50,7 @@ const Result = (props) => {
   return (
     <Wrap>
       <br />
-      {fish_result && <Fish OneFishType={fish_result} />}
+      {is_loaded ? <SpinWrap><Spin /></SpinWrap> : Object.values(fish_result).length > 0 ? <><Fish OneFishType={fish_result} />
       <Other></Other>
       <div>페북</div>
       <a target="blank" id="sns_facebook" href={`http://www.facebook.com/share.php?u=${_grrrDomain}&t=나만의생선을확인해보세요!`} title="페이스북에 이 페이지 공유하기">
@@ -65,7 +62,7 @@ const Result = (props) => {
       <Button onClick={copyToClipboard}>공유하기</Button>
       <Button round onClick={sendLink} color="yellow">
         K
-      </Button>
+      </Button></> : <NoData><Button onClick={()=> window.location.href = "/"}>다시 검사해보기</Button></NoData>}
     </Wrap>
   );
 };
@@ -82,5 +79,22 @@ const Wrap = styled.div`
 `;
 
 const Other = styled.div``;
+
+const NoData = styled.div`
+width: 100vw;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+`;
+
+const SpinWrap = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 
 export default Result;
