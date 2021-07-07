@@ -7,6 +7,10 @@ body {
   background-color: black;
   height: 100%;
   text-align: center;
+  background-image: url("../data/background.jpg");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 @font-face {

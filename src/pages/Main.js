@@ -24,7 +24,7 @@ const Main = ({ history }) => {
 
 const Wrap = styled.div`
   width: 100vw;
-  height: 100vh;
+  // height: 100vh;
   /* max-width: 375px; */
   background-image: url(${bg});
   background-repeat: no-repeat;
