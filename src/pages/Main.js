@@ -4,7 +4,6 @@ import { Text, Button } from "../elements/";
 import bg from "../data/background.jpg";
 
 const Main = ({ history }) => {
-
   return (
     <Wrap>
       <Title>
@@ -15,7 +14,7 @@ const Main = ({ history }) => {
 
       <Text size="18px">나도 모르는 나의 무의식 테스트</Text>
 
-      <Button margin="220px auto auto" onClick={() => history.replace("/quiz")}>
+      <Button margin="220px auto auto" onClick={() => history.push("/quiz")}>
         START
       </Button>
     </Wrap>

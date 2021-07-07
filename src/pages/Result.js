@@ -50,17 +50,6 @@ const Result = ({ history }) => {
     });
   };
 
-  const startCapture = async (displayMediaOptions) => {
-    let captureStream = null;
-
-    try {
-      captureStream = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
-    } catch (err) {
-      console.error("Error: " + err);
-    }
-    return captureStream;
-  };
-
   return (
     <Wrap>
       <br />
@@ -77,7 +66,7 @@ const Result = ({ history }) => {
       <Button round onClick={sendLink} color="yellow">
         K
       </Button>
-      <Button round onClick={startCapture} color="yellow">
+      <Button round color="yellow">
         capture
       </Button>
     </Wrap>
