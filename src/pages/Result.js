@@ -7,9 +7,14 @@ import bg from "../data/background.jpg";
 import { Spin } from "antd";
 import {dic} from "../data/questionsFB"
 
-const Result = (props) => {
+const Result = ({history, props}) => {
+
+  //const fishName = Number(props.match.params.fishname);//파람
+
   const fish_result = useSelector((state) => state.fishList.onefish_result);
   const is_loaded = useSelector((state) => state.fishList.is_loaded);
+
+  console.log("결과페이지넘어와서", fish_result)
 
   //현재 결과페이지의 URL - 도메인/결과 물고기의 usrParam값
   const share_url = "asdf";
@@ -50,7 +55,9 @@ const Result = (props) => {
   return (
     <Wrap>
       <br />
-      {is_loaded ? <SpinWrap><Spin /></SpinWrap> : Object.values(fish_result).length > 0 ? <><Fish OneFishType={fish_result} />
+      {is_loaded ? 
+        <SpinWrap><Spin /></SpinWrap> : Object.values(fish_result).length > 0 
+        ? <><Fish OneFishType={fish_result} />
       <Other></Other>
       <div>페북</div>
       {/* <a target="blank" id="sns_facebook" href={`http://www.facebook.com/share.php?u=${_grrrDomain}&t=나만의생선을확인해보세요!`} title="페이스북에 이 페이지 공유하기">

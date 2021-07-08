@@ -6,15 +6,18 @@ import gwangeo from "../data/gwangeo.png";
 
 const Fish = (props) => {
   const {
-    OneFishType: { feature, potential, name, sentence },
+    OneFishType: { feature, potential, name, sentence, imgUrl },
   } = props;
+  console.log("fish프랍스",props)
 
   const fishType = {
     INFP: {
       mbti: "INFP",
       fish: "하늘을 나는 돌고래",
       desc: "나에겐 아름다운 이상이 있지",
-      img: "https://www.ocregister.com/wp-content/uploads/migration/nv5/nv5t87-b88521891z.120150923191922000g6tc6j8f.70.jpg",
+      img:"https://firebasestorage.googleapis.com/v0/b/mbtifish.appspot.com/o/images%2Fgwangeo.png?alt=media&token=6cc4a6bd-7fb7-4693-af7e-46ebc98b5893", 
+      //"https://www.ocregister.com/wp-content/uploads/migration/nv5/nv5t87-b88521891z.120150923191922000g6tc6j8f.70.jpg"
+      //https://firebasestorage.googleapis.com/v0/b/mbtifish.appspot.com/o/images%2Fchicken.jfif?alt=media&token=487ac9dd-27f3-408f-a766-423342135c0c
       traits: [
         "다른 사람들과 구분되는 독특한 감수성이 있어요.",
         "맞는 건 맞고 아닌 건 아닌거에요. 하지만 이걸 대놓고 말하고 다니진 않아요.",
@@ -64,7 +67,7 @@ const Fish = (props) => {
       }, 100);
     }
   };
-
+  // return <></>;
   return (
     <>
       <Helmet>
@@ -80,7 +83,8 @@ const Fish = (props) => {
         {name && name}
       </Text>
       <FishImg
-        src={`${gwangeo}`}
+        //src={`${gwangeo}`}
+        src={`${fishType.INFP.img}`}
         onClick={touchFish}
         // onAnimationEnd={setPState(false)}
         playState={_pState}
@@ -122,6 +126,7 @@ const FishImg = styled.img`
   width: 80vw;
   max-width: 400px;
   margin: 5vh 0;
+  //pointer-events: none;
 
   @-webkit-keyframes swing {
     20% {

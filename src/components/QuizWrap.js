@@ -24,21 +24,20 @@ const QuizWrap = (props) => {
     resetDic();
   }
 
-  console.log(index);
+  //console.log(index);
 
   const goToNextPage = () => {
     if (index === 12) {
       window.alert("결과보기");
-      goToResultPage();
+      //goToResultPage();
       getType(Object.values(dic));
       return;
+      // console.log(fish_result, fish_result.name);
+      // return 
     }
     incrementIndex(index + 1);
   };
 
-  const goToResultPage = () => {
-    history.push("/result");
-  };
 
   const getType = (arr) => {
     const types = ["E", "I", "N", "S", "T", "F", "P", "J"];
@@ -57,6 +56,10 @@ const QuizWrap = (props) => {
     dispatch(fishActions.getOneFishFB(resultType));
     dispatch(userActions.addUserTypeFB(resultType)); //FB에 해당타입 카운트+1
   };
+  
+  // const goToResultPage = () => {
+  //   history.push("/result/:fishname");
+  // };
 
   return (
     <>
