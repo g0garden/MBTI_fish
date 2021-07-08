@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.30915be9.chunk.css",
+    "main.js": "/static/js/main.75d22bed.chunk.js",
+    "main.js.map": "/static/js/main.75d22bed.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3bb56deb.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3bb56deb.js.map",
+    "static/css/2.dbb450e1.chunk.css": "/static/css/2.dbb450e1.chunk.css",
+    "static/js/2.7f71bdce.chunk.js": "/static/js/2.7f71bdce.chunk.js",
+    "static/js/2.7f71bdce.chunk.js.map": "/static/js/2.7f71bdce.chunk.js.map",
+    "static/js/3.c28fc20c.chunk.js": "/static/js/3.c28fc20c.chunk.js",
+    "static/js/3.c28fc20c.chunk.js.map": "/static/js/3.c28fc20c.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.dbb450e1.chunk.css.map": "/static/css/2.dbb450e1.chunk.css.map",
+    "static/css/main.30915be9.chunk.css.map": "/static/css/main.30915be9.chunk.css.map",
+    "static/js/2.7f71bdce.chunk.js.LICENSE.txt": "/static/js/2.7f71bdce.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/background.12b2c4de.jpg",
+    "static/media/gwangeo.739563c5.png": "/static/media/gwangeo.739563c5.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3bb56deb.js",
+    "static/css/2.dbb450e1.chunk.css",
+    "static/js/2.7f71bdce.chunk.js",
+    "static/css/main.30915be9.chunk.css",
+    "static/js/main.75d22bed.chunk.js"
+  ]
+}

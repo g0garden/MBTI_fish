@@ -5,7 +5,7 @@ import Fish from "../components/Fish";
 import { Button } from "../elements/";
 import bg from "../data/background.jpg";
 import { Spin } from "antd";
-import {dic} from "../data/questionsFB"
+import { dic } from "../data/questionsFB";
 
 const Result = ({history, props}) => {
 
@@ -55,6 +55,7 @@ const Result = ({history, props}) => {
   return (
     <Wrap>
       <br />
+
       {is_loaded ? 
         <SpinWrap><Spin /></SpinWrap> : Object.values(fish_result).length > 0 
         ? <><Fish OneFishType={fish_result} />
@@ -72,7 +73,6 @@ const Result = ({history, props}) => {
 
   </Button>*/}
       </> : <NoData><Button onClick={()=> window.location.href = "/"}>다시 검사해보기</Button></NoData>}
-
     </Wrap>
   );
 };
@@ -91,11 +91,11 @@ const Wrap = styled.div`
 const Other = styled.div``;
 
 const NoData = styled.div`
-width: 100vw;
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const SpinWrap = styled.div`
@@ -105,6 +105,5 @@ const SpinWrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 
 export default Result;
