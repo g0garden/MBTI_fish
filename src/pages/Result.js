@@ -5,7 +5,7 @@ import Fish from "../components/Fish";
 import { Button } from "../elements/";
 import bg from "../data/background.jpg";
 import { Spin } from "antd";
-import {dic} from "../data/questionsFB"
+import { dic } from "../data/questionsFB";
 
 const Result = (props) => {
   const fish_result = useSelector((state) => state.fishList.onefish_result);
@@ -50,21 +50,31 @@ const Result = (props) => {
   return (
     <Wrap>
       <br />
-      {is_loaded ? <SpinWrap><Spin /></SpinWrap> : Object.values(fish_result).length > 0 ? <><Fish OneFishType={fish_result} />
-      <Other></Other>
-      <div>페북</div>
-      <a target="blank" id="sns_facebook" href={`http://www.facebook.com/share.php?u=${_grrrDomain}&t=나만의생선을확인해보세요!`} title="페이스북에 이 페이지 공유하기">
-        <Button round color="blue">
-          F
-        </Button>
-      </a>
+      {is_loaded ? (
+        <SpinWrap>
+          <Spin />
+        </SpinWrap>
+      ) : Object.values(fish_result).length > 0 ? (
+        <>
+          <Fish OneFishType={fish_result} />
+          <Other></Other>
+          <div>페북</div>
+          <a target="blank" id="sns_facebook" href={`http://www.facebook.com/share.php?u=${_grrrDomain}&t=나만의생선을확인해보세요!`} title="페이스북에 이 페이지 공유하기">
+            <Button round color="blue">
+              F
+            </Button>
+          </a>
 
-      <Button onClick={copyToClipboard}>공유하기</Button>
-      <Button round onClick={sendLink} color="yellow">
-        K
-
-      </Button></> : <NoData><Button onClick={()=> window.location.href = "/"}>다시 검사해보기</Button></NoData>}
-
+          <Button onClick={copyToClipboard}>공유하기</Button>
+          <Button round onClick={sendLink} color="yellow">
+            K
+          </Button>
+        </>
+      ) : (
+        <NoData>
+          <Button onClick={() => (window.location.href = "/")}>다시 검사해보기</Button>
+        </NoData>
+      )}
     </Wrap>
   );
 };
@@ -83,11 +93,11 @@ const Wrap = styled.div`
 const Other = styled.div``;
 
 const NoData = styled.div`
-width: 100vw;
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const SpinWrap = styled.div`
@@ -97,6 +107,5 @@ const SpinWrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 
 export default Result;
