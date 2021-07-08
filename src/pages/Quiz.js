@@ -3,8 +3,8 @@ import styled from "styled-components";
 import QuizWrap from "../components/QuizWrap";
 import bg from "../data/background.jpg";
 
-
 const Quiz = (props) => {
+  
   return (
     <Wrap>
       <QuizWrap {...props} />

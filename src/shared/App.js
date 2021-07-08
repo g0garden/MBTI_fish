@@ -1,7 +1,8 @@
 import "./App.css";
 import React from "react";
 import { ConnectedRouter } from "connected-react-router";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch} from "react-router-dom";
+import { withRouter } from "react-router";
 import { history } from "../redux-toolkit/configureStore";
 import { Main, Quiz, Result } from "../pages";
 
@@ -13,7 +14,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Main}/>
           <Route exact path="/quiz" component={Quiz} />
-          <Route exact path="/result" component={Result} />
+          <Route exact path="/result/:fishname" component={Result}/>
         </Switch>
       </ConnectedRouter>
     </>
