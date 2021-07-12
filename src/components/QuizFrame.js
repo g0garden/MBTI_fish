@@ -21,18 +21,18 @@ const QuizFrame = (props) => {
     <Text size="30px" bold>{props.data?.question}</Text>
   </Grid>
   <QuestionBox>
-    <Button align padding="0 20px" size="24px" 
+    <Button align padding="0 20px" size="17px" 
     onClick={()=> {
       props?.next(); 
       props?.increment(props.data?.answers.a.type);}}>
-        <CheckOutlined /> 
+        <CheckOutlined className="question"/> 
         {props.data?.answers.a.res}
     </Button>
-    <Button align padding="0 20px" size="24px" 
+    <Button align padding="0 20px" size="17px" 
     onClick={()=> {
       props?.next(); 
       props?.increment(props.data?.answers.b.type);}}>
-        <CheckOutlined /> 
+        <CheckOutlined className="question"/> 
         {props.data?.answers.b.res}
     </Button>
   </QuestionBox>

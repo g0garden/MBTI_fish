@@ -4,7 +4,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { Route, Switch} from "react-router-dom";
 import { withRouter } from "react-router";
 import { history } from "../redux-toolkit/configureStore";
-import { Main, Quiz, Result } from "../pages";
+import { Main, Quiz, Result, NotFound } from "../pages";
 
 function App() {
   
@@ -15,6 +15,7 @@ function App() {
           <Route exact path="/" component={Main}/>
           <Route exact path="/quiz" component={Quiz} />
           <Route exact path="/result/:fishname" component={Result}/>
+          <Route exact component={NotFound}/>
         </Switch>
       </ConnectedRouter>
     </>

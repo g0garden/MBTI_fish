@@ -100,7 +100,7 @@ const Fish = (props) => {
         {feature &&
           feature.map((t, idx) => {
             return (
-              <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
+              <Text key= {idx} idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
                 {t}
               </Text>
             );
@@ -112,7 +112,7 @@ const Fish = (props) => {
         {potential &&
           potential.map((p, idx) => {
             return (
-              <Text idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
+              <Text key= {idx} idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
                 {p}
               </Text>
             );
