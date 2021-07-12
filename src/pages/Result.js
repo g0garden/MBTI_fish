@@ -6,15 +6,34 @@ import { Button } from "../elements/";
 import bg from "../data/background.jpg";
 import { Spin } from "antd";
 import { dic } from "../data/questionsFB";
+import {api as resultActions} from "../redux-toolkit/modules/fishList"
 
 const Result = ({history, props}) => {
-
+  const dispatch = useDispatch();
   //const fishName = Number(props.match.params.fishname);//파람
 
   const fish_result = useSelector((state) => state.fishList.onefish_result);
   const is_loaded = useSelector((state) => state.fishList.is_loaded);
 
-  console.log("결과페이지넘어와서", fish_result)
+  // 이 부분은 새로고침 할 시점을 노린 것임
+  // 이 밑에 if문 부분을 보면 "fish" 라는 키는 최초 Result 페이지 진입시에 사라지게 되고, 대신 "type" 이라는 키와 해당 물고기의 mbti 가 함께 저장됨.
+  // 따라서, 새로고침하기 전에는 당연히 세션 안에 "fish" 라는 키가 있으니 최초 진입시에는 useEffect 가 별 효과를 내지 못함
+  // 하지만, 새로고침 후에는 "fish" 라는 키가 세션 안에 사라진 상태임으로 "type"이라는 키와 페어된 mbti를 dispatch 해주면 끝!
+  // 추가적으로 다른 페이지 (메인, 퀴즈 페이지..?) 에서는 이 키값이 저장되는 것을 지양하여 만약 남아있다면 지워주는 행위가 꼭 필요함.
+
+  useEffect(()=> {
+    if (!sessionStorage.getItem("fish")) {
+      console.log("요건 몰랐지???");
+      dispatch(resultActions.getOneFishFB(sessionStorage.getItem("type")));
+    }
+  }, [])
+  
+  if (sessionStorage.getItem("fish")) {
+    sessionStorage.removeItem("fish");
+    sessionStorage.setItem("type", fish_result?.type);
+  }
+
+  console.log("결과페이지넘어와서", fish_result);
 
   //현재 결과페이지의 URL - 도메인/결과 물고기의 usrParam값
   const share_url = "asdf";

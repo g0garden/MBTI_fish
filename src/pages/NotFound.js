@@ -2,23 +2,25 @@ import React from "react";
 import styled from "styled-components";
 import { Text, Button } from "../elements/";
 import bg from "../data/background.jpg";
+import {history} from '../redux-toolkit/configureStore'
 
-const Main = ({ history }) => {
+const NotFound = () => {
   if (sessionStorage.getItem("type")) {
     sessionStorage.removeItem("type");
   }
   return (
     <Wrap>
       <Title>
-        수면 아래
+        404
         <br />
-        나의 본 모습은?
+        Page not found
       </Title>
 
-      <Text size="18px">나도 모르는 나의 무의식 테스트</Text>
+      <Text size="18px">요청하신 페이지는 찾을 수 없는 페이지입니다. <br/>
+          입력하신 주소가 맞는지 다시 한 번 확인해주세요.</Text>
 
-      <Button margin="220px auto auto" onClick={() => history.push("/quiz")}>
-        START
+      <Button margin="220px auto auto" onClick={() => history.replace("/")}>
+        처음으로 돌아가기
       </Button>
     </Wrap>
   );
@@ -40,4 +42,4 @@ const Title = styled.div`
   font-weight: 600;
 `;
 
-export default Main;
+export default NotFound;
