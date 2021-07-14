@@ -29,6 +29,7 @@ const Result = ({history, props}) => {
   }, [])
   
   if (sessionStorage.getItem("fish")) {
+    console.log("너가 먼저니???");
     sessionStorage.removeItem("fish");
     sessionStorage.setItem("type", fish_result?.type);
   }

@@ -24,6 +24,10 @@ const QuizWrap = (props) => {
     resetDic();
   }
 
+  if (sessionStorage.getItem("type") && index !== 12) {
+    sessionStorage.removeItem("type");
+  }
+  
   //console.log(index);
 
   const goToNextPage = () => {
