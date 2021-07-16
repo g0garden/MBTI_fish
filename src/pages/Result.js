@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Fish from "../components/Fish";
-import { Button } from "../elements/";
+import { Button,Text,Grid, Container } from "../elements/";
+import "../shared/theme";
 import bg from "../data/background.jpg";
 import { Spin } from "antd";
 import { dic } from "../data/questionsFB";
@@ -23,18 +24,14 @@ const Result = ({history, props}) => {
 
   useEffect(()=> {
     if (!sessionStorage.getItem("fish")) {
-      console.log("요건 몰랐지???");
       dispatch(resultActions.getOneFishFB(sessionStorage.getItem("type")));
     }
   }, [])
   
   if (sessionStorage.getItem("fish")) {
-    console.log("너가 먼저니???");
     sessionStorage.removeItem("fish");
     sessionStorage.setItem("type", fish_result?.type);
   }
-
-  console.log("결과페이지넘어와서", fish_result);
 
   //현재 결과페이지의 URL - 도메인/결과 물고기의 usrParam값
   const share_url = "asdf";
@@ -73,42 +70,136 @@ const Result = ({history, props}) => {
   // };
 
   return (
-    <Wrap>
-      <br />
+    <>
+      <br/>
 
       {is_loaded ? 
         <SpinWrap><Spin /></SpinWrap> : Object.values(fish_result).length > 0 
         ? <><Fish OneFishType={fish_result} />
-      <Other></Other>
-      <div>페북</div>
+      <Share>
+      <ShareTitle>
+        <PurpleLeft src={require("../data/images/nomargin_third_left.png").default}/>
+
+      {/* <Button onClick={sendLink} color="yellow">blala</Button>*/}
+        <Text bold size="1.5rem" color="#00d0e9">
+          공유하기
+        </Text>
+        <PurpleRight src={require("../data/images/nomargin_third_right.png").default}/>
+      </ShareTitle>
+      <ShareChannel>
+        <Button share>
+          <SocialImg src={require("../data/images/nomargin_kakao.png").default}/>
+        </Button>
+        <Button share onClick={copyToClipboard}>
+          <SocialImg src={require("../data/images/nomargin_insta.png").default}/>
+        </Button>
+        <Button share onClick={copyToClipboard}>
+          <SocialImg src={require("../data/images/nomargin_copylink.png").default}/>
+        </Button>
+      </ShareChannel>
+      
+    </Share>
+    <Bottom>
+      <RestartBtn>
+        <RestartImg src={require("../data/images/restart_btn.png").default}/>
+      </RestartBtn>
+      <GrrrLinkBtn>
+        <GrrrImg src={require("../data/images/nomargin_Grrr.png").default}/>
+      </GrrrLinkBtn>
+    </Bottom>
+      
+      
+      
+
       {/* <a target="blank" id="sns_facebook" href={`http://www.facebook.com/share.php?u=${_grrrDomain}&t=나만의생선을확인해보세요!`} title="페이스북에 이 페이지 공유하기">
         <Button round color="blue">
           F
         </Button>
       </a> */}
-
-      <Button onClick={copyToClipboard}>공유하기</Button>
-      {/* <Button round onClick={sendLink} color="yellow">
-        K
-
-  </Button>*/}
       </> : <NoData><Button onClick={()=> window.location.href = "/"}>다시 검사해보기</Button></NoData>}
-    </Wrap>
+    
+    </>
   );
 };
 
-const Wrap = styled.div`
-  width: 100vw;
-  /* height: 100vh; */
-  /* max-width: 375px; */
-  background-image: url(${bg});
-  background-repeat: no-repeat, repeat;
-  background-size: cover;
-  background-position: center;
-  margin: 0 auto;
+// const Wrap = styled.div`
+//   width: 100vw;
+//   /* height: 100vh; */
+//   /* max-width: 375px; */
+//   background-image: url(${bg});
+//   background-repeat: no-repeat, repeat;
+//   background-size: cover;
+//   background-position: center;
+//   margin: 0 auto;
+// `;
+
+const PurpleLeft = styled.img`
+  width: 22vw;
+  max-width: 180px;
+  height: 3vh;
+  margin-right: 8px;
+`;
+const PurpleRight = styled.img`
+  width: 22vw;
+  max-width: 180px;
+  height: 3vh;
+  margin-left: 8px;
 `;
 
-const Other = styled.div``;
+const Share = styled.div`
+`;
+
+const ShareTitle = styled.div`
+  width:100vw;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+
+`;
+
+const ShareChannel = styled.div`
+  margin : 10px 0;
+
+`;
+
+
+const SocialImg = styled.img`
+  width: 15vw;
+  max-width: 80px;
+  margin: 1vh 0;
+`;
+
+const RestartBtn = styled.button`
+  border: none; 
+  background-color: transparent;
+
+`;
+
+const RestartImg = styled.img`
+  width: 50vw;
+  max-width: 200px;
+  margin: 5vh 0;
+`;
+
+const GrrrLinkBtn = styled.button`
+  border: none; 
+  background-color: transparent;
+`;
+
+const GrrrImg = styled.img`
+  width: 30vw;
+  max-width: 200px;
+  margin: 0.5vh 0;
+
+`;
+
+const Bottom = styled.div`
+  box-sizing: border-box;
+  display:flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+`;
 
 const NoData = styled.div`
   width: 100vw;

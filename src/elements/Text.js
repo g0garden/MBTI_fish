@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Text = (props) => {
-  const { children, size, lineHeight, bold, margin, align } = props;
+  const { children, size, lineHeight, bold, margin, align, color } = props;
 
   const styles = {
     size: size,
@@ -10,6 +10,8 @@ const Text = (props) => {
     bold: bold ? bold : false,
     margin: margin ? margin : false,
     align: align,
+    color:color,
+    
   };
 
   return <TextBox {...styles}>{children}</TextBox>;
@@ -24,10 +26,12 @@ Text.defaultProps = {
 
 const TextBox = styled.div`
   font-size: ${(props) => props.size};
-  font-weight: ${(props) => (props.bold ? "700" : "500")};
+  font-weight: ${(props) => (props.bold ? "900" : "500")};
   ${(props) => (props.lineHeight ? `line-height:${props.lineHeight};` : "")}
   margin:${(props) => props.margin};
   text-align: ${(props) => props.align};
+  color: ${(props) => props.color};
+  letter-spacing: 1px;
 `;
 
 export default Text;

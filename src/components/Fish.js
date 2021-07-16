@@ -1,6 +1,7 @@
 import React, { useMemo, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Text, Grid } from "../elements/";
+import "../shared/theme";
+import { Text, Grid, Container } from "../elements/";
 import { Helmet } from "react-helmet";
 import gwangeo from "../data/gwangeo.png";
 
@@ -8,7 +9,7 @@ const Fish = (props) => {
   const {
     OneFishType: { feature, potential, name, sentence, imgUrl },
   } = props;
-  console.log("fish프랍스",props)
+  console.log("Fish프랍스",props)
 
   const fishType = {
     INFP: {
@@ -67,9 +68,9 @@ const Fish = (props) => {
       }, 100);
     }
   };
-  // return <></>;
+
   return (
-    <>
+    <Container>
       <Helmet>
         <meta charSet="utf-8" />
         <meta property="og:title" content={`${fishType.INFP.fish} | 도시어부`} />
@@ -79,48 +80,137 @@ const Fish = (props) => {
         {/* 뒷주소 이름은 뭘로 할지 결정해야함 ex. mbti타입인지, fish타입인지 */}
         <link rel="canonical" href={`http://localhost:3000/result/${fishType.INFP.fish}`} />
       </Helmet>
-      <Text bold size="32px" margin="20px 0 0 0">
-        {name && name}
-      </Text>
-      <FishImg
-        //src={`${gwangeo}`}
-        src={`${fishType.INFP.img}`}
-        onClick={touchFish}
-        // onAnimationEnd={setPState(false)}
-        playState={_pState}
-      />
-      <Grid margin="auto 20px">
-        <Text bold size="20px">
-          "{sentence && sentence}"
-        </Text>
+    
+      <FishIntro>
+        <FishTitle>
+          <PurpleLeft src={require("../data/images/nomargin_first_left.png").default}/>
+          <Text bold size="1.6rem" margin="12px 12px 0 12px" color="#8f65e4">
+            {name && name}
+          </Text>
+          <PurpleRight src={require("../data/images/nomargin_first_right.png").default}/>
+        </FishTitle>
 
-        <Text bold size="20px" margin="20px auto">
+        <FishImg
+          //src={`${gwangeo}`}
+          src={`${fishType.INFP.img}`}
+          onClick={touchFish}
+          // onAnimationEnd={setPState(false)}
+          playState={_pState}
+        />
+          <Text bold size="1.5rem" color="#00d0e9">
+            "{sentence && sentence}"
+          </Text>
+          <PurpleLine src={require("../data/images/nomargin_second.png").default}/>
+      </FishIntro>
+      
+      <FishDesc>
+          
+
+        <Text bold size="1.5rem" margin="20px auto" color="#00d0e9">
           특징
         </Text>
-        {feature &&
-          feature.map((t, idx) => {
-            return (
-              <Text key= {idx} idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
-                {t}
-              </Text>
-            );
-          })}
-
-        <Text bold size="20px" margin="20px auto">
-          가능성
+        <TextBackGround>
+          {feature &&
+            feature.map((t, idx) => {
+              return (
+                <Text key= {idx} idx={idx} bold size="14px" margin="10px" lineHeight="130%">
+                  {t}
+                </Text>
+              );
+            })}
+        </TextBackGround>
+        <Text bold size="1.5rem" margin="20px auto" color="#00d0e9">
+          잠재능력
         </Text>
-        {potential &&
-          potential.map((p, idx) => {
-            return (
-              <Text key= {idx} idx={idx} bold size="14px" align="left" margin="10px" lineHeight="130%">
-                {p}
-              </Text>
-            );
-          })}
-      </Grid>
-    </>
+        <TextBackGround>
+          {potential &&
+            potential.map((p, idx) => {
+              return (
+                <Text key= {idx} idx={idx} bold size="14px" margin="10px" lineHeight="130%">
+                  {p}
+                </Text>
+              );
+            })}
+        </TextBackGround>
+      </FishDesc> 
+      <FishMate>
+        <MateBox>
+          <Text bold size="20px" margin="20px auto" color="#00d0e9">잘맞는 어종</Text>
+            <MateImg src={`${fishType.INFP.img}`}/>
+          <Text bold size="20px" margin="20px auto" color="white">{name && name}</Text>
+        </MateBox>
+        <MateBox>
+          <Text bold size="20px" margin="20px auto" color="#00d0e9">안맞는 어종</Text>
+          <MateImg src={`${fishType.INFP.img}`}/>
+          <Text bold size="20px" margin="20px auto" color="white">{name && name}</Text>
+        </MateBox>
+      </FishMate>
+    </Container>
   );
 };
+
+const FishTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  `;
+const PurpleLeft = styled.img`
+  height: 20px;
+`;
+
+const PurpleRight = styled.img`
+  height: 20px;
+`;
+
+const PurpleLine = styled.img`
+  width: 100%;
+`;
+
+const FishIntro = styled.div`
+  width: 90vw;
+  max-width: 400px;
+  margin:0 auto;
+`;
+
+const FishDesc =styled.div`
+  width: 80vw;
+  max-width: 400px;
+  margin:0 auto;
+  box-sizing:border-box;
+`;
+
+const TextBackGround = styled.div`
+  width:80vw;
+  max-width: 400px;
+  margin:1.5vh auto;
+  background-color: rgb(80,46,143);
+  //opacity: #8f65e4;
+  opacity: 0.9;
+  border-radius: 32px;
+  padding:10px 25px;
+  text-align:center;
+`;
+
+const FishMate = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 80vw;
+  max-width: 500px;
+  margin: 1vh auto;
+`;
+
+const MateBox = styled.div`
+  margin: 20px;
+
+`;
+
+const MateImg = styled.img`
+  width: 20vw;
+  max-width: 100px;
+  margin: 1.5vh 0;
+`;
+
+
 
 const FishImg = styled.img`
   width: 80vw;

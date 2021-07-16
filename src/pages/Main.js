@@ -11,7 +11,7 @@ const Main = ({ history }) => {
     <Wrap>
       <Title>
         수면 아래
-        <br />
+        <br/>
         나의 본 모습은?
       </Title>
 
