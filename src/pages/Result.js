@@ -52,7 +52,7 @@ const Result = ({history, props}) => {
   // 본인이 봤던 결과가 그대로 나와야함!
 
   const goBackToMain = () => {
-    sessionStorage.setItem("goBack", true);
+    // sessionStorage.setItem("goBack", true);
     window.location.href = "/";
   }
 

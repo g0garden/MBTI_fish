@@ -29,6 +29,11 @@ const getOneFishFB = (resultType) => {
   return function (dispatch) {
     dispatch(setLoaded(true));
 
+    if (!resultType) {
+      dispatch(setLoaded(false));
+      return;
+    }
+
     fishList_db.get().then((docs) => {
 
       docs.forEach((doc, index) => {
