@@ -4,9 +4,11 @@ import { Text, Button } from "../elements/";
 import bg from "../data/background.jpg";
 
 const Main = ({ history }) => {
-  if (sessionStorage.getItem("type")) {
+  if (!sessionStorage.getItem("goBack")) {
     sessionStorage.removeItem("type");
   }
+  sessionStorage.setItem("goBack", false);
+
   return (
     <Wrap>
       <Title>

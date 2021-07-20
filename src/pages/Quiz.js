@@ -4,6 +4,10 @@ import QuizWrap from "../components/QuizWrap";
 import bg from "../data/background.jpg";
 
 const Quiz = (props) => {
+
+  if (sessionStorage.getItem("type") !== null) {
+    sessionStorage.removeItem("type");
+  }
   
   return (
     <Wrap>
