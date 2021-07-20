@@ -7,9 +7,10 @@ import gwangeo from "../data/gwangeo.png";
 
 const Fish = (props) => {
   const {
-    OneFishType: { feature, potential, name, sentence, imgUrl },
+    OneFishType: { feature, potential, name, sentence, imgUrl, bad, good },
   } = props;
   console.log("Fish프랍스",props)
+  console.log("이미지url", imgUrl)
 
   const fishType = {
     INFP: {
@@ -91,8 +92,7 @@ const Fish = (props) => {
         </FishTitle>
 
         <FishImg
-          //src={`${gwangeo}`}
-          src={`${fishType.INFP.img}`}
+          src={imgUrl && imgUrl}
           onClick={touchFish}
           // onAnimationEnd={setPState(false)}
           playState={_pState}
@@ -136,13 +136,13 @@ const Fish = (props) => {
       <FishMate>
         <MateBox>
           <Text bold size="20px" margin="20px auto" color="#00d0e9">잘맞는 어종</Text>
-            <MateImg src={`${fishType.INFP.img}`}/>
-          <Text bold size="20px" margin="20px auto" color="white">{name && name}</Text>
+            <MateImg src={good.imgUrl && good.imgUrl}/>
+          <Text bold size="20px" margin="20px auto" color="white">{good.name && good.name}</Text>
         </MateBox>
         <MateBox>
           <Text bold size="20px" margin="20px auto" color="#00d0e9">안맞는 어종</Text>
-          <MateImg src={`${fishType.INFP.img}`}/>
-          <Text bold size="20px" margin="20px auto" color="white">{name && name}</Text>
+          <MateImg src={bad.imgUrl && bad.imgUrl}/>
+          <Text bold size="20px" margin="20px auto" color="white">{bad.name && bad.name}</Text>
         </MateBox>
       </FishMate>
     </Container>

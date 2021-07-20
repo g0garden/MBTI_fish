@@ -100,10 +100,10 @@ const Result = ({history, props}) => {
       
     </Share>
     <Bottom>
-      <RestartBtn>
+      <RestartBtn onClick={()=> window.location.href = "/"}>
         <RestartImg src={require("../data/images/restart_btn.png").default}/>
       </RestartBtn>
-      <GrrrLinkBtn>
+      <GrrrLinkBtn target="blank" rel="noreferrer noopener" onClick={()=> window.location.href = "https://www.youtube.com/channel/UCGrAnVVgQY66l9XHIzPxQEw"}>
         <GrrrImg src={require("../data/images/nomargin_Grrr.png").default}/>
       </GrrrLinkBtn>
     </Bottom>
@@ -182,9 +182,10 @@ const RestartImg = styled.img`
   margin: 5vh 0;
 `;
 
-const GrrrLinkBtn = styled.button`
+const GrrrLinkBtn = styled.a`
   border: none; 
   background-color: transparent;
+
 `;
 
 const GrrrImg = styled.img`
