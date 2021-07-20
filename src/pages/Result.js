@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Fish from "../components/Fish";
 import { Button,Text,Grid, Container } from "../elements/";
+import { KakaoImgUrl, instaImgUrl, copyLinkImgUrl, restartBtnImg, GrrrLinkBtnImg } from "../data/images/sharedImgs";
 import "../shared/theme";
 import bg from "../data/background.jpg";
 import { Spin } from "antd";
@@ -11,17 +12,17 @@ import {api as resultActions} from "../redux-toolkit/modules/fishList"
 
 const Result = ({history, props}) => {
   const dispatch = useDispatch();
-  //const fishName = Number(props.match.params.fishname);//파람
 
   const fish_result = useSelector((state) => state.fishList.onefish_result);
   const is_loaded = useSelector((state) => state.fishList.is_loaded);
+  
 
   // 이 부분은 새로고침 할 시점을 노린 것임
   // 이 밑에 if문 부분을 보면 "fish" 라는 키는 최초 Result 페이지 진입시에 사라지게 되고, 대신 "type" 이라는 키와 해당 물고기의 mbti 가 함께 저장됨.
   // 따라서, 새로고침하기 전에는 당연히 세션 안에 "fish" 라는 키가 있으니 최초 진입시에는 useEffect 가 별 효과를 내지 못함
   // 하지만, 새로고침 후에는 "fish" 라는 키가 세션 안에 사라진 상태임으로 "type"이라는 키와 페어된 mbti를 dispatch 해주면 끝!
   // 추가적으로 다른 페이지 (메인, 퀴즈 페이지..?) 에서는 이 키값이 저장되는 것을 지양하여 만약 남아있다면 지워주는 행위가 꼭 필요함.
-
+  
   useEffect(()=> {
     if (!sessionStorage.getItem("fish")) {
       dispatch(resultActions.getOneFishFB(sessionStorage.getItem("type")));
@@ -86,40 +87,27 @@ const Result = ({history, props}) => {
         <SpinWrap><Spin /></SpinWrap> : Object.values(fish_result).length > 0 
         ? <><Fish OneFishType={fish_result} />
       <Share>
-      <ShareTitle>
-        <PurpleLeft src={require("../data/images/nomargin_third_left.png").default}/>
+        <ShareTitle>
+          <PurpleLeft src={require("../data/images/nomargin_third_left.png").default}/>
 
-      {/* <Button onClick={sendLink} color="yellow">blala</Button>*/}
-        <Text bold size="1.5rem" color="#00d0e9">
-          공유하기
-        </Text>
-        <PurpleRight src={require("../data/images/nomargin_third_right.png").default}/>
-      </ShareTitle>
-      <ShareChannel>
-        <Button share>
-          <SocialImg src={require("../data/images/nomargin_kakao.png").default}/>
-        </Button>
-        <Button share onClick={copyToClipboard}>
-          <SocialImg src={require("../data/images/nomargin_insta.png").default}/>
-        </Button>
-        <Button share onClick={copyToClipboard}>
-          <SocialImg src={require("../data/images/nomargin_copylink.png").default}/>
-        </Button>
-      </ShareChannel>
-      
+        {/* <Button onClick={sendLink} color="yellow">blala</Button>*/}
+          <Text bold size="1.5rem" color="#00d0e9">
+            공유하기
+          </Text>
+          <PurpleRight src={require("../data/images/nomargin_third_right.png").default}/>
+        </ShareTitle>
+        <ShareChannel>
+          <ShareChanBtn imgUrl={KakaoImgUrl}/>
+          <ShareChanBtn imgUrl={instaImgUrl}/>
+          <ShareChanBtn imgUrl={copyLinkImgUrl} onClick={copyToClipboard}/>
+        </ShareChannel>
     </Share>
     <Bottom>
-      <RestartBtn onClick={goBackToMain}>
-        <RestartImg src={require("../data/images/restart_btn.png").default}/>
-      </RestartBtn>
-      <GrrrLinkBtn target="blank" rel="noreferrer noopener" href = "https://www.youtube.com/channel/UCGrAnVVgQY66l9XHIzPxQEw">
-        <GrrrImg src={require("../data/images/nomargin_Grrr.png").default}/>
-      </GrrrLinkBtn>
+      <RestartBtn onClick={goBackToMain} imgUrl={restartBtnImg}/>
+      <GrrrLinkBtn as={"a"} target="blank" rel="noreferrer noopener" 
+        href = "https://www.youtube.com/channel/UCGrAnVVgQY66l9XHIzPxQEw"
+        imgUrl={GrrrLinkBtnImg}/>
     </Bottom>
-      
-      
-      
-
       {/* <a target="blank" id="sns_facebook" href={`http://www.facebook.com/share.php?u=${_grrrDomain}&t=나만의생선을확인해보세요!`} title="페이스북에 이 페이지 공유하기">
         <Button round color="blue">
           F
@@ -131,16 +119,6 @@ const Result = ({history, props}) => {
   );
 };
 
-// const Wrap = styled.div`
-//   width: 100vw;
-//   /* height: 100vh; */
-//   /* max-width: 375px; */
-//   background-image: url(${bg});
-//   background-repeat: no-repeat, repeat;
-//   background-size: cover;
-//   background-position: center;
-//   margin: 0 auto;
-// `;
 
 const PurpleLeft = styled.img`
   width: 22vw;
@@ -148,6 +126,7 @@ const PurpleLeft = styled.img`
   height: 3vh;
   margin-right: 8px;
 `;
+
 const PurpleRight = styled.img`
   width: 22vw;
   max-width: 180px;
@@ -156,6 +135,7 @@ const PurpleRight = styled.img`
 `;
 
 const Share = styled.div`
+  border:none;
 `;
 
 const ShareTitle = styled.div`
@@ -164,51 +144,52 @@ const ShareTitle = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: center;
-
 `;
 
 const ShareChannel = styled.div`
-  margin : 10px 0;
-
+  width:90vw;
+  max-width: 400px;
+  margin : 10px auto;
 `;
 
-
-const SocialImg = styled.img`
-  width: 15vw;
+const ShareChanBtn = styled.button`
+  width: 20vw;
   max-width: 80px;
-  margin: 1vh 0;
-`;
-
-const RestartBtn = styled.button`
-  border: none; 
-  background-color: transparent;
-
-`;
-
-const RestartImg = styled.img`
-  width: 50vw;
-  max-width: 200px;
-  margin: 5vh 0;
-`;
-
-const GrrrLinkBtn = styled.a`
-  border: none; 
-  background-color: transparent;
-
-`;
-
-const GrrrImg = styled.img`
-  width: 30vw;
-  max-width: 200px;
-  margin: 0.5vh 0;
-
+  margin: 1vh 20px;
+  height: 12vh;   
+  min-width: 20vw;
+  max-width: 25px; 
+  border: none;
+  background:no-repeat center/100% url(${(props) => props.imgUrl});
 `;
 
 const Bottom = styled.div`
+  width:100vw;
+  max-width: 430px;
   box-sizing: border-box;
   display:flex;
   flex-direction: column;
+  margin:0 auto;
   padding-bottom: 20px;
+`;
+
+const RestartBtn = styled.button`
+  width: 50vw;
+  height: 15vh; 
+  max-width: 200px;
+  margin: 5vh auto;
+  border: none; 
+  background:no-repeat center/100% url(${(props) => props.imgUrl});
+
+`;
+
+const GrrrLinkBtn = styled.button`
+  width: 30vw;
+  max-width: 200px;
+  margin: 0.5vh auto;
+  height: 15vh; 
+  border: none; 
+  background:no-repeat center/100% url(${(props) => props.imgUrl});
 `;
 
 const NoData = styled.div`

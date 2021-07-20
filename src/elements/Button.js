@@ -58,7 +58,7 @@ const Btn = styled.button`
   padding: ${(props) => (props.padding ? props.padding : "0 6px")};
   box-shadow: 0 0 0 3px #ffffff00;
   ${(props) => (props.round ? "height: 50px;  min-width: 50px; max-width: 50px; overflow:hidden;" : "height: 50px;  min-width: 50%;")}
-  ${(props) => (props.share ? "height: 25px;  min-width: 20%; max-width: 25px; border: none; background-color: transparent;" : "height: 50px;  min-width: 50%;")}
+  ${(props) => (props.share ? "height: 25px;  min-width: 20%; max-width: 25px; border: none;" : "height: 50px;  min-width: 50%;")}
   &:active {
     border: 1.5px solid #ffffff88;
     box-shadow: 0 0 2px 2px #ffffff66;

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Text = (props) => {
-  const { children, size, lineHeight, bold, margin, align, color } = props;
+  const { children, size, lineHeight, bold, margin, align, color, whiteSpace } = props;
 
   const styles = {
     size: size,
@@ -11,7 +11,7 @@ const Text = (props) => {
     margin: margin ? margin : false,
     align: align,
     color:color,
-    
+    whiteSpace: whiteSpace,
   };
 
   return <TextBox {...styles}>{children}</TextBox>;
@@ -32,6 +32,7 @@ const TextBox = styled.div`
   text-align: ${(props) => props.align};
   color: ${(props) => props.color};
   letter-spacing: 1px;
+  ${(props) => (props.whiteSpace ? `white-space:${props.whiteSpace};` : "")}
 `;
 
 export default Text;

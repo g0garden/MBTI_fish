@@ -97,7 +97,7 @@ const Fish = (props) => {
           // onAnimationEnd={setPState(false)}
           playState={_pState}
         />
-          <Text bold size="1.5rem" color="#00d0e9">
+          <Text bold size="1.5em" margin="0 auto" whiteSpace="nowrap" color="#00d0e9" >
             "{sentence && sentence}"
           </Text>
           <PurpleLine src={require("../data/images/nomargin_second.png").default}/>
