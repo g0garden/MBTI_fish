@@ -4,10 +4,11 @@ import { Text, Button } from "../elements/";
 import bg from "../data/background.jpg";
 
 const Main = ({ history }) => {
+  window.onbeforeunload = function() { return "Your work will be lost."; };
   if (!sessionStorage.getItem("goBack")) {
     sessionStorage.removeItem("type");
   }
-  sessionStorage.setItem("goBack", false);
+  // sessionStorage.setItem("goBack", false);
 
   return (
     <Wrap>
