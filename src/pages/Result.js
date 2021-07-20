@@ -46,6 +46,15 @@ const Result = ({history, props}) => {
     window.alert("주소가 복사되었습니다!");
   };
 
+  // Result page 에 결과값이 있고, 사용자가 "톄스트 다시하기 버튼"을 누르고,
+  // 자신의 결과가 궁금해서 메인페이지에서 뒤로 가기 버튼을 눌렀을 때!
+  // 본인이 봤던 결과가 그대로 나와야함!
+
+  const goBackToMain = () => {
+    sessionStorage.setItem("goBack", true);
+    window.location.href = "/";
+  }
+
   // [카카오톡 공유하기]
   // https://developers.kakao.com/docs/latest/ko/getting-started/sdk-js#init
   // https://developers.kakao.com/docs/latest/ko/message/common
@@ -100,7 +109,7 @@ const Result = ({history, props}) => {
       
     </Share>
     <Bottom>
-      <RestartBtn onClick={()=> window.location.href = "/"}>
+      <RestartBtn onClick={goBackToMain}>
         <RestartImg src={require("../data/images/restart_btn.png").default}/>
       </RestartBtn>
       <GrrrLinkBtn target="blank" rel="noreferrer noopener" onClick={()=> window.location.href = "https://www.youtube.com/channel/UCGrAnVVgQY66l9XHIzPxQEw"}>
