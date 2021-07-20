@@ -112,7 +112,7 @@ const Result = ({history, props}) => {
       <RestartBtn onClick={goBackToMain}>
         <RestartImg src={require("../data/images/restart_btn.png").default}/>
       </RestartBtn>
-      <GrrrLinkBtn target="blank" rel="noreferrer noopener" onClick={()=> window.location.href = "https://www.youtube.com/channel/UCGrAnVVgQY66l9XHIzPxQEw"}>
+      <GrrrLinkBtn target="blank" rel="noreferrer noopener" href = "https://www.youtube.com/channel/UCGrAnVVgQY66l9XHIzPxQEw">
         <GrrrImg src={require("../data/images/nomargin_Grrr.png").default}/>
       </GrrrLinkBtn>
     </Bottom>

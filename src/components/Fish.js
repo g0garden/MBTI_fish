@@ -194,20 +194,19 @@ const TextBackGround = styled.div`
 const FishMate = styled.div`
   display: flex;
   justify-content: space-around;
-  width: 80vw;
+  width: 90vw;
   max-width: 500px;
   margin: 1vh auto;
 `;
 
 const MateBox = styled.div`
-  margin: 20px;
-
+  width:40vw;
+  max-width: 250px;
 `;
 
 const MateImg = styled.img`
-  width: 20vw;
-  max-width: 100px;
-  margin: 1.5vh 0;
+  width: 30vw;
+  max-width: 120px;
 `;
 
 
