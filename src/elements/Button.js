@@ -54,6 +54,7 @@ const Btn = styled.button`
   margin: ${(props) => (props.margin ? props.margin : "10px")};
   height: 50px;
   min-width: 50%;
+  /* max-width: 300px; */
 
   padding: ${(props) => (props.padding ? props.padding : "0 6px")};
   box-shadow: 0 0 0 3px #ffffff00;

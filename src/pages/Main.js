@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { Text, Button } from "../elements/";
-import bg from "../data/background.jpg";
+import bg from "../data/background_main.png";
+import testStart from "../data/testStart.png";
 
 const Main = ({ history }) => {
-  window.onbeforeunload = function() { return "Your work will be lost."; };
+  window.onbeforeunload = function () {
+    return "Your work will be lost.";
+  };
   if (!sessionStorage.getItem("goBack")) {
     sessionStorage.removeItem("type");
   }
@@ -12,35 +15,33 @@ const Main = ({ history }) => {
 
   return (
     <Wrap>
-      <Title>
-        수면 아래
-        <br/>
-        나의 본 모습은?
-      </Title>
-
-      <Text size="18px">나도 모르는 나의 무의식 테스트</Text>
-
-      <Button margin="220px auto auto" onClick={() => history.push("/quiz")}>
-        START
-      </Button>
+      <ButtonImg src={testStart} alt="테스트 시작" onClick={() => history.push("/quiz")} />
     </Wrap>
   );
 };
 
 const Wrap = styled.div`
-  width: 100vw;
-  // height: 100vh;
-  /* max-width: 375px; */
+  height: 100vh;
+  margin: auto;
   background-image: url(${bg});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  @media only screen and (min-width: 720px) {
+    background-size: contain;
+  }
 `;
 
-const Title = styled.div`
-  padding: 20vh 10px 5vh 10px;
-  font-size: 40px;
-  font-weight: 600;
+const ButtonImg = styled.img`
+  margin-top: 70vh;
+  min-width: 250px;
+  width: 20vw;
+  cursor: pointer;
+  @media only screen and (max-width: 720px) {
+    margin-top: 72vh;
+    min-width: 200px;
+    width: 20vw;
+  }
 `;
 
 export default Main;
