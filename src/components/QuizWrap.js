@@ -27,7 +27,7 @@ const QuizWrap = (props) => {
   if (sessionStorage.getItem("type") && index !== 12) {
     sessionStorage.removeItem("type");
   }
-  
+
   //console.log(index);
 
   const goToNextPage = () => {
@@ -37,11 +37,10 @@ const QuizWrap = (props) => {
       getType(Object.values(dic));
       return;
       // console.log(fish_result, fish_result.name);
-      // return 
+      // return
     }
     incrementIndex(index + 1);
   };
-
 
   const getType = (arr) => {
     const types = ["E", "I", "N", "S", "T", "F", "P", "J"];
@@ -58,11 +57,11 @@ const QuizWrap = (props) => {
     //유저의 타입에 맞는 물고기 유형 FB에서 불러오기
 
     // 결과를 얻는 동시에 세션에다가 MBTI 타입을 저장해준다.
-    sessionStorage.setItem('fish', resultType);
+    sessionStorage.setItem("fish", resultType);
     dispatch(fishActions.getOneFishFB(resultType));
     dispatch(userActions.addUserTypeFB(resultType)); //FB에 해당타입 카운트+1
   };
-  
+
   // const goToResultPage = () => {
   //   history.push("/result/:fishname");
   // };

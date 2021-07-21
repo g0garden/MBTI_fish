@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import QuizWrap from "../components/QuizWrap";
-import bg from "../data/background.jpg";
+import bg from "../data/background.png";
 
 const Quiz = (props) => {
-
   if (sessionStorage.getItem("type") !== null) {
     sessionStorage.removeItem("type");
   }
-  
+
   return (
     <Wrap>
       <QuizWrap {...props} />
