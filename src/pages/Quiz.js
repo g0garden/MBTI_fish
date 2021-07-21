@@ -16,8 +16,8 @@ const Quiz = (props) => {
 };
 
 const Wrap = styled.div`
-  width: 100vw;
-  /* height: 100vh; */
+  // width: 100vw;
+  height: 100vh;
   /* max-width: 375px; */
   background-image: url(${bg});
   background-repeat: no-repeat, repeat;

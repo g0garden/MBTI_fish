@@ -25,6 +25,7 @@ Text.defaultProps = {
 };
 
 const TextBox = styled.div`
+  white-space: pre-line;
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "900" : "500")};
   ${(props) => (props.lineHeight ? `line-height:${props.lineHeight};` : "")}
