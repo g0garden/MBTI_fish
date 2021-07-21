@@ -11,7 +11,7 @@ const Main = ({ history }) => {
   if (!sessionStorage.getItem("goBack")) {
     sessionStorage.removeItem("type");
   }
-  // sessionStorage.setItem("goBack", false);
+  sessionStorage.setItem("goBack", false);
 
   return (
     <Wrap>
