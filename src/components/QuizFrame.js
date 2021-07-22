@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Text, Grid, Button } from "../elements/";
-import { CheckOutlined } from "@ant-design/icons";
 import bg from "../data/background.png";
 
 const QuizFrame = (props) => {
@@ -25,6 +24,7 @@ const QuizFrame = (props) => {
         </Text>
       </Grid>
       <QuestionBox>
+      
         <Button
           align
           padding="0 20px"
@@ -34,8 +34,7 @@ const QuizFrame = (props) => {
             props?.increment(props.data?.answers.a.type);
           }}
         >
-          <CheckOutlined className="question" />
-          {props.data?.answers.a.res}
+        <span dangerouslySetInnerHTML={ {__html:props.data?.answers.a.res}}/>
         </Button>
         <Button
           align
@@ -46,8 +45,7 @@ const QuizFrame = (props) => {
             props?.increment(props.data?.answers.b.type);
           }}
         >
-          <CheckOutlined className="question" />
-          {props.data?.answers.b.res}
+          <span dangerouslySetInnerHTML={ {__html:props.data?.answers.b.res}}/>
         </Button>
       </QuestionBox>
     </Grid>
