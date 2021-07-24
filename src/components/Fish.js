@@ -102,7 +102,7 @@ const Fish = (props) => {
         </FishImgBackGround>
         
           <Text bold size="1.5em" margin="0 auto" padding="20px 0 0 0" whiteSpace="nowrap" color="#00d0e9" >
-            "{sentence && sentence}"
+          <span dangerouslySetInnerHTML={{__html:`"${sentence && sentence}"`}}/>
           </Text>
           <PurpleLine src={require("../data/images/nomargin_second.png").default}/>
       </FishIntro>
