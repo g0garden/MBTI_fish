@@ -88,7 +88,7 @@ const Result = ({ history, props }) => {
         </SpinWrap>
       ) : Object.values(fish_result).length > 0 ? (
         <>
-          <Fish OneFishType={fish_result} />
+          <Fish OneFishType={fish_result}/>
           <Share>
             <ShareTitle>
               <PurpleLeft src={require("../data/images/nomargin_third_left.png").default} />

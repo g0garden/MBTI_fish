@@ -3,13 +3,14 @@ import "firebase/firestore";
 import "firebase/storage";
 
 const firebseConfig = {
-    apiKey: "AIzaSyDtw-bguzY71ypg6qqozSmZvs-LJG0yuy8",
-    authDomain: "mbtifish.firebaseapp.com",
-    projectId: "mbtifish",
-    storageBucket: "mbtifish.appspot.com",
-    messagingSenderId: "625933522614",
-    appId: "1:625933522614:web:7e57535c575d175994f817",
-    measurementId: "G-Q81GZL6THG"
+    apiKey: "AIzaSyBTifnlIL1M6Sht6mKaA2W82F4VP9fXgN4",
+    authDomain: "cityangler-soul-fish-test.firebaseapp.com",
+    databaseURL: "https://cityangler-soul-fish-test-default-rtdb.firebaseio.com",
+    projectId: "cityangler-soul-fish-test",
+    storageBucket: "cityangler-soul-fish-test.appspot.com",
+    messagingSenderId: "55494146139",
+    appId: "1:55494146139:web:02ed9489ec8088757e677e",
+    measurementId: "G-L5N3QZN7ZB"
 };
 
 firebase.initializeApp(firebseConfig);
