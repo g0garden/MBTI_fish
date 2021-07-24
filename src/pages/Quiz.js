@@ -29,10 +29,6 @@ const Wrap = styled.div`
   @media (max-width: 1024px) { 
     width: 100vw;
   }
-
-  @media (max-width: 768px) { 
-    height: 100vh;
-  }
 `;
 
 export default Quiz;
