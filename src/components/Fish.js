@@ -4,13 +4,14 @@ import "../shared/theme";
 import { Text, Grid, Container } from "../elements/";
 import { Helmet } from "react-helmet";
 import gwangeo from "../data/images/gwangeo.png";
+import fish_circlebg from "../data/images/bg_result_circle.png";
+import { CircleImg } from "../data/images/sharedImgs";
+
 
 const Fish = (props) => {
   const {
     OneFishType: { feature, potential, name, sentence, imgUrl, bad, good },
   } = props;
-  console.log("Fish프랍스",props)
-  console.log("이미지url", imgUrl)
 
   const fishType = {
     INFP: {
@@ -85,27 +86,28 @@ const Fish = (props) => {
       <FishIntro>
         <FishTitle>
           <PurpleLeft src={require("../data/images/nomargin_first_left.png").default}/>
-          <Text bold size="1.6rem" margin="12px 12px 0 12px" color="#8f65e4">
+          <Text bold size="1.5rem" margin="0px 12px 0 12px" color="#8f65e4">
             {name && name}
           </Text>
           <PurpleRight src={require("../data/images/nomargin_first_right.png").default}/>
         </FishTitle>
-
-        <FishImg
+        <FishImgBackGround>
+          <BgCircleImg src={CircleImg}/>
+          <FishImg
           src={imgUrl && imgUrl}
           onClick={touchFish}
           // onAnimationEnd={setPState(false)}
           playState={_pState}
-        />
-          <Text bold size="1.5em" margin="0 auto" whiteSpace="nowrap" color="#00d0e9" >
+          />
+        </FishImgBackGround>
+        
+          <Text bold size="1.5em" margin="0 auto" padding="20px 0 0 0" whiteSpace="nowrap" color="#00d0e9" >
             "{sentence && sentence}"
           </Text>
           <PurpleLine src={require("../data/images/nomargin_second.png").default}/>
       </FishIntro>
       
       <FishDesc>
-          
-
         <Text bold size="1.5rem" margin="20px auto" color="#00d0e9">
           특징
         </Text>
@@ -114,7 +116,7 @@ const Fish = (props) => {
             feature.map((t, idx) => {
               return (
                 <Text key= {idx} idx={idx} bold size="14px" margin="10px" lineHeight="130%">
-                  {t}
+                  <span dangerouslySetInnerHTML={{__html:t}}/>
                 </Text>
               );
             })}
@@ -123,11 +125,12 @@ const Fish = (props) => {
           잠재능력
         </Text>
         <TextBackGround>
+          
           {potential &&
             potential.map((p, idx) => {
               return (
                 <Text key= {idx} idx={idx} bold size="14px" margin="10px" lineHeight="130%">
-                  {p}
+                  <span dangerouslySetInnerHTML={{__html:p}}/>
                 </Text>
               );
             })}
@@ -136,6 +139,7 @@ const Fish = (props) => {
       <FishMate>
         <MateBox>
           <Text bold size="20px" margin="20px auto" color="#00d0e9">잘맞는 어종</Text>
+            {/* <span dangerouslySetInnerHTML={{__html:}}/> */}
             <MateImg src={good.imgUrl && good.imgUrl}/>
           <Text bold size="20px" margin="20px auto" color="white">{good.name && good.name}</Text>
         </MateBox>
@@ -149,10 +153,18 @@ const Fish = (props) => {
   );
 };
 
+const FishIntro = styled.div`
+  width: 100%;
+  max-width: 500px;
+  margin:0 auto;
+  box-sizing:border-box;
+`;
+
 const FishTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top:20px;
   `;
 const PurpleLeft = styled.img`
   height: 20px;
@@ -163,13 +175,25 @@ const PurpleRight = styled.img`
 `;
 
 const PurpleLine = styled.img`
-  width: 100%;
+  width: 80%;
 `;
 
-const FishIntro = styled.div`
-  width: 90vw;
-  max-width: 400px;
-  margin:0 auto;
+const FishImgBackGround = styled.div`
+  position:relative;
+  width: 100%;
+  max-width: 500px;
+  height: 400px;
+  margin: 1vh 0;
+  //border: 2px solid yellow;
+`
+const BgCircleImg = styled.img`
+  position:absolute;
+  background-size: cover;
+  top:-110px;
+  left:-3px;
+  width: 100%;
+  max-width: 500px;
+  z-index: 1;
 `;
 
 const FishDesc =styled.div`
@@ -193,9 +217,9 @@ const TextBackGround = styled.div`
 
 const FishMate = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   width: 90vw;
-  max-width: 500px;
+  max-width: 400px;
   margin: 1vh auto;
 `;
 
@@ -209,13 +233,18 @@ const MateImg = styled.img`
   max-width: 120px;
 `;
 
-
-
 const FishImg = styled.img`
-  width: 80vw;
-  max-width: 400px;
+  position:absolute;
+  top: 8px;
+  left: 75px;
+  width: 75%;
+  max-width: 500px;
   margin: 5vh 0;
+  //border:1px solid red;
+  border-radius: 50%;
+  z-index: 3;
   //pointer-events: none;
+
 
   @-webkit-keyframes swing {
     20% {

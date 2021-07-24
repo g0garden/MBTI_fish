@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Text, Button } from "../elements/";
 import bg from "../data/images/bg_main.png";
 import testStart from "../data/images/testStart.png";
 

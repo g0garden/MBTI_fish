@@ -3,9 +3,8 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Fish from "../components/Fish";
 import { Button, Text, Grid, Container } from "../elements/";
-import { KakaoImgUrl, instaImgUrl, copyLinkImgUrl, restartBtnImg, GrrrLinkBtnImg } from "../data/images/sharedImgs";
+import { KakaoImgUrl, instaImgUrl, copyLinkImgUrl, restartBtnImg, GrrrLinkBtnImg, DarkImg } from "../data/images/sharedImgs";
 import "../shared/theme";
-import bg from "../data/images/bg_result_dark.png";
 import { Spin } from "antd";
 import { dic } from "../data/questionsFB";
 import { api as resultActions } from "../redux-toolkit/modules/fishList";
@@ -87,14 +86,14 @@ const Result = ({ history, props }) => {
           <Spin />
         </SpinWrap>
       ) : Object.values(fish_result).length > 0 ? (
-        <>
+        
+        <ResultContainer>
           <Fish OneFishType={fish_result}/>
           <Share>
             <ShareTitle>
               <PurpleLeft src={require("../data/images/nomargin_third_left.png").default} />
-
               {/* <Button onClick={sendLink} color="yellow">blala</Button>*/}
-              <Text bold size="1.5rem" color="#00d0e9">
+              <Text bold size="1.5em" color="#00d0e9">
                 공유하기
               </Text>
               <PurpleRight src={require("../data/images/nomargin_third_right.png").default} />
@@ -114,7 +113,9 @@ const Result = ({ history, props }) => {
           F
         </Button>
       </a> */}
-        </>
+        </ResultContainer>
+        
+          
       ) : (
         <NoData>
           <Button onClick={() => (window.location.href = "/")}>다시 검사해보기</Button>
@@ -124,16 +125,27 @@ const Result = ({ history, props }) => {
   );
 };
 
+const ResultContainer = styled.div`
+  background-image: url(${DarkImg});
+  background-size: cover;
+  width:90vw;
+  max-width: 500px;
+  height:100%;
+  margin:0 auto;
+  box-sizing:border-box;
+  //border:1px dashed pink;
+`;
+
 const PurpleLeft = styled.img`
-  width: 22vw;
-  max-width: 180px;
+  width: 10vw;
+  max-width: 150px;
   height: 3vh;
   margin-right: 8px;
 `;
 
 const PurpleRight = styled.img`
-  width: 22vw;
-  max-width: 180px;
+  width: 10vw;
+  max-width: 150px;
   height: 3vh;
   margin-left: 8px;
 `;
@@ -143,26 +155,28 @@ const Share = styled.div`
 `;
 
 const ShareTitle = styled.div`
-  width: 100vw;
-  max-width: 500px;
+  width: 80vw;
+  max-width: 400px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
 `;
 
+//sns버튼박스
 const ShareChannel = styled.div`
-  width: 90vw;
+  width: 80vw;
   max-width: 400px;
   margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
 `;
 
+//sns버튼
 const ShareChanBtn = styled.button`
-  width: 20vw;
-  max-width: 80px;
-  margin: 1vh 20px;
-  height: 12vh;
-  min-width: 20vw;
-  max-width: 25px;
+  width: 80px;
+  height: 80px;
+  margin: 15px;
   border: none;
   background: no-repeat center/100% url(${(props) => props.imgUrl});
 `;
@@ -178,19 +192,19 @@ const Bottom = styled.div`
 `;
 
 const RestartBtn = styled.button`
-  width: 50vw;
+  width: 55vw;
   height: 15vh;
   max-width: 200px;
-  margin: 5vh auto;
+  margin: 0 auto;
   border: none;
   background: no-repeat center/100% url(${(props) => props.imgUrl});
 `;
 
 const GrrrLinkBtn = styled.button`
-  width: 30vw;
+  width: 100px;
   max-width: 200px;
   margin: 0.5vh auto;
-  height: 15vh;
+  height: 100px;
   border: none;
   background: no-repeat center/100% url(${(props) => props.imgUrl});
 `;

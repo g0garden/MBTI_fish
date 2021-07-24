@@ -2,7 +2,6 @@ import "./App.css";
 import React from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { Route, Switch} from "react-router-dom";
-import { withRouter } from "react-router";
 import { history } from "../redux-toolkit/configureStore";
 import { Main, Quiz, Result, NotFound } from "../pages";
 

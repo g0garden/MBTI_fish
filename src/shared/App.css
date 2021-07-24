@@ -1,5 +1,9 @@
 /* antd import */
 @import "~antd/dist/antd.css";
+*{
+  margin:0;
+  padding:0;
+}
 
 body {
   /* background-image: url(https://yt3.ggpht.com/ytc/AKedOLQutvDNdPfH6G0MLxRlVpdRNUowyVLWngMqfwnQ=s88-c-k-c0x00ffffff-no-rj); */
@@ -20,8 +24,6 @@ body {
   font-weight: normal;
   font-style: normal;
 }
-
-@font-face { font-family: "Cafe24Ssurround"; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff") format("woff"); font-weight: normal; font-style: normal; }
 
 * {
   font-family: "Cafe24SsurroundAir";
