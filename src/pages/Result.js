@@ -5,7 +5,7 @@ import Fish from "../components/Fish";
 import { Button, Text, Grid, Container } from "../elements/";
 import { KakaoImgUrl, instaImgUrl, copyLinkImgUrl, restartBtnImg, GrrrLinkBtnImg } from "../data/images/sharedImgs";
 import "../shared/theme";
-import bg from "../data/background.png";
+import bg from "../data/images/bg_result_dark.png";
 import { Spin } from "antd";
 import { dic } from "../data/questionsFB";
 import { api as resultActions } from "../redux-toolkit/modules/fishList";

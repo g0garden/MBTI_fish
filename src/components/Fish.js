@@ -3,7 +3,7 @@ import styled from "styled-components";
 import "../shared/theme";
 import { Text, Grid, Container } from "../elements/";
 import { Helmet } from "react-helmet";
-import gwangeo from "../data/gwangeo.png";
+import gwangeo from "../data/images/gwangeo.png";
 
 const Fish = (props) => {
   const {
