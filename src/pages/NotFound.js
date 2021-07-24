@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Text, Button } from "../elements/";
-import bg from "../data/background.png";
+import bg from "../data/images/bg_qna.png";
 import { history } from "../redux-toolkit/configureStore";
 
 const NotFound = () => {

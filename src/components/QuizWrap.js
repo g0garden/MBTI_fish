@@ -74,7 +74,7 @@ const QuizWrap = (props) => {
         </SpinWrap>
       ) : (
         <>
-          <button onClick={() => history.replace("/")}>Home</button>
+          {/* <button onClick={() => history.replace("/")}>Home</button> */}
           <ProgressBar>
             <Progressing index={index} />
           </ProgressBar>
@@ -94,9 +94,9 @@ const SpinWrap = styled.div`
 `;
 
 const ProgressBar = styled.div`
-  width: 80vw;
+  width: 80%;
   height: 20px;
-  background: white;
+  background: rgb(117, 21, 196);
   border-radius: 12px;
   position: relative;
   margin: 0 auto;
@@ -106,7 +106,7 @@ const Progressing = styled.div`
   position: absolute;
   height: 20px;
   width: ${(props) => (props.index ? `${(props.index / 12) * 100}%` : "0%")};
-  background: blue;
+  background: yellow;
   border-radius: 12px;
 `;
 
