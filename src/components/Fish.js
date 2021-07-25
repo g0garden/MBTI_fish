@@ -185,6 +185,10 @@ const FishImgBackGround = styled.div`
   height: 400px;
   margin: 1vh 0;
   //border: 2px solid yellow;
+  @media (max-width: 420px){
+    height: 350px;
+  }
+
 `
 const BgCircleImg = styled.img`
   position:absolute;
@@ -194,6 +198,10 @@ const BgCircleImg = styled.img`
   width: 100%;
   max-width: 500px;
   z-index: 1;
+  @media (max-width: 420px){
+    top:-85px;
+    
+  }
 `;
 
 const FishDesc =styled.div`
@@ -244,6 +252,11 @@ const FishImg = styled.img`
   border-radius: 50%;
   z-index: 3;
   //pointer-events: none;
+  @media (max-width: 420px){
+    top: 8px;
+    left: 65px;
+    width: 70%;
+  }
 
 
   @-webkit-keyframes swing {

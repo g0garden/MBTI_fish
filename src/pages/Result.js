@@ -78,15 +78,13 @@ const Result = ({ history, props }) => {
   // };
 
   return (
-    <>
-      <br />
-
+    <Container>
       {is_loaded ? (
         <SpinWrap>
           <Spin />
         </SpinWrap>
       ) : Object.values(fish_result).length > 0 ? (
-        
+
         <ResultContainer>
           <Fish OneFishType={fish_result}/>
           <Share>
@@ -114,26 +112,35 @@ const Result = ({ history, props }) => {
         </Button>
       </a> */}
         </ResultContainer>
-        
+      
           
       ) : (
         <NoData>
           <Button onClick={() => (window.location.href = "/")}>다시 검사해보기</Button>
         </NoData>
       )}
-    </>
+    </Container>
   );
 };
 
 const ResultContainer = styled.div`
   background-image: url(${DarkImg});
   background-size: cover;
+  //background-position:center;
   width:90vw;
   max-width: 500px;
   height:100%;
   margin:0 auto;
   box-sizing:border-box;
   //border:1px dashed pink;
+  @media ${props => props.theme.tablet}{
+    width:100%;
+  }
+  @media ${props => props.theme.mobile}{
+    width:100%;
+    max-width:768px;
+    margin:0 auto;
+  }
 `;
 
 const PurpleLeft = styled.img`
@@ -141,6 +148,9 @@ const PurpleLeft = styled.img`
   max-width: 150px;
   height: 3vh;
   margin-right: 8px;
+  @media (max-width: 420px){
+    width: 22vw;
+  }
 `;
 
 const PurpleRight = styled.img`
@@ -148,6 +158,9 @@ const PurpleRight = styled.img`
   max-width: 150px;
   height: 3vh;
   margin-left: 8px;
+  @media (max-width: 420px){
+    width: 22vw;
+  }
 `;
 
 const Share = styled.div`
