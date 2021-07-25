@@ -9,8 +9,11 @@ import { Spin } from "antd";
 import { dic } from "../data/questionsFB";
 import { api as resultActions } from "../redux-toolkit/modules/fishList";
 
-const Result = ({ history, props }) => {
+const Result = (props) => {
   const dispatch = useDispatch();
+  const _name = props.match.params.fishname;
+  const history = props.history;
+  console.log(props.match);
 
   const fish_result = useSelector((state) => state.fishList.onefish_result);
   const is_loaded = useSelector((state) => state.fishList.is_loaded);
@@ -22,10 +25,11 @@ const Result = ({ history, props }) => {
   // 추가적으로 다른 페이지 (메인, 퀴즈 페이지..?) 에서는 이 키값이 저장되는 것을 지양하여 만약 남아있다면 지워주는 행위가 꼭 필요함.
 
   useEffect(() => {
-    if (!sessionStorage.getItem("fish")) {
-      dispatch(resultActions.getOneFishFB(sessionStorage.getItem("type")));
-    }
-  }, []);
+    // if (!sessionStorage.getItem("fish")) {
+    //   dispatch(resultActions.getOneFishFB(sessionStorage.getItem("type")));
+    // }
+    dispatch(resultActions.getOneFishFB(_name));
+  }, [_name]);
 
   if (sessionStorage.getItem("fish")) {
     sessionStorage.removeItem("fish");
@@ -33,7 +37,8 @@ const Result = ({ history, props }) => {
   }
 
   //현재 결과페이지의 URL - 도메인/결과 물고기의 usrParam값
-  const share_url = "asdf";
+  const domain = "";
+  const share_url = `${domain}${props.match.url}`;
 
   const copyToClipboard = () => {
     let t = document.createElement("textarea");
@@ -78,15 +83,14 @@ const Result = ({ history, props }) => {
   // };
 
   return (
-    <Container>                         
+    <Container>
       {is_loaded ? (
         <SpinWrap>
           <Spin />
         </SpinWrap>
       ) : Object.values(fish_result).length > 0 ? (
-
         <ResultContainer>
-          <Fish OneFishType={fish_result}/>
+          <Fish OneFishType={fish_result} history={history} />
           <Share>
             <ShareTitle>
               <PurpleLeft src={require("../data/images/nomargin_third_left.png").default} />
@@ -106,14 +110,12 @@ const Result = ({ history, props }) => {
             <RestartBtn onClick={goBackToMain} imgUrl={restartBtnImg} />
             <GrrrLinkBtn as={"a"} target="blank" rel="noreferrer noopener" href="https://www.youtube.com/channel/UCGrAnVVgQY66l9XHIzPxQEw" imgUrl={GrrrLinkBtnImg} />
           </Bottom>
-            {/* <a target="blank" id="sns_facebook" href={`http://www.facebook.com/share.php?u=${_grrrDomain}&t=나만의생선을확인해보세요!`} title="페이스북에 이 페이지 공유하기">
+          {/* <a target="blank" id="sns_facebook" href={`http://www.facebook.com/share.php?u=${_grrrDomain}&t=나만의생선을확인해보세요!`} title="페이스북에 이 페이지 공유하기">
           <Button round color="blue">
             F
           </Button>
         </a> */}
         </ResultContainer>
-      
-          
       ) : (
         <NoData>
           <Button onClick={() => (window.location.href = "/")}>다시 검사해보기</Button>
@@ -126,39 +128,39 @@ const Result = ({ history, props }) => {
 const ResultContainer = styled.div`
   background-image: url(${DarkImg});
   background-size: cover;
-  background-position:center;
-  width:90vw;
+  background-position: center;
+  width: 90vw;
   max-width: 500px;
-  height:100%;
-  margin:0 auto;
-  box-sizing:border-box;
+  height: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
   //border:1px dashed pink;
 
-  @media ${props => props.theme.tablet}{
-    width:100%;
+  @media ${(props) => props.theme.tablet} {
+    width: 100%;
   }
-  @media (max-width: 1024px) { 
-    width:100%;
-    max-width:500px;
- }
- @media (max-width: 768px){
-    width:100%;
-    max-width:768px;
-    margin:0 auto;
+  @media (max-width: 1024px) {
+    width: 100%;
+    max-width: 500px;
   }
-  @media (max-width: 720px){
-    width:100%;
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+  }
+  @media (max-width: 720px) {
+    width: 100%;
     /* max-width:768px; */
-    margin:0 auto;
+    margin: 0 auto;
   }
-  @media (max-width: 420px){
-    width:100%;
-    max-width:420px;
+  @media (max-width: 420px) {
+    width: 100%;
+    max-width: 420px;
   }
-  @media (max-width: 330px) { 
-    width:100%;
+  @media (max-width: 330px) {
+    width: 100%;
     //max-width: 330px;
-}
+  }
 `;
 
 const PurpleLeft = styled.img`
@@ -166,10 +168,10 @@ const PurpleLeft = styled.img`
   max-width: 150px;
   height: 3vh;
   margin-right: 8px;
-  @media (max-width: 720px){
-    width:22vw;
+  @media (max-width: 720px) {
+    width: 22vw;
   }
-  @media (max-width: 420px){
+  @media (max-width: 420px) {
     width: 22vw;
   }
   /* @media (max-width: 330px) { 
@@ -182,10 +184,10 @@ const PurpleRight = styled.img`
   max-width: 150px;
   height: 3vh;
   margin-left: 8px;
-  @media (max-width: 720px){
-    width:22vw;
+  @media (max-width: 720px) {
+    width: 22vw;
   }
-  @media (max-width: 420px){
+  @media (max-width: 420px) {
     width: 22vw;
   }
 `;
@@ -214,9 +216,10 @@ const ShareChannel = styled.div`
 
 //sns버튼
 const ShareChanBtn = styled.button`
-  width: 80px;
-  height: 80px;
-  margin: 15px;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  margin: 20px 20px 0;
   border: none;
   background: no-repeat center/100% url(${(props) => props.imgUrl});
 `;
@@ -232,6 +235,7 @@ const Bottom = styled.div`
 `;
 
 const RestartBtn = styled.button`
+  cursor: pointer;
   width: 55vw;
   height: 15vh;
   max-width: 200px;

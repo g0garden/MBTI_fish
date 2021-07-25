@@ -3,7 +3,6 @@ import { firestore } from "../../shared/firebase";
 import { withRouter } from "react-router";
 import { history } from "../configureStore";
 
-
 const fishList_db = firestore.collection("fishList");
 
 const fishSlice = createSlice({
@@ -35,9 +34,8 @@ const getOneFishFB = (resultType) => {
     }
 
     fishList_db.get().then((docs) => {
-
       docs.forEach((doc, index) => {
-        if (doc.exists && doc.data().type === resultType) {
+        if ((doc.exists && doc.data().type === resultType) || (doc.exists && doc.data().name === resultType)) {
           console.log(doc.data());
           dispatch(setFishResult(doc.data()));
           const _name = doc.data().name;
@@ -45,9 +43,9 @@ const getOneFishFB = (resultType) => {
           history.push(`/result/${_name}`);
         }
       });
-    })
-  }
-}
+    });
+  };
+};
 
 export const { setFishResult, setLoaded } = fishSlice.actions;
 

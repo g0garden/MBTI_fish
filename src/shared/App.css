@@ -1,8 +1,8 @@
 /* antd import */
 @import "~antd/dist/antd.css";
-*{
-  margin:0;
-  padding:0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -17,13 +17,14 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  font-family: "Cafe24SsurroundAir";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff") format("woff");
 }
 
 @media screen and (max-width: 1200px) {
   body {
     background-image: url("../data/images/bg_qna.png");
   }
-  
 }
 
 @font-face {
@@ -33,15 +34,11 @@ body {
   font-style: normal;
 }
 
-@font-face { 
-  font-family: "Cafe24Ssurround"; 
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff") format("woff"); 
-  font-weight: normal; font-style: normal; 
-}
-
-* {
-  font-family: "Cafe24SsurroundAir";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff") format("woff");
+@font-face {
+  font-family: "Cafe24Ssurround";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 .question {

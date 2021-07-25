@@ -33,9 +33,17 @@ const Wrap = styled.div`
 `;
 
 const ButtonImg = styled.img`
-  margin-top: 70vh;
+  /* prevent img drag */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  margin-top: 69vh;
   min-width: 250px;
-  width: 20vw;
+  width: 18vw;
   cursor: pointer;
   @media only screen and (max-width: 720px) {
     margin-top: 72vh;
