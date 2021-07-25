@@ -24,9 +24,10 @@ const ContainerBox = styled.div`
   //border: 3px dashed lightsalmon; 
   @media ${props => props.theme.tablet}{
   width: 100%;
-  //padding: 0px 30px;
+  padding: 0;
   }
   @media ${props => props.theme.mobile}{
   width:100%;
+  padding: 0;
   }
 `
