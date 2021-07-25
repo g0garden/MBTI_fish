@@ -32,7 +32,6 @@ const QuizWrap = (props) => {
 
   const goToNextPage = () => {
     if (index === 12) {
-      window.alert("결과보기");
       //goToResultPage();
       getType(Object.values(dic));
       return;
@@ -94,20 +93,24 @@ const SpinWrap = styled.div`
 `;
 
 const ProgressBar = styled.div`
-  width: 80%;
-  height: 20px;
+  width: 90%;
+  height: 12px;
+  max-height: 12px;
   background: rgb(117, 21, 196);
-  border-radius: 12px;
+  border-radius: 50rem;
   position: relative;
   margin: 0 auto;
+  padding: 5px;
+  box-sizing: content-box;
 `;
 
 const Progressing = styled.div`
-  position: absolute;
-  height: 20px;
+  /* position: absolute; */
+  height: 12px;
   width: ${(props) => (props.index ? `${(props.index / 12) * 100}%` : "0%")};
   background: yellow;
-  border-radius: 12px;
+  border-radius: 50rem;
+  transition: width 200ms ease-in-out;
 `;
 
 export default QuizWrap;
