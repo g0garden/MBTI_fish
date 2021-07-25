@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import QuizWrap from "../components/QuizWrap";
 import bg from "../data/images/bg_qna.png";
+import Container from "../elements/Container";
+import Theme from "../shared/theme";
 
 const Quiz = (props) => {
   if (sessionStorage.getItem("type") !== null) {
@@ -9,26 +11,34 @@ const Quiz = (props) => {
   }
 
   return (
-    <Wrap>
-      <QuizWrap {...props} />
-    </Wrap>
+    <Container>
+      <Wrap>
+        <QuizWrap {...props} />
+      </Wrap>
+    </Container>
   );
 };
 
 const Wrap = styled.div`
-  width: 50vw;
-  height: 100vh;
-  /* max-width: 375px; */
-  background-image: url(${bg});
-  background-repeat: no-repeat, repeat;
-  background-size: cover;
-  background-position: center;
-  padding: 28px 24px;
-  margin: 0 auto;
+height: 100vh;
+margin: auto;
+background-image: url(${bg});
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+padding: 18px 20px;
+@media only screen and (min-width: 1025px) {
+  // background-size: contain; 
+  max-width: 500px;
+}
 
-  @media (max-width: 1024px) { 
-    width: 100vw;
-  }
+@media only screen and (max-width: 1024px) {
+  padding: 120px 100px;
+}
+
+@media only screen and (max-width: 750px) {
+  padding: 18px 20px;
+}
 `;
 
 export default Quiz;
