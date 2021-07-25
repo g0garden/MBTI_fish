@@ -86,7 +86,7 @@ const Fish = (props) => {
       <FishIntro>
         <FishTitle>
           <PurpleLeft src={require("../data/images/nomargin_first_left.png").default}/>
-          <Text bold size="1.5rem" margin="0px 12px 0 12px" color="#8f65e4">
+          <Text bold size="1.5rem" margin="0px 4px" color="#8f65e4">
             {name && name}
           </Text>
           <PurpleRight src={require("../data/images/nomargin_first_right.png").default}/>
@@ -168,9 +168,10 @@ const FishTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top:20px;
+  padding:20px 12px 0 12px;
   @media (max-width: 330px) { 
     margin:0 auto;
+    padding:20px 12px 0 12px;
     }
   `;
 const PurpleLeft = styled.img`

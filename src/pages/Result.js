@@ -126,7 +126,7 @@ const Result = ({ history, props }) => {
 const ResultContainer = styled.div`
   background-image: url(${DarkImg});
   background-size: cover;
-  //background-position:center;
+  background-position:center;
   width:90vw;
   max-width: 500px;
   height:100%;
@@ -156,7 +156,8 @@ const ResultContainer = styled.div`
     max-width:420px;
   }
   @media (max-width: 330px) { 
-    max-width: 330px;
+    width:100%;
+    //max-width: 330px;
 }
 `;
 
