@@ -19,6 +19,14 @@ const Quiz = (props) => {
   );
 };
 
+const FFFF = styled.div`
+width: 100vw;
+background-image: url(${bg});
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+`;
+
 const Wrap = styled.div`
 height: 100vh;
 margin: auto;

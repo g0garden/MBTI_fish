@@ -18,6 +18,13 @@ body {
   background-position: center;
 }
 
+@media screen and (max-width: 1200px) {
+  body {
+    background-image: url("../data/images/bg_qna.png");
+  }
+  
+}
+
 @font-face {
   font-family: "Cafe24SsurroundAir";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff") format("woff");

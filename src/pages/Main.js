@@ -28,6 +28,7 @@ const Wrap = styled.div`
   background-position: center;
   @media only screen and (min-width: 720px) {
     background-size: contain;
+    // width: 100vw;
   }
 `;
 
