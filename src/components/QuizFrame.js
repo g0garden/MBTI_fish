@@ -29,13 +29,13 @@ const QuizFrame = (props) => {
             props?.next();
             props?.increment(props.data?.answers.a.type);
           }}>
-          <span style={{color: "#b0d71d", fontSize: "20px", fontWeight: "700"}} dangerouslySetInnerHTML = {{__html: props.data?.answers.a.res}}></span>
+          <span style={{color: "#b0d71d", fontWeight: "700"}} dangerouslySetInnerHTML = {{__html: props.data?.answers.a.res}}></span>
         </ButtonFrame>
         <ButtonFrame onClick={(e) => {
             props?.next();
             props?.increment(props.data?.answers.b.type);
           }}>
-          <span style={{color: "#b0d71d", fontSize: "20px", fontWeight: "700"}} dangerouslySetInnerHTML = {{__html: props.data?.answers.b.res}}></span>
+          <span style={{color: "#b0d71d", fontWeight: "700"}} dangerouslySetInnerHTML = {{__html: props.data?.answers.b.res}}></span>
         </ButtonFrame>
         {/* <Button
           align
@@ -71,12 +71,32 @@ const TitleFrame = styled.div`
 `;
 
 const ButtonFrame = styled.div`
+  cursor: pointer;
   background: no-repeat center/100% url(${btnBg});
-  width: 60%;
-  @media (max-width: 720px) { 
-    width: 100%;
+  width: 100%;
+  font-size: 20px;
+  
+  @media (max-width: 1024px) { 
     min-height: 120px;
+    font-size: 18px;
+    width: 420.78px;
+    margin-bottom: 24px;
   }
+
+  @media (max-width: 720px) { 
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 330px) { 
+    font-size: 14px;
+  }
+
+  & > span {
+    max-width: 60%;
+  }
+
   min-height: 150px;
   display: flex;
   align-items: center;
@@ -112,13 +132,14 @@ text-shadow:
         -2px  2px 0px rgb(117, 21, 196),
          0px  2px 0px rgb(117, 21, 196),
          2px  2px 0px rgb(117, 21, 196);
-font-size: 30px; 
+font-size: 30px;
 
-@media (max-width: 378px) { 
-  font-size: 26px;
+
+@media (max-width: 450px) { 
+  font-size: 24px;
 }
 
-@media (max-width: 350px) { 
+@media (max-width: 378px) { 
   font-size: 22px;
 }
 
