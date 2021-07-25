@@ -75,6 +75,13 @@ const ButtonFrame = styled.div`
   background: no-repeat center/100% url(${btnBg});
   width: 100%;
   font-size: 20px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   
   @media (max-width: 1024px) { 
     min-height: 120px;
@@ -87,6 +94,12 @@ const ButtonFrame = styled.div`
     font-size: 16px;
     width: 100%;
     margin-bottom: 12px;
+  }
+
+  @media (max-width: 500px) { 
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 0px;
   }
 
   @media (max-width: 330px) { 

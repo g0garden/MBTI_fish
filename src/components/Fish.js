@@ -141,12 +141,16 @@ const Fish = (props) => {
           <Text bold size="20px" margin="20px auto" color="#00d0e9">잘맞는 어종</Text>
             {/* <span dangerouslySetInnerHTML={{__html:}}/> */}
             <MateImg src={good.imgUrl && good.imgUrl}/>
-          <Text bold size="20px" margin="20px auto" color="white">{good.name && good.name}</Text>
+          <Text bold size="20px" margin="20px auto" color="white">
+            <span dangerouslySetInnerHTML={{__html:good.name && good.name}}/> 
+          </Text>
         </MateBox>
         <MateBox>
           <Text bold size="20px" margin="20px auto" color="#00d0e9">안맞는 어종</Text>
           <MateImg src={bad.imgUrl && bad.imgUrl}/>
-          <Text bold size="20px" margin="20px auto" color="white">{bad.name && bad.name}</Text>
+          <Text bold size="20px" margin="20px auto" color="white">
+            <span dangerouslySetInnerHTML={{__html:bad.name && bad.name}}/> 
+          </Text>
         </MateBox>
       </FishMate>
     </Container>
@@ -165,18 +169,42 @@ const FishTitle = styled.div`
   justify-content: center;
   align-items: center;
   padding-top:20px;
+  @media (max-width: 330px) { 
+    margin:0 auto;
+    }
   `;
 const PurpleLeft = styled.img`
   height: 20px;
+  @media (max-width: 330px) { 
+    height:18px;
+    }
 `;
 
 const PurpleRight = styled.img`
   height: 20px;
+  @media (max-width: 330px) { 
+    height:18px;
+    }
 `;
 
 const PurpleLine = styled.img`
   width: 80%;
 `;
+
+// @media (max-width: 1024px) { 
+//   min-height: 120px;
+//   font-size: 18px;
+//   width: 420.78px;
+//   margin-bottom: 24px;
+// }
+
+// @media (max-width: 720px) { 
+//   font-size: 16px;
+//   width: 100%;
+//   margin-bottom: 12px;
+// }
+
+
 
 const FishImgBackGround = styled.div`
   position:relative;
@@ -188,6 +216,9 @@ const FishImgBackGround = styled.div`
   @media (max-width: 420px){
     height: 350px;
   }
+  @media (max-width: 330px) { 
+    height: 300px;
+}
 
 `
 const BgCircleImg = styled.img`
@@ -200,8 +231,13 @@ const BgCircleImg = styled.img`
   z-index: 1;
   @media (max-width: 420px){
     top:-85px;
-    
   }
+  @media (max-width: 380px){
+    top:-70px;
+  }
+  @media (max-width: 330px) { 
+    top:-60px;
+}
 `;
 
 const FishDesc =styled.div`
@@ -257,7 +293,10 @@ const FishImg = styled.img`
     left: 65px;
     width: 70%;
   }
-
+  @media (max-width: 330px) { 
+    top: 10px;
+    left: 50px;
+  }
 
   @-webkit-keyframes swing {
     20% {

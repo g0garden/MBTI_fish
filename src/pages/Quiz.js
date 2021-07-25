@@ -39,6 +39,8 @@ padding: 18px 20px;
 @media only screen and (max-width: 750px) {
   padding: 18px 20px;
 }
+
+overflow: hidden;
 `;
 
 export default Quiz;

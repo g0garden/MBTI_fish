@@ -78,7 +78,7 @@ const Result = ({ history, props }) => {
   // };
 
   return (
-    <Container>
+    <Container>                         
       {is_loaded ? (
         <SpinWrap>
           <Spin />
@@ -106,11 +106,11 @@ const Result = ({ history, props }) => {
             <RestartBtn onClick={goBackToMain} imgUrl={restartBtnImg} />
             <GrrrLinkBtn as={"a"} target="blank" rel="noreferrer noopener" href="https://www.youtube.com/channel/UCGrAnVVgQY66l9XHIzPxQEw" imgUrl={GrrrLinkBtnImg} />
           </Bottom>
-          {/* <a target="blank" id="sns_facebook" href={`http://www.facebook.com/share.php?u=${_grrrDomain}&t=나만의생선을확인해보세요!`} title="페이스북에 이 페이지 공유하기">
-        <Button round color="blue">
-          F
-        </Button>
-      </a> */}
+            {/* <a target="blank" id="sns_facebook" href={`http://www.facebook.com/share.php?u=${_grrrDomain}&t=나만의생선을확인해보세요!`} title="페이스북에 이 페이지 공유하기">
+          <Button round color="blue">
+            F
+          </Button>
+        </a> */}
         </ResultContainer>
       
           
@@ -133,14 +133,31 @@ const ResultContainer = styled.div`
   margin:0 auto;
   box-sizing:border-box;
   //border:1px dashed pink;
+
   @media ${props => props.theme.tablet}{
     width:100%;
   }
-  @media ${props => props.theme.mobile}{
+  @media (max-width: 1024px) { 
+    width:100%;
+    max-width:500px;
+ }
+ @media (max-width: 768px){
     width:100%;
     max-width:768px;
     margin:0 auto;
   }
+  @media (max-width: 720px){
+    width:100%;
+    /* max-width:768px; */
+    margin:0 auto;
+  }
+  @media (max-width: 420px){
+    width:100%;
+    max-width:420px;
+  }
+  @media (max-width: 330px) { 
+    max-width: 330px;
+}
 `;
 
 const PurpleLeft = styled.img`
@@ -148,9 +165,15 @@ const PurpleLeft = styled.img`
   max-width: 150px;
   height: 3vh;
   margin-right: 8px;
+  @media (max-width: 720px){
+    width:22vw;
+  }
   @media (max-width: 420px){
     width: 22vw;
   }
+  /* @media (max-width: 330px) { 
+    max-width: 400px;
+} */
 `;
 
 const PurpleRight = styled.img`
@@ -158,6 +181,9 @@ const PurpleRight = styled.img`
   max-width: 150px;
   height: 3vh;
   margin-left: 8px;
+  @media (max-width: 720px){
+    width:22vw;
+  }
   @media (max-width: 420px){
     width: 22vw;
   }
