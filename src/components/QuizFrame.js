@@ -89,6 +89,12 @@ const ButtonFrame = styled.div`
     margin-bottom: 12px;
   }
 
+  @media (max-width: 500px) { 
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 0px;
+  }
+
   @media (max-width: 330px) { 
     font-size: 14px;
   }
