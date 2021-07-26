@@ -58,14 +58,7 @@ Text.defaultProps = {
 
 const TextBox = styled.div`
   font-weight: ${(props) => (props.bold ? "900" : "500")};
-
-  ${(props) =>
-    props.desc
-      ? `font-size:20px;
-      @media (max-width: 420px) {
-        font-size:14px;
-  }`
-      : " "}
+  font-size: ${(props) => props.size};
 
   ${(props) =>
     props.sentence
@@ -89,9 +82,19 @@ const TextBox = styled.div`
 `
       : props.original
       ? ``
-      : "letter-spacing: 1px;"}
+      : "letter-spacing:0;"}
 
-  font-size: ${(props) => props.size};
+  ${(props) =>
+    props.desc
+      ? `font-size:16px;
+      font-weight:700;
+      letter-spacing:-0.25px;
+      word-spacing:1px;
+      @media (max-width: 420px) {
+        font-size:14px;
+  }`
+      : " "}
+
   ${(props) => (props.lineHeight ? `line-height:${props.lineHeight};` : "")}
   margin:${(props) => props.margin};
   text-align: ${(props) => props.align};
