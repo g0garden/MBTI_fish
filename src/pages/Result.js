@@ -95,7 +95,7 @@ const Result = (props) => {
             <ShareTitle>
               <PurpleLeft src={require("../data/images/nomargin_third_left.png").default} />
               {/* <Button onClick={sendLink} color="yellow">blala</Button>*/}
-              <Text bold size="1.5em" color="#00d0e9">
+              <Text subtitle size="1.5em" color="#00d0e9">
                 공유하기
               </Text>
               <PurpleRight src={require("../data/images/nomargin_third_right.png").default} />
