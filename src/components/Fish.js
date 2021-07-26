@@ -270,12 +270,14 @@ const FishMate = styled.div`
 const MateBox = styled.div`
   width: 40vw;
   max-width: 250px;
+  cursor: default;
 `;
 
 const MateImg = styled.img`
   width: 30vw;
   max-width: 120px;
   margin-bottom: -10px;
+  cursor: pointer;
 `;
 
 const FishImg = styled.img`
