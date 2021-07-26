@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Fish from "../components/Fish";
 import { Button, Text, Grid, Container } from "../elements/";
-import { KakaoImgUrl, instaImgUrl, copyLinkImgUrl, restartBtnImg, GrrrLinkBtnImg, DarkImg } from "../data/images/sharedImgs";
+import { KakaoImgUrl, instaImgUrl, facebookImgUrl, copyLinkImgUrl, restartBtnImg, GrrrLinkBtnImg, DarkImg } from "../data/images/sharedImgs";
 import "../shared/theme";
+import { Helmet } from "react-helmet";
 import { Spin } from "antd";
 import { dic } from "../data/questionsFB";
 import { api as resultActions } from "../redux-toolkit/modules/fishList";
@@ -29,7 +30,7 @@ const Result = (props) => {
     //   dispatch(resultActions.getOneFishFB(sessionStorage.getItem("type")));
     // }
     dispatch(resultActions.getOneFishFB(_name));
-  }, [_name]);
+  }, []);
 
   if (sessionStorage.getItem("fish")) {
     sessionStorage.removeItem("fish");
@@ -37,8 +38,8 @@ const Result = (props) => {
   }
 
   //현재 결과페이지의 URL - 도메인/결과 물고기의 usrParam값
-  const domain = "";
-  const share_url = `${domain}${props.match.url}`;
+  const domain = "https://cityangler.co.kr";
+  const share_url = `${domain}${props.match.url.replace(" ", "%20")}`;
 
   const copyToClipboard = () => {
     let t = document.createElement("textarea");
@@ -66,62 +67,113 @@ const Result = (props) => {
   // 2. 필수코드 Kakao.init(javascript key)
   // 3. 링크 공유는 문서에서 카카오 메시지로 되어있고,
   //    많은 템플릿 중 sendScrap의 경우 requestUrl과 링크 보낼 당시 url이 일치해야한다.
-  // useEffect(() => {
-  //   // SDK 사용법에는 Kakao.init~어쩌구로 되어있으나 window 객체 찾아서 설정을 해야함
-  //   window.Kakao.init("e31c489577057b521747d2d2be3ce3d5");
-  //   // 카카오 SDK가 초기화되었는지 확인하는 함수 => console.log로 봐서 true면 초기화 잘되었다는 뜻
-  //   // window.Kakao.isInitialized();
-  // }, []);
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+    script.async = true;
+    document.body.appendChild(script);
+    // window.Kakao.init("1b57853241c84b636a6e64adcedd94a5");
 
-  // const grrrDomain = "http://localhost:3000";
-  // const _grrrDomain = "https://silver0r.tistory.com/57";
+    return () => {
+      document.body.removeChild(script);
+    };
+    // SDK 사용법에는 Kakao.init~어쩌구로 되어있으나 window 객체 찾아서 설정을 해야함
+    // 카카오 SDK가 초기화되었는지 확인하는 함수 => console.log로 봐서 true면 초기화 잘되었다는 뜻
+    // window.Kakao.isInitialized();
+  }, []);
 
-  // const sendLink = () => {
-  //   window.Kakao.Link.sendScrap({
-  //     requestUrl: `${grrrDomain}/result/`,
-  //   });
-  // };
+  const sendLink = () => {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+      // 중복 initialization 방지
+      if (!kakao.isInitialized()) {
+        //  javascript key 를 이용하여 initialize
+        kakao.init("1b57853241c84b636a6e64adcedd94a5");
+        // kakao.init(process.env.REACT_APP_KAKAO_KEY);
+      }
+
+      // kakao.Link.sendScrap({
+      //   requestUrl: `${domain}${props.match.url}`,
+      // });
+      kakao.Link.createDefaultButton({
+        container: "#create-kakao-link-btn",
+        objectType: "feed",
+        content: {
+          title: `${fish_result.name && fish_result.name} | 도시어부`,
+          description: fish_result.sentence && fish_result.sentence.replace("<br/>", " "),
+          imageUrl: fish_result.imgUrl,
+          link: {
+            mobileWebUrl: `${domain}${props.match.url}`,
+            webUrl: `${domain}${props.match.url}`,
+          },
+        },
+        buttons: [
+          {
+            title: "바다 속 내 모습 알아보기",
+            link: {
+              mobileWebUrl: domain,
+              webUrl: domain,
+            },
+          },
+        ],
+      });
+    }
+  };
 
   return (
-    <Container>
-      {is_loaded ? (
-        <SpinWrap>
-          <Spin />
-        </SpinWrap>
-      ) : Object.values(fish_result).length > 0 ? (
-        <ResultContainer>
-          <Fish OneFishType={fish_result} history={history} />
-          <Share>
-            <ShareTitle>
-              <PurpleLeft src={require("../data/images/nomargin_third_left.png").default} />
-              {/* <Button onClick={sendLink} color="yellow">blala</Button>*/}
-              <Text bold size="1.5em" color="#00d0e9">
-                공유하기
-              </Text>
-              <PurpleRight src={require("../data/images/nomargin_third_right.png").default} />
-            </ShareTitle>
-            <ShareChannel>
-              <ShareChanBtn imgUrl={KakaoImgUrl} />
-              <ShareChanBtn imgUrl={instaImgUrl} />
-              <ShareChanBtn imgUrl={copyLinkImgUrl} onClick={copyToClipboard} />
-            </ShareChannel>
-          </Share>
-          <Bottom>
-            <RestartBtn onClick={goBackToMain} imgUrl={restartBtnImg} />
-            <GrrrLinkBtn as={"a"} target="blank" rel="noreferrer noopener" href="https://www.youtube.com/channel/UCGrAnVVgQY66l9XHIzPxQEw" imgUrl={GrrrLinkBtnImg} />
-          </Bottom>
-          {/* <a target="blank" id="sns_facebook" href={`http://www.facebook.com/share.php?u=${_grrrDomain}&t=나만의생선을확인해보세요!`} title="페이스북에 이 페이지 공유하기">
-          <Button round color="blue">
-            F
-          </Button>
-        </a> */}
-        </ResultContainer>
-      ) : (
-        <NoData>
-          <Button onClick={() => (window.location.href = "/")}>다시 검사해보기</Button>
-        </NoData>
-      )}
-    </Container>
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta property="og:title" content={`${fish_result.name && fish_result.name} | 도시어부`} />
+        <meta property="og:image" content={fish_result.imgUrl && fish_result.imgUrl} />
+        <meta property="og:description" content={fish_result.sentence && fish_result.sentence.replace("<br/>", " ")} />
+        <title>{`${fish_result.name && fish_result.name} | 도시어부`}</title>
+        {/* 뒷주소 이름은 뭘로 할지 결정해야함 ex. mbti타입인지, fish타입인지 */}
+        <link rel="canonical" href={`https://cityangler.co.kr/result/${fish_result.name && fish_result.name}`} />
+      </Helmet>
+      <Container>
+        {is_loaded ? (
+          <SpinWrap>
+            <Spin />
+          </SpinWrap>
+        ) : Object.values(fish_result).length > 0 ? (
+          <ResultContainer>
+            <Fish OneFishType={fish_result} history={history} />
+            <Share>
+              <ShareTitle>
+                <PurpleLeft src={require("../data/images/nomargin_third_left.png").default} />
+                <Text subtitle size="1.5em" color="#00d0e9">
+                  공유하기
+                </Text>
+                <PurpleRight src={require("../data/images/nomargin_third_right.png").default} />
+              </ShareTitle>
+              <ShareChannel>
+                <ShareChanBtn imgUrl={KakaoImgUrl} onClick={sendLink} id="create-kakao-link-btn" title="카카오톡에 내 모습 공유하기" />
+                {/* <ShareChanBtn imgUrl={instaImgUrl} /> */}
+                <a
+                  target="blank"
+                  id="sns_facebook"
+                  rel="noreferrer noopener"
+                  href={`http://www.facebook.com/share.php?u=${domain}${props.match.url}&t=${fish_result.name && fish_result.name} | 도시어부`}
+                  title="페이스북에 내 모습 공유하기"
+                >
+                  <ShareChanBtn imgUrl={facebookImgUrl} />
+                </a>
+                <ShareChanBtn imgUrl={copyLinkImgUrl} onClick={copyToClipboard} title="링크 복사하기" />
+              </ShareChannel>
+            </Share>
+            <Bottom>
+              <RestartBtn onClick={goBackToMain} imgUrl={restartBtnImg} />
+              <GrrrLinkBtn as={"a"} target="blank" rel="noreferrer noopener" href="https://www.youtube.com/channel/UCGrAnVVgQY66l9XHIzPxQEw" imgUrl={GrrrLinkBtnImg} />
+            </Bottom>
+          </ResultContainer>
+        ) : (
+          <NoData>
+            <Button onClick={() => (window.location.href = "/")}>다시 검사해보기</Button>
+          </NoData>
+        )}
+      </Container>
+    </>
   );
 };
 
