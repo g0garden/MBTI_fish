@@ -143,7 +143,7 @@ const Fish = (props) => {
           {/* <span dangerouslySetInnerHTML={{__html:}}/> */}
           <MateImg src={good.imgUrl && good.imgUrl} onClick={() => history.push(`/result/${good.name}`)} />
           <Text bold size="1.2em" margin="20px auto" color="white">
-            {good.name && good.name}
+            <span dangerouslySetInnerHTML={{ __html: good.name && good.name }} />
           </Text>
         </MateBox>
         <MateBox>
@@ -152,7 +152,7 @@ const Fish = (props) => {
           </Text>
           <MateImg src={bad.imgUrl && bad.imgUrl} onClick={() => history.push(`/result/${bad.name}`)} />
           <Text bold size="1.2em" margin="20px auto" color="white">
-            {bad.name && bad.name}
+            <span dangerouslySetInnerHTML={{ __html: bad.name && bad.name }} />
           </Text>
         </MateBox>
       </FishMate>
