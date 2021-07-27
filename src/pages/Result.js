@@ -8,13 +8,18 @@ import "../shared/theme";
 import { Helmet } from "react-helmet";
 import { Spin } from "antd";
 import { dic } from "../data/questionsFB";
+import {fishInfo} from "../shared/FishInfo";
 import { api as resultActions } from "../redux-toolkit/modules/fishList";
 
 const Result = (props) => {
   const dispatch = useDispatch();
   let _name = props.match.params.fishname;
   const history = props.history;
-  console.log(props.match);
+  // console.log(props.match);
+  console.log(_name);
+  const fish = fishInfo[_name];
+
+  console.log(fish, fishInfo);
 
 
   const fish_result = useSelector((state) => state.fishList.onefish_result);
@@ -139,12 +144,12 @@ const Result = (props) => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <meta property="og:title" content={`${fish_result?.name && fish_result?.name} | 도시어부`} />
-        <meta property="og:image" content={fish_result?.imgUrl && fish_result?.imgUrl} />
-        <meta property="og:description" content={fish_result?.sentence && fish_result?.sentence.replaceAll("<br/>", " ")} />
-        <title>{`${fish_result?.name && fish_result?.name} | 도시어부`}</title>
+        <meta property="og:title" content={`${_name} | 도시어부`} />
+        <meta property="og:image" content={fish.imgUrl} />
+        <meta property="og:description" content={fish.sentence} />
+        <title>{`${_name} | 도시어부`}</title>
         {/* 뒷주소 이름은 뭘로 할지 결정해야함 ex. mbti타입인지, fish타입인지 */}
-        <link rel="canonical" href={`https://cityangler.co.kr/result/${fish_result?.name && fish_result?.name}`} />
+        <link rel="canonical" href={`https://cityangler.co.kr/result/${_name}`} />
       </Helmet>
       <Container>
         {is_loaded ? (
