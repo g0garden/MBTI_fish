@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Helmet } from "react-helmet";
 import bg from "../data/images/bg_main.png";
 import testStart from "../data/images/testStart.png";
 
@@ -20,9 +21,14 @@ const Main = ({ history }) => {
   sessionStorage.setItem("goBack", false);
 
   return (
-    <Wrap>
-      <ButtonImg src={testStart} alt="테스트 시작" onClick={() => history.push("/quiz")} />
-    </Wrap>
+    <>
+      <Helmet>
+        <title>{`바다 속 나의 모습은? | 도시어부`}</title>
+      </Helmet>
+      <Wrap>
+        <ButtonImg src={testStart} alt="테스트 시작" onClick={() => history.push("/quiz")} />
+      </Wrap>
+    </>
   );
 };
 
