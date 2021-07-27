@@ -53,7 +53,7 @@ const Result = (props) => {
 
   //현재 결과페이지의 URL - 도메인/결과 물고기의 usrParam값
   const domain = "https://cityangler.co.kr";
-  const share_url = `${domain}${props.match.url.replace(" ", "%20")}`;
+  const share_url = `${domain}${props.match.url.replaceAll(" ", "%20")}`;
 
   const copyToClipboard = () => {
     let t = document.createElement("textarea");
@@ -71,7 +71,8 @@ const Result = (props) => {
 
   const goBackToMain = () => {
     sessionStorage.setItem("goBack", true);
-    window.location.href = "/";
+    // window.location.href = "/";
+    history.replace("/");
   };
 
   // [카카오톡 공유하기]
@@ -138,12 +139,12 @@ const Result = (props) => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <meta property="og:title" content={`${fish_result.name && fish_result.name} | 도시어부`} />
-        <meta property="og:image" content={fish_result.imgUrl && fish_result.imgUrl} />
-        <meta property="og:description" content={fish_result.sentence && fish_result.sentence.replace("<br/>", " ")} />
-        <title>{`${fish_result.name && fish_result.name} | 도시어부`}</title>
+        <meta property="og:title" content={`${fish_result?.name && fish_result?.name} | 도시어부`} />
+        <meta property="og:image" content={fish_result?.imgUrl && fish_result?.imgUrl} />
+        <meta property="og:description" content={fish_result?.sentence && fish_result?.sentence.replaceAll("<br/>", " ")} />
+        <title>{`${fish_result?.name && fish_result?.name} | 도시어부`}</title>
         {/* 뒷주소 이름은 뭘로 할지 결정해야함 ex. mbti타입인지, fish타입인지 */}
-        <link rel="canonical" href={`https://cityangler.co.kr/result/${fish_result.name && fish_result.name}`} />
+        <link rel="canonical" href={`https://cityangler.co.kr/result/${fish_result?.name && fish_result?.name}`} />
       </Helmet>
       <Container>
         {is_loaded ? (
