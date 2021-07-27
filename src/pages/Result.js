@@ -170,15 +170,11 @@ const Result = (props) => {
               <ShareChannel>
                 <ShareChanBtn imgUrl={KakaoImgUrl} onClick={sendLink} id="create-kakao-link-btn" title="카카오톡에 내 모습 공유하기" />
                 {/* <ShareChanBtn imgUrl={instaImgUrl} /> */}
-                <a
-                  target="blank"
-                  id="sns_facebook"
-                  rel="noreferrer noopener"
+                <ShareChanBtn 
+                  as={"a"} target="blank" rel="noreferrer noopener" imgUrl={facebookImgUrl}
                   href={`http://www.facebook.com/share.php?u=${domain}${props.match.url}&t=${fish_result.name && fish_result.name} | 도시어부`}
                   title="페이스북에 내 모습 공유하기"
-                >
-                  <ShareChanBtn imgUrl={facebookImgUrl} />
-                </a>
+                />
                 <ShareChanBtn imgUrl={copyLinkImgUrl} onClick={copyToClipboard} title="링크 복사하기" />
               </ShareChannel>
             </Share>

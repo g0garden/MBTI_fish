@@ -138,6 +138,7 @@ const Fish = (props) => {
   );
 };
 
+
 const FishIntro = styled.div`
   width: 100%;
   max-width: 500px;
@@ -260,7 +261,7 @@ const MateImg = styled.img`
 
 const FishImg = styled.img`
   position: absolute;
-  top: 8px;
+  top: -20px;
   left: 75px;
   width: 75%;
   max-width: 500px;
@@ -269,9 +270,18 @@ const FishImg = styled.img`
   border-radius: 50%;
   z-index: 3;
   //pointer-events: none;
+  @media (max-width: 720px) {
+    top: -30px;
+    left: 60px;
+  }
   @media (max-width: 420px) {
-    top: 8px;
-    left: 65px;
+    top: -10px;
+    left: 69px;
+    width: 70%;
+  }
+  @media (max-width: 380px) {
+    top: 0px;
+    left: 60px;
     width: 70%;
   }
   @media (max-width: 330px) {
