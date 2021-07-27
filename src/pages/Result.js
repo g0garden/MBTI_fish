@@ -49,7 +49,7 @@ const Result = (props) => {
     //   dispatch(resultActions.getOneFishFB(sessionStorage.getItem("type")));
     // }
     dispatch(resultActions.getOneFishFB(_name));
-  }, []);
+  }, [_name]);
 
   if (sessionStorage.getItem("fish")) {
     sessionStorage.removeItem("fish");
