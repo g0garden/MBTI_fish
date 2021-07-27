@@ -141,7 +141,11 @@ const Fish = (props) => {
             잘맞는 어종
           </Text>
           {/* <span dangerouslySetInnerHTML={{__html:}}/> */}
-          <MateImg src={good.imgUrl && good.imgUrl} onClick={() => history.push(`/result/${good.name}`)} />
+          <MateImg src={good.imgUrl && good.imgUrl} />
+          {/* onClick={() => {
+            sessionStorage.setItem("lastPage", "result")
+            history.push(`/result/${good.type}`)
+            }}  */}
           <Text bold size="1.2em" margin="20px auto" color="white">
             <span dangerouslySetInnerHTML={{ __html: good.name && good.name }} />
           </Text>
@@ -150,7 +154,11 @@ const Fish = (props) => {
           <Text subtitle size="1.5em" margin="20px auto" color="#00d0e9">
             안맞는 어종
           </Text>
-          <MateImg src={bad.imgUrl && bad.imgUrl} onClick={() => history.push(`/result/${bad.name}`)} />
+          <MateImg src={bad.imgUrl && bad.imgUrl} />
+          {/* onClick={() => {
+            sessionStorage.setItem("lastPage", "result")
+            history.push(`/result/${bad.type}`)
+        }}  */}
           <Text bold size="1.2em" margin="20px auto" color="white">
             <span dangerouslySetInnerHTML={{ __html: bad.name && bad.name }} />
           </Text>

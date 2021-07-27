@@ -10,6 +10,13 @@ const Main = ({ history }) => {
   if (!sessionStorage.getItem("goBack")) {
     sessionStorage.removeItem("type");
   }
+  if (sessionStorage.getItem("lastPage")) {
+    sessionStorage.removeItem("lastPage");
+  }
+
+  // if (sessionStorage.getItem("lastFish")) {
+  //   sessionStorage.removeItem("lastFish");
+  // }
   sessionStorage.setItem("goBack", false);
 
   return (

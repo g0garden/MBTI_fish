@@ -17,11 +17,6 @@ const ContainerBox = styled.div`
   width : 1200px;
   box-sizing: border-box;
   margin: 0px auto;
-<<<<<<< HEAD
-=======
-  padding:0px 20px;
-
->>>>>>> 83391f50fe6b2f155b01dca03ab3086e780491a2
   //border: 3px dashed lightsalmon; 
   @media ${props => props.theme.tablet}{
   width: 100%;
