@@ -144,9 +144,9 @@ const Result = (props) => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <meta property="og:title" content={`${_name} | 도시어부`} />
-        <meta property="og:image" content={fish.imgUrl} />
-        <meta property="og:description" content={fish.sentence} />
+        <meta property="og:title" content={`${_name} | 도시어부`}/>
+        <meta property="og:image" content={fish.imgUrl}/>
+        <meta property="og:description" content={fish.sentence}/>
         <title>{`${_name} | 도시어부`}</title>
         {/* 뒷주소 이름은 뭘로 할지 결정해야함 ex. mbti타입인지, fish타입인지 */}
         <link rel="canonical" href={`https://cityangler.co.kr/result/${_name}`} />
