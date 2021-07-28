@@ -23,7 +23,7 @@ const Result = (props) => {
       history.replace("/quiz");
       sessionStorage.removeItem("lastPage");
     }
-
+  }
   // 이 부분은 새로고침 할 시점을 노린 것임
   // 이 밑에 if문 부분을 보면 "fish" 라는 키는 최초 Result 페이지 진입시에 사라지게 되고, 대신 "type" 이라는 키와 해당 물고기의 mbti 가 함께 저장됨.
   // 따라서, 새로고침하기 전에는 당연히 세션 안에 "fish" 라는 키가 있으니 최초 진입시에는 useEffect 가 별 효과를 내지 못함
