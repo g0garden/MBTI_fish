@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import bg from "../data/images/bg_main.png";
 import testStart from "../data/images/testStart.png";
+import {api as userActions} from "../redux-toolkit/modules/users";
 
 const Main = ({ history }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(userActions.getTotalUserCntFB());
+  },[])
+  
+
   window.onbeforeunload = function () {
     return "Your work will be lost.";
   };
@@ -19,6 +28,9 @@ const Main = ({ history }) => {
   //   sessionStorage.removeItem("lastFish");
   // }
   sessionStorage.setItem("goBack", false);
+
+  //총사용자
+  
 
   return (
     <>

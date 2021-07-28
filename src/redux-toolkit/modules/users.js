@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { firestore } from "../../shared/firebase";
 import firebase from "firebase/app";
 
-const countUsers_db = firestore.collection("countUsers_test");
+const countUsers_db = firestore.collection("countUsers");
 
 const userSlice = createSlice({
   name: "user",
@@ -32,6 +32,7 @@ const getTotalUserCntFB = () => {
         const number_test = userTypeCnt_data.reduce((acc,cur) => {
           return acc+cur.count;
         },0);
+        console.log("총사용자",number_test);
         dispatch(addUserCnt(number_test));
       })
     }
