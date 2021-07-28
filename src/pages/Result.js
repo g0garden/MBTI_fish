@@ -92,8 +92,7 @@ const Result = (props) => {
         kakao.init("1b57853241c84b636a6e64adcedd94a5");
       }
 
-      kakao.Link.createDefaultButton({
-        container: "#create-kakao-link-btn",
+      kakao.Link.sendDefault({
         objectType: "feed",
         content: {
           title: `${fish_result.name && fish_result.name} | 도시어부`,
@@ -152,7 +151,7 @@ const Result = (props) => {
                 <PurpleRight src={require("../data/images/nomargin_third_right.png").default} />
               </ShareTitle>
               <ShareChannel>
-                <ShareChanBtn imgUrl={KakaoImgUrl} onClick={sendLink} id="create-kakao-link-btn" title="카카오톡에 내 모습 공유하기" />
+                <ShareChanBtn imgUrl={KakaoImgUrl} onClick={sendLink} title="카카오톡에 내 모습 공유하기" />
                 <ShareChanBtn
                   as={"a"}
                   target="blank"
@@ -171,7 +170,7 @@ const Result = (props) => {
           </ResultContainer>
         ) : (
           <NoData>
-            <Button onClick={() => (window.location.href = "/")}>다시 검사해보기</Button>
+            <RestartBtn onClick={goBackToMain} imgUrl={restartBtnImg} />
           </NoData>
         )}
       </Container>
