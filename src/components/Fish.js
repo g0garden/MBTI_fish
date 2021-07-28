@@ -20,8 +20,8 @@ const Fish = (props) => {
 
   const [_pState, setPState] = useState(false);
 
-  let good_feature = good.feature[0].replace("<br/>", " ");
-  let bad_feature = bad.feature[0].replace("<br/>", " ");
+  let good_feature = good.feature[0].replaceAll("<br/>", " ");
+  let bad_feature = bad.feature[0].replaceAll("<br/>", " ");
 
   console.log(good_feature, bad_feature);
 
