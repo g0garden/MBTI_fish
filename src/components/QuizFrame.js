@@ -25,20 +25,22 @@ const QuizFrame = (props) => {
         </TitleFrame>
       </Grid>
       <QuestionBox>
-        <ButtonFrame
-          onClick={(e) => {
-            props?.next();
-            props?.increment(props.data?.answers.a.type);
-          }}
-        >
+        <ButtonFrame onClick={(e) => {
+            if (e.target.nodeName === "IMG" || e.target.nodeName === "SPAN") {
+              props?.next();
+              props?.increment(props.data?.answers.a.type);
+            }
+          }}>
+          <img src={btnBg}></img>
           <span style={{ color: "#b0d71d", fontWeight: "700" }} dangerouslySetInnerHTML={{ __html: props.data?.answers.a.res }}></span>
         </ButtonFrame>
-        <ButtonFrame
-          onClick={(e) => {
-            props?.next();
-            props?.increment(props.data?.answers.b.type);
-          }}
-        >
+        <ButtonFrame onClick={(e) => {
+            if (e.target.nodeName === "IMG" || e.target.nodeName === "SPAN") {
+              props?.next();
+              props?.increment(props.data?.answers.b.type);
+            }
+          }}>
+          <img src={btnBg}></img>
           <span style={{ color: "#b0d71d", fontWeight: "700" }} dangerouslySetInnerHTML={{ __html: props.data?.answers.b.res }}></span>
         </ButtonFrame>
         {/* <Button
@@ -75,10 +77,17 @@ const TitleFrame = styled.div`
 `;
 
 const ButtonFrame = styled.div`
-  cursor: pointer;
-  background: no-repeat center/100% url(${btnBg});
+  cursor: default;
+  position: relative;
+  // background: no-repeat center url(${btnBg});
   width: 100%;
   max-width: 440px;
+
+  & > img {
+    width: 100%;
+    position: absolute;
+    cursor: pointer;
+  }
 
   letter-spacing: -0.5px;
   word-spacing: -1px;
@@ -121,6 +130,8 @@ const ButtonFrame = styled.div`
   }
 
   & > span {
+    position: absolute;
+    cursor: pointer;
   }
 
   min-height: 150px;
