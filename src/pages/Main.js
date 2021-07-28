@@ -13,6 +13,7 @@ const Main = ({ history }) => {
     dispatch(userActions.getTotalUserCntFB());
   },[])
   
+  // 이 전체 윈도우에서 unload 시도가 있을 때, 즉... 탭이 닫힐 때 등 사용자에게 한 번 물어보는 역할 (ask & confirm roles)
 
   window.onbeforeunload = function () {
     return "Your work will be lost.";
@@ -24,13 +25,7 @@ const Main = ({ history }) => {
     sessionStorage.removeItem("lastPage");
   }
 
-  // if (sessionStorage.getItem("lastFish")) {
-  //   sessionStorage.removeItem("lastFish");
-  // }
   sessionStorage.setItem("goBack", false);
-
-  //총사용자
-  
 
   return (
     <>
@@ -53,7 +48,6 @@ const Wrap = styled.div`
   background-position: center;
   @media only screen and (min-width: 720px) {
     background-size: contain;
-    // width: 100vw;
   }
 `;
 

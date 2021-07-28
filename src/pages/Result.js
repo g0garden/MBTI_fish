@@ -2,12 +2,11 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Fish from "../components/Fish";
-import { Button, Text, Grid, Container } from "../elements/";
-import { KakaoImgUrl, instaImgUrl, facebookImgUrl, copyLinkImgUrl, restartBtnImg, GrrrLinkBtnImg, DarkImg } from "../data/images/sharedImgs";
+import { Button, Text, Container } from "../elements/";
+import { KakaoImgUrl, facebookImgUrl, copyLinkImgUrl, restartBtnImg, GrrrLinkBtnImg, DarkImg } from "../data/images/sharedImgs";
 import "../shared/theme";
 import { Helmet } from "react-helmet";
 import { Spin } from "antd";
-import { dic } from "../data/questionsFB";
 import {fishInfo} from "../shared/FishInfo";
 import { api as resultActions } from "../redux-toolkit/modules/fishList";
 
@@ -15,27 +14,15 @@ const Result = (props) => {
   const dispatch = useDispatch();
   let _name = props.match.params.fishname;
   const history = props.history;
-  // console.log(props.match);
-  console.log(_name);
   const fish = fishInfo[_name];
-
-  console.log(fish, fishInfo);
-
-
   const fish_result = useSelector((state) => state.fishList.onefish_result);
   const is_loaded = useSelector((state) => state.fishList.is_loaded);
 
   window.onpopstate = () => {
-    console.log("뒤로가기!");
     if (sessionStorage.getItem("lastPage") === "quiz") {
       history.replace("/quiz");
       sessionStorage.removeItem("lastPage");
     }
-
-    // if (!sessionStorage.getItem("lastPage")) {
-    //   window.alert("초기 화면으로 이동합니다!");
-    //   history.replace("/");
-    // }
   }
 
   // 이 부분은 새로고침 할 시점을 노린 것임
@@ -45,9 +32,6 @@ const Result = (props) => {
   // 추가적으로 다른 페이지 (메인, 퀴즈 페이지..?) 에서는 이 키값이 저장되는 것을 지양하여 만약 남아있다면 지워주는 행위가 꼭 필요함.
 
   useEffect(() => {
-    // if (!sessionStorage.getItem("fish")) {
-    //   dispatch(resultActions.getOneFishFB(sessionStorage.getItem("type")));
-    // }
     dispatch(resultActions.getOneFishFB(_name));
   }, [_name]);
 
@@ -76,7 +60,6 @@ const Result = (props) => {
 
   const goBackToMain = () => {
     sessionStorage.setItem("goBack", true);
-    // window.location.href = "/";
     history.replace("/");
   };
 
@@ -92,7 +75,6 @@ const Result = (props) => {
     script.src = "https://developers.kakao.com/sdk/js/kakao.js";
     script.async = true;
     document.body.appendChild(script);
-    // window.Kakao.init("1b57853241c84b636a6e64adcedd94a5");
 
     return () => {
       document.body.removeChild(script);
@@ -109,27 +91,30 @@ const Result = (props) => {
       if (!kakao.isInitialized()) {
         //  javascript key 를 이용하여 initialize
         kakao.init("1b57853241c84b636a6e64adcedd94a5");
-        // kakao.init(process.env.REACT_APP_KAKAO_KEY);
       }
 
-      // kakao.Link.sendScrap({
-      //   requestUrl: `${domain}${props.match.url}`,
-      // });
       kakao.Link.createDefaultButton({
         container: "#create-kakao-link-btn",
         objectType: "feed",
         content: {
           title: `${fish_result.name && fish_result.name} | 도시어부`,
-          description: fish_result.sentence && fish_result.sentence.replace("<br/>", " "),
+          description: fish_result.sentence && fish_result.sentence.replaceAll("<br/>", " "),
           imageUrl: fish_result.imgUrl,
           link: {
-            mobileWebUrl: `${domain}${props.match.url}`,
-            webUrl: `${domain}${props.match.url}`,
+            mobileWebUrl: domain+props.match.url,
+            webUrl: domain+props.match.url,
           },
         },
         buttons: [
           {
-            title: "바다 속 내 모습 알아보기",
+            title: "결과보기",
+            link: {
+              mobileWebUrl: domain+props.match.url,
+              webUrl: domain+props.match.url,
+            },
+          },
+          {
+            title: "테스트하기",
             link: {
               mobileWebUrl: domain,
               webUrl: domain,
@@ -169,7 +154,6 @@ const Result = (props) => {
               </ShareTitle>
               <ShareChannel>
                 <ShareChanBtn imgUrl={KakaoImgUrl} onClick={sendLink} id="create-kakao-link-btn" title="카카오톡에 내 모습 공유하기" />
-                {/* <ShareChanBtn imgUrl={instaImgUrl} /> */}
                 <ShareChanBtn 
                   as={"a"} target="blank" rel="noreferrer noopener" imgUrl={facebookImgUrl}
                   href={`http://www.facebook.com/share.php?u=${domain}${props.match.url}&t=${fish_result.name && fish_result.name} | 도시어부`}
@@ -202,7 +186,6 @@ const ResultContainer = styled.div`
   height: 100%;
   margin: 0 auto;
   box-sizing: border-box;
-  //border:1px dashed pink;
 
   @media ${(props) => props.theme.tablet} {
     width: 100%;
@@ -218,7 +201,6 @@ const ResultContainer = styled.div`
   }
   @media (max-width: 720px) {
     width: 100%;
-    /* max-width:768px; */
     margin: 0 auto;
   }
   @media (max-width: 420px) {
@@ -227,7 +209,6 @@ const ResultContainer = styled.div`
   }
   @media (max-width: 330px) {
     width: 100%;
-    //max-width: 330px;
   }
 `;
 
@@ -242,9 +223,6 @@ const PurpleLeft = styled.img`
   @media (max-width: 420px) {
     width: 22vw;
   }
-  /* @media (max-width: 330px) { 
-    max-width: 400px;
-} */
 `;
 
 const PurpleRight = styled.img`
