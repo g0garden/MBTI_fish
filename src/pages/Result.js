@@ -95,8 +95,8 @@ const Result = (props) => {
       kakao.Link.sendDefault({
         objectType: "feed",
         content: {
-          title: `${fish_result.name && fish_result.name} | 도시어부`,
-          description: fish_result.sentence && fish_result.sentence.replaceAll("<br/>", " "),
+          title: `🌊 ${fish_result.name && fish_result.name} | 도시어부 Grrr`,
+          description: `"${fish_result.sentence && fish_result.sentence.replaceAll("<br/>", " ")}"`,
           imageUrl: fish_result.imgShare,
           link: {
             mobileWebUrl: domain + props.match.url,
@@ -105,14 +105,14 @@ const Result = (props) => {
         },
         buttons: [
           {
-            title: "결과보기",
+            title: "결과 보기",
             link: {
               mobileWebUrl: domain + props.match.url,
               webUrl: domain + props.match.url,
             },
           },
           {
-            title: "테스트하기",
+            title: "테스트 하기",
             link: {
               mobileWebUrl: domain,
               webUrl: domain,

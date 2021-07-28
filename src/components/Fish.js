@@ -30,7 +30,7 @@ const Fish = (props) => {
 
   const touchFish = () => {
     if (memoPlayTimes >= 5) {
-      alert("이젠 활어가 아니에요...");
+      alert("이젠 활어가 아니에요..");
       return;
     }
 
@@ -63,12 +63,7 @@ const Fish = (props) => {
         </FishTitle>
         <FishImgBackGround>
           <BgCircleImg src={CircleImg} />
-          <FishImg
-            src={imgUrl && imgUrl}
-            onClick={touchFish}
-            playState={_pState}
-            title={type}
-          />
+          <FishImg src={imgUrl && imgUrl} onClick={touchFish} playState={_pState} title={type} />
         </FishImgBackGround>
 
         <Text sentence bold size="1.75em" margin="10px auto" padding="20px 0 0 0" whiteSpace="nowrap" color="#00d0e9">
@@ -110,7 +105,7 @@ const Fish = (props) => {
           <Text subtitle size="1.5em" margin="20px auto" color="#00d0e9">
             잘맞는 어종
           </Text>
-          <MateImg src={good.imgUrl && good.imgUrl} title={good_feature}/>
+          <MateImg src={good.imgUrl && good.imgUrl} title={good_feature} />
           <Text bold size="1.2em" margin="20px auto" color="white">
             <span dangerouslySetInnerHTML={{ __html: good.name && good.name }} />
           </Text>
@@ -128,7 +123,6 @@ const Fish = (props) => {
     </Container>
   );
 };
-
 
 const FishIntro = styled.div`
   width: 100%;
@@ -236,6 +230,7 @@ const MateImg = styled.img`
 `;
 
 const FishImg = styled.img`
+  cursor: pointer;
   position: absolute;
   top: -20px;
   left: 75px;
