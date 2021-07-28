@@ -12,7 +12,7 @@ body {
   height: 100%;
   text-align: center;
   background-image: url("../data/images/background.png");
-  background-repeat: no-repeat, repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
