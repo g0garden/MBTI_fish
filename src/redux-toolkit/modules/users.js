@@ -3,6 +3,7 @@ import { firestore } from "../../shared/firebase";
 import firebase from "firebase/app";
 
 const countUsers_db = firestore.collection("countUsers");
+const totalUserCnt_db = firestore.collection("totalCntUsers");
 
 const userSlice = createSlice({
   name: "user",
@@ -45,6 +46,7 @@ const addUserTypeFB = (resultType) => {
     
     const increment = firebase.firestore.FieldValue.increment(1);
     countUsers_db.doc(resultType).update({count:increment});
+    totalUserCnt_db.totalUsers.update({totalCount:increment});
     }
   }
 
