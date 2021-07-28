@@ -8,7 +8,7 @@ import "../shared/theme";
 import { Helmet } from "react-helmet";
 import { Spin } from "antd";
 import { dic } from "../data/questionsFB";
-import {fishInfo} from "../shared/FishInfo";
+import { fishInfo } from "../shared/FishInfo";
 import { api as resultActions } from "../redux-toolkit/modules/fishList";
 
 const Result = (props) => { 
@@ -20,7 +20,6 @@ const Result = (props) => {
   const fish = fishInfo[_name];
 
   console.log(fish, fishInfo);
-
 
   const fish_result = useSelector((state) => state.fishList.onefish_result);
   const is_loaded = useSelector((state) => state.fishList.is_loaded);
@@ -36,7 +35,7 @@ const Result = (props) => {
     //   window.alert("초기 화면으로 이동합니다!");
     //   history.replace("/");
     // }
-  }
+  };
 
   // 이 부분은 새로고침 할 시점을 노린 것임
   // 이 밑에 if문 부분을 보면 "fish" 라는 키는 최초 Result 페이지 진입시에 사라지게 되고, 대신 "type" 이라는 키와 해당 물고기의 mbti 가 함께 저장됨.
@@ -144,10 +143,10 @@ const Result = (props) => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <meta property="og:title" content={`${_name} | 도시어부`}/>
-        <meta property="og:image" content={fish.imgUrl}/>
-        <meta property="og:description" content={fish.sentence}/>
-        <title>{`${_name} | 도시어부`}</title>
+        <meta property="og:title" content={`${_name} | 도시어부`} data-react-helmet="true" />
+        <meta property="og:image" content={fish.imgUrl} data-react-helmet="true" />
+        <meta property="og:description" content={fish.sentence} data-react-helmet="true" />
+        <title data-react-helmet="true">{`${_name} | 도시어부`}</title>
         {/* 뒷주소 이름은 뭘로 할지 결정해야함 ex. mbti타입인지, fish타입인지 */}
         <link rel="canonical" href={`https://cityangler.co.kr/result/${_name}`} />
       </Helmet>
@@ -170,8 +169,11 @@ const Result = (props) => {
               <ShareChannel>
                 <ShareChanBtn imgUrl={KakaoImgUrl} onClick={sendLink} id="create-kakao-link-btn" title="카카오톡에 내 모습 공유하기" />
                 {/* <ShareChanBtn imgUrl={instaImgUrl} /> */}
-                <ShareChanBtn 
-                  as={"a"} target="blank" rel="noreferrer noopener" imgUrl={facebookImgUrl}
+                <ShareChanBtn
+                  as={"a"}
+                  target="blank"
+                  rel="noreferrer noopener"
+                  imgUrl={facebookImgUrl}
                   href={`http://www.facebook.com/share.php?u=${domain}${props.match.url}&t=${fish_result.name && fish_result.name} | 도시어부`}
                   title="페이스북에 내 모습 공유하기"
                 />
