@@ -170,7 +170,7 @@ const Result = (props) => {
           </ResultContainer>
         ) : (
           <NoData>
-            <Button onClick={() => (window.location.href = "/")}>다시 검사해보기</Button>
+            <RestartBtn onClick={goBackToMain} imgUrl={restartBtnImg} />
           </NoData>
         )}
       </Container>
