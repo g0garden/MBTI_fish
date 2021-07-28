@@ -20,6 +20,11 @@ const Fish = (props) => {
 
   const [_pState, setPState] = useState(false);
 
+  let good_feature = good.feature[0].replace("<br/>", " ");
+  let bad_feature = bad.feature[0].replace("<br/>", " ");
+
+  console.log(good_feature, bad_feature);
+
   useEffect(() => {
     setPState(true);
     return () => setPState(false);
@@ -111,7 +116,7 @@ const Fish = (props) => {
             잘맞는 어종
           </Text>
           {/* <span dangerouslySetInnerHTML={{__html:}}/> */}
-          <MateImg src={good.imgUrl && good.imgUrl} title={good.feature[0]}/>
+          <MateImg src={good.imgUrl && good.imgUrl} title={good_feature}/>
           {/* onClick={() => {
             sessionStorage.setItem("lastPage", "result")
             history.push(`/result/${good.type}`)
@@ -124,7 +129,7 @@ const Fish = (props) => {
           <Text subtitle size="1.5em" margin="20px auto" color="#00d0e9">
             안맞는 어종
           </Text>
-          <MateImg src={bad.imgUrl && bad.imgUrl} title={bad.feature[0]} />
+          <MateImg src={bad.imgUrl && bad.imgUrl} title={bad_feature} />
           {/* onClick={() => {
             sessionStorage.setItem("lastPage", "result")
             history.push(`/result/${bad.type}`)
@@ -256,7 +261,7 @@ const MateImg = styled.img`
   width: 30vw;
   max-width: 120px;
   margin-bottom: -10px;
-  cursor: pointer;
+  cursor: default;
 `;
 
 const FishImg = styled.img`
