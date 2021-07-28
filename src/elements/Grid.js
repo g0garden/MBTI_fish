@@ -43,7 +43,6 @@ const GridBox = styled.div`
   }
   box-sizing: border-box;
   outline: 0;
-  /* white-space: pre-line; */
 
   width: ${(props) => (props.width ? props.width : "")};
   height: ${(props) => (props.height ? props.height : "")};

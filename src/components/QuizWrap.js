@@ -9,7 +9,6 @@ import { api as userActions } from "../redux-toolkit/modules/users";
 import { Spin } from "antd";
 
 const QuizWrap = (props) => {
-  const history = props.history;
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.qnaList.is_loading);
   const qna_list = useSelector((state) => state.qnaList.qna_list);
@@ -28,15 +27,10 @@ const QuizWrap = (props) => {
     sessionStorage.removeItem("type");
   }
 
-  //console.log(index);
-
   const goToNextPage = () => {
     if (index === 12) {
-      //goToResultPage();
       getType(Object.values(dic));
       return;
-      // console.log(fish_result, fish_result.name);
-      // return
     }
     incrementIndex(index + 1);
   };
@@ -57,7 +51,6 @@ const QuizWrap = (props) => {
 
     // 결과를 얻는 동시에 세션에다가 MBTI 타입을 저장해준다.
     sessionStorage.setItem("lastPage", "quiz");
-    // sessionStorage.setItem("lastFish", resultType);
     sessionStorage.setItem("fish", resultType);
     dispatch(fishActions.getOneFishFB(resultType));
     dispatch(userActions.addUserTypeFB(resultType)); //FB에 해당타입 카운트+1
@@ -71,7 +64,6 @@ const QuizWrap = (props) => {
         </SpinWrap>
       ) : (
         <>
-          {/* <button onClick={() => history.replace("/")}>Home</button> */}
           <ProgressBar>
             <Progressing index={index} />
           </ProgressBar>
@@ -83,7 +75,6 @@ const QuizWrap = (props) => {
 };
 
 const SpinWrap = styled.div`
-  // width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -104,7 +95,6 @@ const ProgressBar = styled.div`
 `;
 
 const Progressing = styled.div`
-  /* position: absolute; */
   height: 12px;
   width: ${(props) => (props.index ? `${(props.index / 12) * 100}%` : "0%")};
   background: yellow;

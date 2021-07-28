@@ -17,7 +17,6 @@ const ContainerBox = styled.div`
   width : 1200px;
   box-sizing: border-box;
   margin: 0px auto;
-  //border: 3px dashed lightsalmon; 
   @media ${props => props.theme.tablet}{
   width: 100%;
   padding: 0;

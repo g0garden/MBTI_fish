@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Text, Grid, Button } from "../elements/";
+import { Grid } from "../elements/";
 import btnBg from "../data/images/button_frame.png";
 
 const QuizFrame = (props) => {
@@ -15,9 +15,6 @@ const QuizFrame = (props) => {
   return (
     <Grid textAlign="center">
       <Grid margin="90px auto 50px auto">
-        {/* <Text size="100px" bold lineHeight="120%">
-            {questionNum}
-          </Text> */}
         <TitleFrame>
           <PurpleLeft src={require("../data/images/bracket_left.png").default} />
           <QuestionContent dangerouslySetInnerHTML={{ __html: props.data?.question }} />
@@ -43,28 +40,6 @@ const QuizFrame = (props) => {
           <img src={btnBg}></img>
           <span style={{ color: "#b0d71d", fontWeight: "700" }} dangerouslySetInnerHTML={{ __html: props.data?.answers.b.res }}></span>
         </ButtonFrame>
-        {/* <Button
-          align
-          padding="0 20px"
-          size="17px"
-          onClick={() => {
-            props?.next();
-            props?.increment(props.data?.answers.a.type);
-          }}
-        >
-        <span dangerouslySetInnerHTML={ {__html:props.data?.answers.a.res}}/>
-        </Button>
-        <Button
-          align
-          padding="0 20px"
-          size="17px"
-          onClick={() => {
-            props?.next();
-            props?.increment(props.data?.answers.b.type);
-          }}
-        >
-          <span dangerouslySetInnerHTML={ {__html:props.data?.answers.b.res}}/>
-        </Button> */}
       </QuestionBox>
     </Grid>
   );
@@ -79,7 +54,6 @@ const TitleFrame = styled.div`
 const ButtonFrame = styled.div`
   cursor: default;
   position: relative;
-  // background: no-repeat center url(${btnBg});
   width: 100%;
   max-width: 440px;
 
@@ -93,7 +67,6 @@ const ButtonFrame = styled.div`
   word-spacing: -1px;
   line-height: 130%;
   font-size: 28px;
-  /* border: 1px solid red; */
   white-space: nowrap;
 
   /* prevent img drag */
@@ -189,7 +162,6 @@ const QuestionContent = styled.p`
   @media (max-width: 378px) {
     font-size: 27px;
   }
-  /* font-weight: 1000; */
   color: yellow;
   align-items: center;
   margin: auto;
