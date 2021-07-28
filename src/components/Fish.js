@@ -20,10 +20,8 @@ const Fish = (props) => {
 
   const [_pState, setPState] = useState(false);
 
-  let good_feature = good.feature[0].replace("<br/>", " ");
-  let bad_feature = bad.feature[0].replace("<br/>", " ");
-
-  console.log(good_feature, bad_feature);
+  let good_feature = good.feature[0].replaceAll("<br/>", " ");
+  let bad_feature = bad.feature[0].replaceAll("<br/>", " ");
 
   useEffect(() => {
     setPState(true);
@@ -37,10 +35,8 @@ const Fish = (props) => {
     }
 
     setPlayTimes((memoPlayTimes += 1));
-    // console.log(memoPlayTimes);
 
     if (memoPlayTimes === 1) {
-      // alert("아얏!");
     } else if (memoPlayTimes === 3) {
       alert("자꾸 만지면 신선도가 떨어져요 😥");
     }
@@ -70,7 +66,6 @@ const Fish = (props) => {
           <FishImg
             src={imgUrl && imgUrl}
             onClick={touchFish}
-            // onAnimationEnd={setPState(false)}
             playState={_pState}
             title={type}
           />
@@ -115,12 +110,7 @@ const Fish = (props) => {
           <Text subtitle size="1.5em" margin="20px auto" color="#00d0e9">
             잘맞는 어종
           </Text>
-          {/* <span dangerouslySetInnerHTML={{__html:}}/> */}
           <MateImg src={good.imgUrl && good.imgUrl} title={good_feature}/>
-          {/* onClick={() => {
-            sessionStorage.setItem("lastPage", "result")
-            history.push(`/result/${good.type}`)
-            }}  */}
           <Text bold size="1.2em" margin="20px auto" color="white">
             <span dangerouslySetInnerHTML={{ __html: good.name && good.name }} />
           </Text>
@@ -130,10 +120,6 @@ const Fish = (props) => {
             안맞는 어종
           </Text>
           <MateImg src={bad.imgUrl && bad.imgUrl} title={bad_feature} />
-          {/* onClick={() => {
-            sessionStorage.setItem("lastPage", "result")
-            history.push(`/result/${bad.type}`)
-        }}  */}
           <Text bold size="1.2em" margin="20px auto" color="white">
             <span dangerouslySetInnerHTML={{ __html: bad.name && bad.name }} />
           </Text>
@@ -179,26 +165,12 @@ const PurpleLine = styled.img`
   width: 80%;
 `;
 
-// @media (max-width: 1024px) {
-//   min-height: 120px;
-//   font-size: 18px;
-//   width: 420.78px;
-//   margin-bottom: 24px;
-// }
-
-// @media (max-width: 720px) {
-//   font-size: 16px;
-//   width: 100%;
-//   margin-bottom: 12px;
-// }
-
 const FishImgBackGround = styled.div`
   position: relative;
   width: 100%;
   max-width: 500px;
   height: 400px;
   margin: 1vh 0;
-  //border: 2px solid yellow;
   @media (max-width: 420px) {
     height: 350px;
   }
@@ -237,7 +209,6 @@ const TextBackGround = styled.div`
   max-width: 400px;
   margin: 1.5vh auto;
   background-color: rgb(80, 46, 143);
-  //opacity: #8f65e4;
   opacity: 0.9;
   border-radius: 15px;
   padding: 10px 10px;
@@ -271,10 +242,8 @@ const FishImg = styled.img`
   width: 75%;
   max-width: 500px;
   margin: 5vh 0;
-  //border:1px solid red;
   border-radius: 50%;
   z-index: 3;
-  //pointer-events: none;
   @media (max-width: 720px) {
     top: -30px;
     left: 60px;
