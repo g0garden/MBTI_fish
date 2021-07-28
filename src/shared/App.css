@@ -44,3 +44,7 @@ body {
 .question {
   margin-right: 8px;
 }
+
+.ant-spin-dot-item {
+  background-color: white;
+}

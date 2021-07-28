@@ -60,12 +60,8 @@ const QuizWrap = (props) => {
     // sessionStorage.setItem("lastFish", resultType);
     sessionStorage.setItem("fish", resultType);
     dispatch(fishActions.getOneFishFB(resultType));
-    // dispatch(userActions.addUserTypeFB(resultType)); //FB에 해당타입 카운트+1
+    dispatch(userActions.addUserTypeFB(resultType)); //FB에 해당타입 카운트+1
   };
-
-  // const goToResultPage = () => {
-  //   history.push("/result/:fishname");
-  // };
 
   return (
     <>
@@ -87,11 +83,12 @@ const QuizWrap = (props) => {
 };
 
 const SpinWrap = styled.div`
-  width: 100vw;
+  // width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: -18px;
 `;
 
 const ProgressBar = styled.div`
