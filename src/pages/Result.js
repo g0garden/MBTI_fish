@@ -11,7 +11,7 @@ import { dic } from "../data/questionsFB";
 import {fishInfo} from "../shared/FishInfo";
 import { api as resultActions } from "../redux-toolkit/modules/fishList";
 
-const Result = (props) => {
+const Result = (props) => { 
   const dispatch = useDispatch();
   let _name = props.match.params.fishname;
   const history = props.history;
