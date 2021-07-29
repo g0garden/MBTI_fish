@@ -7,10 +7,10 @@ import { KakaoImgUrl, facebookImgUrl, copyLinkImgUrl, restartBtnImg, GrrrLinkBtn
 import "../shared/theme";
 import { Helmet } from "react-helmet";
 import { Spin } from "antd";
-import {fishInfo} from "../shared/FishInfo";
+import { fishInfo } from "../shared/FishInfo";
 import { api as resultActions } from "../redux-toolkit/modules/fishList";
 
-const Result = (props) => { 
+const Result = (props) => {
   const dispatch = useDispatch();
   let _name = props.match.params.fishname;
   const history = props.history;
@@ -23,7 +23,7 @@ const Result = (props) => {
       history.replace("/quiz");
       sessionStorage.removeItem("lastPage");
     }
-  }
+  };
   // 이 부분은 새로고침 할 시점을 노린 것임
   // 이 밑에 if문 부분을 보면 "fish" 라는 키는 최초 Result 페이지 진입시에 사라지게 되고, 대신 "type" 이라는 키와 해당 물고기의 mbti 가 함께 저장됨.
   // 따라서, 새로고침하기 전에는 당연히 세션 안에 "fish" 라는 키가 있으니 최초 진입시에는 useEffect 가 별 효과를 내지 못함
@@ -95,24 +95,24 @@ const Result = (props) => {
       kakao.Link.sendDefault({
         objectType: "feed",
         content: {
-          title: `${fish_result.name && fish_result.name} | 도시어부`,
-          description: fish_result.sentence && fish_result.sentence.replaceAll("<br/>", " "),
-          imageUrl: fish_result.imgUrl,
+          title: `🌊 ${fish_result.name && fish_result.name} | 도시어부 Grrr`,
+          description: `"${fish_result.sentence && fish_result.sentence.replaceAll("<br/>", " ")}"`,
+          imageUrl: fish_result.imgShare,
           link: {
-            mobileWebUrl: domain+props.match.url,
-            webUrl: domain+props.match.url,
+            mobileWebUrl: domain + props.match.url,
+            webUrl: domain + props.match.url,
           },
         },
         buttons: [
           {
-            title: "결과보기",
+            title: "결과 보기",
             link: {
-              mobileWebUrl: domain+props.match.url,
-              webUrl: domain+props.match.url,
+              mobileWebUrl: domain + props.match.url,
+              webUrl: domain + props.match.url,
             },
           },
           {
-            title: "테스트하기",
+            title: "테스트 하기",
             link: {
               mobileWebUrl: domain,
               webUrl: domain,
