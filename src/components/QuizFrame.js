@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid } from "../elements/";
+import { Bracket_left, Bracket_right} from "../data/images/sharedImgs";
 import btnBg from "../data/images/button_frame.png";
 
 const QuizFrame = (props) => {
@@ -16,9 +17,9 @@ const QuizFrame = (props) => {
     <Grid textAlign="center">
       <Grid margin="90px auto 50px auto">
         <TitleFrame>
-          <PurpleLeft src={require("../data/images/bracket_left.png").default} />
+          <PurpleLeft src={Bracket_left} />
           <QuestionContent dangerouslySetInnerHTML={{ __html: props.data?.question }} />
-          <PurpleRight src={require("../data/images/bracket_right.png").default} />
+          <PurpleRight src={Bracket_right} />
         </TitleFrame>
       </Grid>
       <QuestionBox>

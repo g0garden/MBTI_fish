@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Fish from "../components/Fish";
-import { Button, Text, Container } from "../elements/";
-import { KakaoImgUrl, facebookImgUrl, copyLinkImgUrl, restartBtnImg, GrrrLinkBtnImg, DarkImg } from "../data/images/sharedImgs";
+import { Text, Container } from "../elements/";
+import { KakaoImgUrl, facebookImgUrl, copyLinkImgUrl, restartBtnImg, GrrrLinkBtnImg, DarkImg, PurpleSecondLine,PurpleThirdLeft,PurpleThirdRight } from "../data/images/sharedImgs";
 import "../shared/theme";
 import { Helmet } from "react-helmet";
 import { Spin } from "antd";
@@ -131,7 +131,6 @@ const Result = (props) => {
         <meta property="og:image" content={fish.imgUrl} data-react-helmet="true" />
         <meta property="og:description" content={fish.sentence} data-react-helmet="true" />
         <title data-react-helmet="true">{`${_name} | 도시어부`}</title>
-        {/* 뒷주소 이름은 뭘로 할지 결정해야함 ex. mbti타입인지, fish타입인지 */}
         <link rel="canonical" href={`https://cityangler.co.kr/result/${_name}`} />
       </Helmet>
       <Container>
@@ -141,17 +140,17 @@ const Result = (props) => {
           </SpinWrap>
         ) : Object.values(fish_result).length > 0 ? (
           <ResultContainer>
-            <Fish OneFishType={fish_result} history={history} />
+            <Fish OneFishType={fish_result} history={history}/>
             <Share>
               <ShareTitle>
-                <PurpleLeft src={require("../data/images/nomargin_third_left.png").default} />
+                <PurpleLeft src={PurpleThirdLeft}/>
                 <Text subtitle size="1.5em" color="#00d0e9">
                   공유하기
                 </Text>
-                <PurpleRight src={require("../data/images/nomargin_third_right.png").default} />
+                <PurpleRight src={PurpleThirdRight}/>
               </ShareTitle>
               <ShareChannel>
-                <ShareChanBtn imgUrl={KakaoImgUrl} onClick={sendLink} title="카카오톡에 내 모습 공유하기" />
+                <ShareChanBtn imgUrl={KakaoImgUrl} onClick={sendLink} title="카카오톡에 내 모습 공유하기"/>
                 <ShareChanBtn
                   as={"a"}
                   target="blank"
@@ -160,17 +159,22 @@ const Result = (props) => {
                   href={`http://www.facebook.com/share.php?u=${domain}${props.match.url}&t=${fish_result.name && fish_result.name} | 도시어부`}
                   title="페이스북에 내 모습 공유하기"
                 />
-                <ShareChanBtn imgUrl={copyLinkImgUrl} onClick={copyToClipboard} title="링크 복사하기" />
+                <ShareChanBtn imgUrl={copyLinkImgUrl} onClick={copyToClipboard} title="링크 복사하기"/>
               </ShareChannel>
             </Share>
             <Bottom>
-              <RestartBtn onClick={goBackToMain} imgUrl={restartBtnImg} />
-              <GrrrLinkBtn as={"a"} target="blank" rel="noreferrer noopener" href="https://www.youtube.com/channel/UCGrAnVVgQY66l9XHIzPxQEw" imgUrl={GrrrLinkBtnImg} />
+              <RestartBtn onClick={goBackToMain} imgUrl={restartBtnImg}/>
+              <GrrrLinkBtn 
+                  as={"a"} 
+                  target="blank" 
+                  rel="noreferrer noopener" 
+                  href="https://www.youtube.com/channel/UCGrAnVVgQY66l9XHIzPxQEw" 
+                  imgUrl={GrrrLinkBtnImg}/>
             </Bottom>
           </ResultContainer>
         ) : (
           <NoData>
-            <RestartBtn onClick={goBackToMain} imgUrl={restartBtnImg} />
+            <RestartBtn onClick={goBackToMain} imgUrl={restartBtnImg}/>
           </NoData>
         )}
       </Container>

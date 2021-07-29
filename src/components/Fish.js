@@ -1,12 +1,9 @@
 import React, { useMemo, useEffect, useState } from "react";
 import styled from "styled-components";
 import "../shared/theme";
-import { Text, Grid, Container } from "../elements/";
-import gwangeo from "../data/images/gwangeo.png";
-import fish_circlebg from "../data/images/bg_result_circle.png";
-import { CircleImg } from "../data/images/sharedImgs";
-import { useDispatch, useSelector } from "react-redux";
-import { api as resultActions } from "../redux-toolkit/modules/fishList";
+import { Text, Container } from "../elements/";
+import { CircleImg, PurpleFirstLeft,PurpleFirstRight,PurpleSecondLine } from "../data/images/sharedImgs";
+import { useDispatch} from "react-redux";
 
 const Fish = (props) => {
   const dispatch = useDispatch();
@@ -55,11 +52,11 @@ const Fish = (props) => {
     <Container>
       <FishIntro>
         <FishTitle>
-          <PurpleLeft src={require("../data/images/nomargin_first_left.png").default} />
+          <PurpleLeft src={PurpleFirstLeft} />
           <Text subtitle size="1.6em" margin="0px 4px" color="#8f65e4">
             {name && name}
           </Text>
-          <PurpleRight src={require("../data/images/nomargin_first_right.png").default} />
+          <PurpleRight src={PurpleFirstRight} />
         </FishTitle>
         <FishImgBackGround>
           <BgCircleImg src={CircleImg} />
@@ -69,7 +66,7 @@ const Fish = (props) => {
         <Text sentence bold size="1.75em" margin="10px auto" padding="20px 0 0 0" whiteSpace="nowrap" color="#00d0e9">
           <span dangerouslySetInnerHTML={{ __html: `" ${sentence && sentence} "` }} />
         </Text>
-        <PurpleLine src={require("../data/images/nomargin_second.png").default} />
+        <PurpleLine src={PurpleSecondLine} />
       </FishIntro>
 
       <FishDesc>
