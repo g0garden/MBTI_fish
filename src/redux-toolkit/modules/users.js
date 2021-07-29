@@ -46,7 +46,7 @@ const addUserTypeFB = (resultType) => {
     
     const increment = firebase.firestore.FieldValue.increment(1);
     countUsers_db.doc(resultType).update({count:increment});
-    totalUserCnt_db.totalUsers.update({totalCount:increment});
+    totalUserCnt_db.doc("totalUsers").update({totalCount:increment});
     }
   }
 

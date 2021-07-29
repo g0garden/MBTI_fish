@@ -306,6 +306,9 @@ const NoData = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url(${DarkImg});
+  background-size: cover;
+  background-position: center;
 `;
 
 const SpinWrap = styled.div`
