@@ -33,7 +33,7 @@ const getTotalUserCntFB = () => {
         const number_test = userTypeCnt_data.reduce((acc,cur) => {
           return acc+cur.count;
         },0);
-        console.log("총사용자", number_test);
+        // console.log("총사용자", number_test);
       })
     }
   }
