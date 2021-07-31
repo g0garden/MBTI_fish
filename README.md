@@ -30,9 +30,9 @@
 ### 2. 공유하기
 
 ### 3. 반응형처리
-<img style='width:200px; margin:10px;' src="https://user-images.githubusercontent.com/58612140/127746601-7199efd0-c040-41e7-8fd6-6dff5f9c5c0e.png"/>
-<img style='width:200px; margin:10px;' src="https://user-images.githubusercontent.com/58612140/127746649-6ab66ff1-3a6c-4127-81de-d23878437288.png"/>
-<img style='width:100px; margin:10px;' src="https://user-images.githubusercontent.com/58612140/127746657-300cd8cc-aeea-4920-8886-1d12ef04c182.png"/>
+<img style='width:20px; margin:10px;' src="https://user-images.githubusercontent.com/58612140/127746601-7199efd0-c040-41e7-8fd6-6dff5f9c5c0e.png"/>
+<img style='width:20px; margin:10px;' src="https://user-images.githubusercontent.com/58612140/127746649-6ab66ff1-3a6c-4127-81de-d23878437288.png"/>
+<img style='width:10px; margin:10px;' src="https://user-images.githubusercontent.com/58612140/127746657-300cd8cc-aeea-4920-8886-1d12ef04c182.png"/>
 </br>
 
 ## 🏄🏻‍♂️바다 속 나는 어떤 모습일까요? 지금 바로 확인 해보세요!  👉🏻 <a href="https://cityangler.co.kr/">테스트하러 GO!</a>
