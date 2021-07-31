@@ -12,17 +12,12 @@ const QuizWrap = (props) => {
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.qnaList.is_loading);
   const qna_list = useSelector((state) => state.qnaList.qna_list);
-  
-  console.log('내가 두 번 보인다면 너넨 망했어..');
 
   useEffect(() => {
     dispatch(quizActions.getQnaListFB());
   }, []);
 
   const [index, incrementIndex] = useState(1);
-
-  console.log(index);
-  console.log(qna_list);
 
   if (index === 1) {
     resetDic();
