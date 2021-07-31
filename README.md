@@ -30,7 +30,7 @@
 ### 2. 공유하기
 
 ### 3. 반응형처리
-<img style='width:200px; margin:10px;' src="../MBTI_fish/src/data/cityangler.co.kr_(iPad) (1).png"/>
+<img style='width:200px; margin:10px;' src="https://user-images.githubusercontent.com/58612140/127746601-7199efd0-c040-41e7-8fd6-6dff5f9c5c0e.png"/>
 <img style='width:200px; margin:10px;' src="../MBTI_fish/src/data/cityangler.co.kr_(iPad).png"/>
 <img style='width:100px; margin:10px;' src="../MBTI_fish/src/data/cityangler.co.kr_(iPhone 6_7_8).png"/>
 </br>
