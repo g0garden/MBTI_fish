@@ -30,7 +30,7 @@ const Main = ({ history }) => {
   return (
     <>
       <Helmet>
-        <title>{`바다 속 나의 모습은? | 도시어부`}</title>
+        <title>{`수면 아래 나의 본 모습은? ｜도시어부Grrr`}</title>
       </Helmet>
       <Wrap>
         <ButtonImg src={testStart} alt="테스트 시작" onClick={() => history.push("/quiz")} />
