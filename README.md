@@ -28,6 +28,23 @@
 ### 1. 사용자의 답안 선택에 따른 MBTI 유형 결과출력
 
 ### 2. 공유하기
++ 공유하기 시 특이사항 : react는 결과물 공유(SEO)에 적합하지 않음
+```
+- react helmet으로 동적 라우팅(?)은 가능
+- 결과별 SEO 대안: helmet + snap 또는 loadable-component
+```
++ 카카오톡 공유
+```
+- kakao developers의 API 중 메시지 > 카카오링크 JS 이용
+- API alt 1) 'sendScrap'은 검색엔진과 같은 원리, SEO가 필요
+- API alt 2) 'createDefaultButoon': 공유할 때 정보를 실어 보냄. SEO 필요 X. 그러나 버튼을 클릭할 때 버튼을 생성 => 한번 더 클릭해야 전송이 가능하므로 두번 클릭해야하는 문제가 있었음
+- API alt 3) 'sendDefault': 눌렀을때 동적으로 버튼을 생성하는게 아니라, 렌더링시 만들어지므로, 공유 O & 한번클릭 O
+```
++ 페이스북 공유
++ 일반 공유
+```
+- 버튼 클릭시 가상의 input 객체를 만들어 text를 넣고, 복사 후 만들었던 input 객체를 지워준다.
+```
 
 ### 3. 반응형처리
 <!-- <div style='display:flex; width:500px;'>
